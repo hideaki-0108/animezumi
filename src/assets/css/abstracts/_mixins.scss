@@ -1,31 +1,33 @@
 /* 
   Mixins
 */
+@use "sass:color";
+@use "variables" as vars;
 
 // レスポンシブブレイクポイント
 @mixin respond-to($breakpoint) {
   @if $breakpoint == "xs" {
-    @media (min-width: $breakpoint-xs) {
+    @media (min-width: vars.$breakpoint-xs) {
       @content;
     }
   } @else if $breakpoint == "sm" {
-    @media (min-width: $breakpoint-sm) {
+    @media (min-width: vars.$breakpoint-sm) {
       @content;
     }
   } @else if $breakpoint == "md" {
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: vars.$breakpoint-md) {
       @content;
     }
   } @else if $breakpoint == "lg" {
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: vars.$breakpoint-lg) {
       @content;
     }
   } @else if $breakpoint == "xl" {
-    @media (min-width: $breakpoint-xl) {
+    @media (min-width: vars.$breakpoint-xl) {
       @content;
     }
   } @else if $breakpoint == "2xl" {
-    @media (min-width: $breakpoint-2xl) {
+    @media (min-width: vars.$breakpoint-2xl) {
       @content;
     }
   }
@@ -53,7 +55,7 @@
 }
 
 // トランジション
-@mixin transition($property: all, $duration: $transition-normal, $easing: $easing-standard) {
+@mixin transition($property: all, $duration: vars.$transition-normal, $easing: vars.$easing-standard) {
   transition: $property $duration $easing;
 }
 
@@ -96,18 +98,18 @@
 }
 
 // ボタンスタイル
-@mixin button-style($bg-color: $color-primary, $text-color: $color-text-light, $hover-darken: 10%) {
+@mixin button-style($bg-color: vars.$color-primary, $text-color: vars.$color-text-light, $hover-darken: 10%) {
   display: inline-block;
   background-color: $bg-color;
   color: $text-color;
-  padding: $spacing-sm $spacing-md;
-  border-radius: $border-radius-md;
+  padding: vars.$spacing-sm vars.$spacing-md;
+  border-radius: vars.$border-radius-md;
   border: none;
   cursor: pointer;
   @include transition;
 
   &:hover {
-    background-color: darken($bg-color, $hover-darken);
+    background-color: color.adjust($bg-color, $lightness: -$hover-darken);
   }
 }
 
@@ -133,6 +135,6 @@
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: darken($thumb-color, 10%);
+    background: color.adjust($thumb-color, $lightness: -10%);
   }
 }

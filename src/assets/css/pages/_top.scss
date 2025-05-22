@@ -1,43 +1,44 @@
 @use "sass:color";
-@import "../abstracts/variables";
-@import "../abstracts/mixins";
-@import "../base/typography";
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+@use "../base/typography" as type;
 
 // ヒーローセクション
 .hero {
   position: relative;
+  padding: 10px 40px;
   min-height: 90vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: linear-gradient(120deg, $color-dark, color.adjust($color-primary, $lightness: -25%));
-  color: $color-text-light;
+  background: linear-gradient(120deg, vars.$color-dark, color.adjust(vars.$color-primary, $lightness: -25%));
+  color: vars.$color-text-light;
 
   &__content {
     position: relative;
     z-index: 2;
-    padding: $spacing-2xl 0;
+    padding: vars.$spacing-2xl 0;
   }
 
   &__title {
     font-size: 6.4rem;
-    margin-bottom: $spacing-md;
+    margin-bottom: vars.$spacing-md;
     line-height: 1;
     letter-spacing: -0.02em;
     animation: fadeInUp 0.8s ease-out forwards;
   }
 
   &__subtitle {
-    font-size: $font-size-xl;
-    margin-bottom: $spacing-md;
-    font-weight: $weight-medium;
+    font-size: type.$font-size-xl;
+    margin-bottom: vars.$spacing-md;
+    font-weight: type.$weight-medium;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out 0.2s forwards;
   }
 
   &__description {
-    font-size: $font-size-md;
-    margin-bottom: $spacing-xl;
+    font-size: type.$font-size-md;
+    margin-bottom: vars.$spacing-xl;
     max-width: 60rem;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out 0.4s forwards;
@@ -45,7 +46,7 @@
 
   &__cta {
     display: flex;
-    gap: $spacing-md;
+    gap: vars.$spacing-md;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out 0.6s forwards;
   }
@@ -71,7 +72,7 @@
     right: 10%;
     width: 20rem;
     height: 20rem;
-    background: $color-secondary;
+    background: vars.$color-secondary;
     animation: float 8s ease-in-out infinite;
   }
 
@@ -80,7 +81,7 @@
     right: 20%;
     width: 12rem;
     height: 12rem;
-    background: $color-tertiary;
+    background: vars.$color-tertiary;
     animation: float 6s ease-in-out infinite 1s;
   }
 
@@ -89,7 +90,7 @@
     right: 30%;
     width: 8rem;
     height: 8rem;
-    background: lighten($color-primary, 10%);
+    background: color.scale(vars.$color-primary, $lightness: 18.4782608696%);
     animation: float 10s ease-in-out infinite 2s;
   }
 }
@@ -100,7 +101,7 @@
   right: 15%;
   width: 15rem;
   height: 15rem;
-  background: $color-secondary;
+  background: vars.$color-secondary;
   opacity: 0.5;
   transform: rotate(45deg);
   animation: rotate 15s linear infinite;
@@ -114,57 +115,57 @@
   height: 0;
   border-left: 8rem solid transparent;
   border-right: 8rem solid transparent;
-  border-bottom: 14rem solid $color-tertiary;
+  border-bottom: 14rem solid vars.$color-tertiary;
   opacity: 0.5;
   animation: float 12s ease-in-out infinite 1.5s;
 }
 
 // アニメーションショーケース
 .animation-showcase {
-  padding: $spacing-3xl 0;
-  background-color: $color-light;
+  padding: vars.$spacing-3xl 0;
+  background-color: vars.$color-light;
 }
 
 .section-title {
-  font-size: $font-size-3xl;
-  margin-bottom: $spacing-xl;
+  font-size: type.$font-size-3xl;
+  margin-bottom: vars.$spacing-xl;
   text-align: center;
   position: relative;
 
   &:after {
     content: "";
     position: absolute;
-    bottom: -$spacing-sm;
+    bottom: vars.$spacing-sm;
     left: 50%;
     transform: translateX(-50%);
     width: 6rem;
     height: 0.4rem;
-    background: $color-primary;
-    border-radius: $border-radius-pill;
+    background: vars.$color-primary;
+    border-radius: vars.$border-radius-pill;
   }
 }
 
 .animation-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
-  gap: $spacing-lg;
-  margin-bottom: $spacing-xl;
+  gap: vars.$spacing-lg;
+  margin-bottom: vars.$spacing-xl;
 }
 
 .animation-card {
   background: white;
-  border-radius: $border-radius-md;
+  border-radius: vars.$border-radius-md;
   overflow: hidden;
-  box-shadow: $shadow-md;
+  box-shadow: vars.$shadow-md;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
   text-decoration: none;
-  color: $color-text-dark;
+  color: vars.$color-text-dark;
 
   &:hover {
     transform: translateY(-0.5rem);
-    box-shadow: $shadow-lg;
+    box-shadow: vars.$shadow-lg;
   }
 
   &__visual {
@@ -175,28 +176,28 @@
   }
 
   &__title {
-    font-size: $font-size-lg;
-    padding: $spacing-md $spacing-md $spacing-xs;
+    font-size: type.$font-size-lg;
+    padding: vars.$spacing-md vars.$spacing-md vars.$spacing-xs;
     margin: 0;
   }
 
   &__desc {
-    font-size: $font-size-sm;
-    padding: 0 $spacing-md $spacing-md;
+    font-size: type.$font-size-sm;
+    padding: 0 vars.$spacing-md vars.$spacing-md;
     margin: 0;
-    color: $color-text-muted;
+    color: vars.$color-text-muted;
   }
 }
 
 .animation-more {
   text-align: center;
-  margin-top: $spacing-xl;
+  margin-top: vars.$spacing-xl;
 }
 
 // Aboutセクション
 .about {
-  padding: $spacing-3xl 0;
-  background-color: color.adjust($color-light, $lightness: -3%);
+  padding: vars.$spacing-3xl 0;
+  background-color: color.adjust(vars.$color-light, $lightness: -3%);
 
   &__content {
     max-width: 80rem;
@@ -204,16 +205,16 @@
   }
 
   &__text {
-    font-size: $font-size-md;
-    margin-bottom: $spacing-md;
+    font-size: type.$font-size-md;
+    margin-bottom: vars.$spacing-md;
     line-height: 1.6;
   }
 }
 
 .tech-stack {
   display: flex;
-  gap: $spacing-lg;
-  margin-top: $spacing-xl;
+  gap: vars.$spacing-lg;
+  margin-top: vars.$spacing-xl;
   justify-content: center;
 }
 
@@ -221,30 +222,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $spacing-xs;
+  gap: vars.$spacing-xs;
 
   .tech-logo {
     font-size: 3.2rem;
   }
 
   .tech-name {
-    font-size: $font-size-sm;
-    font-weight: $weight-medium;
+    font-size: type.$font-size-sm;
+    font-weight: type.$weight-medium;
   }
 }
 
 // フッター
 .footer {
-  padding: $spacing-lg 0;
-  background-color: $color-dark;
-  color: $color-text-light;
+  padding: vars.$spacing-lg 0;
+  background-color: vars.$color-dark;
+  color: vars.$color-text-light;
   text-align: center;
-  font-size: $font-size-sm;
+  font-size: type.$font-size-sm;
 }
 
 // ユーティリティクラス
 .text-gradient {
-  background: linear-gradient(90deg, $color-primary, $color-secondary);
+  background: linear-gradient(90deg, vars.$color-primary, vars.$color-secondary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -252,25 +253,25 @@
 }
 
 .text-accent {
-  color: $color-tertiary;
+  color: vars.$color-tertiary;
 }
 
 // ボタン
 .button {
   display: inline-block;
-  padding: $spacing-sm $spacing-lg;
-  border-radius: $border-radius-md;
-  font-weight: $weight-medium;
+  padding: vars.$spacing-sm vars.$spacing-lg;
+  border-radius: vars.$border-radius-md;
+  font-weight: type.$weight-medium;
   text-decoration: none;
   text-align: center;
   transition: all 0.3s ease;
 
   &--primary {
-    background: $color-primary;
+    background: vars.$color-primary;
     color: white;
 
     &:hover {
-      background: color.adjust($color-primary, $lightness: -10%);
+      background: color.adjust(vars.$color-primary, $lightness: -10%);
       transform: translateY(-3px);
     }
   }
@@ -287,11 +288,11 @@
   }
 
   &--outline {
-    border: 2px solid $color-primary;
-    color: $color-primary;
+    border: 2px solid vars.$color-primary;
+    color: vars.$color-primary;
 
     &:hover {
-      background: $color-primary;
+      background: vars.$color-primary;
       color: white;
       transform: translateY(-3px);
     }
@@ -300,39 +301,39 @@
 
 // アニメーションデモ
 .pulse-demo {
-  @include flex-center;
+  @include mix.flex-center;
 
   &:after {
     content: "";
     width: 6rem;
     height: 6rem;
-    background: $color-primary;
+    background: vars.$color-primary;
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
   }
 }
 
 .float-demo {
-  @include flex-center;
+  @include mix.flex-center;
 
   &:after {
     content: "";
     width: 6rem;
     height: 6rem;
-    background: $color-tertiary;
+    background: vars.$color-tertiary;
     border-radius: 50%;
     animation: float 3s ease-in-out infinite;
   }
 }
 
 .morph-demo {
-  @include flex-center;
+  @include mix.flex-center;
 
   &:after {
     content: "";
     width: 6rem;
     height: 6rem;
-    background: $color-secondary;
+    background: vars.$color-secondary;
     animation: morph 5s ease-in-out infinite;
   }
 }

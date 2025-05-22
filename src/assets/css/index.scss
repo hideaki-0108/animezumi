@@ -1,25 +1,20 @@
 // Base
-@import "./base/reset";
-@import "./base/typography";
+@use "./base" as base;
 
 // Abstracts
-@import "./abstracts/variables";
-@import "./abstracts/mixins";
+@use "./abstracts" as *;
 
 // Components
-@import "./components/buttons";
+@use "./components" as components;
 
 // Layouts
-@import "./layout/header";
-@import "./layout/footer";
+@use "./layout" as layout;
 
 // Animations
-@import "./animations/keyframes";
-@import "./animations/transitions";
-@import "./animations/effects";
+@use "./animations" as animations;
 
 // Pages
-@import "./pages/top";
+@use "./pages" as pages;
 
 /* グローバルスタイル */
 html {
