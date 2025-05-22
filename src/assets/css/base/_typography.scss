@@ -1,0 +1,111 @@
+/* 
+  Typography Styles
+*/
+
+// フォントファミリー変数
+$font-primary: "Noto Sans JP", sans-serif;
+$font-secondary: "Poppins", sans-serif;
+$font-code: "Source Code Pro", monospace;
+
+// フォントウェイト
+$weight-light: 300;
+$weight-regular: 400;
+$weight-medium: 500;
+$weight-bold: 700;
+
+// フォントサイズ (10px基準のrem)
+$font-size-xs: 1.2rem; // 12px
+$font-size-sm: 1.4rem; // 14px
+$font-size-base: 1.6rem; // 16px
+$font-size-md: 1.8rem; // 18px
+$font-size-lg: 2rem; // 20px
+$font-size-xl: 2.4rem; // 24px
+$font-size-2xl: 2.8rem; // 28px
+$font-size-3xl: 3.2rem; // 32px
+$font-size-4xl: 4rem; // 40px
+
+// 行の高さ
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+// 見出しのスタイル
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-primary;
+  margin-bottom: 0.5em;
+  line-height: $line-height-tight;
+  font-weight: $weight-bold;
+}
+
+h1 {
+  font-size: $font-size-4xl;
+}
+
+h2 {
+  font-size: $font-size-3xl;
+}
+
+h3 {
+  font-size: $font-size-2xl;
+}
+
+h4 {
+  font-size: $font-size-xl;
+}
+
+h5 {
+  font-size: $font-size-lg;
+}
+
+h6 {
+  font-size: $font-size-md;
+}
+
+// 段落
+p {
+  margin-bottom: 1rem;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+}
+
+// リンク
+a {
+  color: #0077cc;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #005fa3;
+    text-decoration: underline;
+  }
+}
+
+// リスト
+ul,
+ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+// コード
+code {
+  font-family: $font-code;
+  font-size: 0.9em;
+  background-color: #f1f1f1;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+// 引用
+blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 1rem;
+  margin-left: 0;
+  font-style: italic;
+  color: #666;
+}

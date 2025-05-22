@@ -1,0 +1,138 @@
+/* 
+  Mixins
+*/
+
+// レスポンシブブレイクポイント
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "xs" {
+    @media (min-width: $breakpoint-xs) {
+      @content;
+    }
+  } @else if $breakpoint == "sm" {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == "md" {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == "lg" {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == "xl" {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == "2xl" {
+    @media (min-width: $breakpoint-2xl) {
+      @content;
+    }
+  }
+}
+
+// フレックスボックスセンタリング
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// グリッドセンタリング
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+// 絶対位置センタリング
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// トランジション
+@mixin transition($property: all, $duration: $transition-normal, $easing: $easing-standard) {
+  transition: $property $duration $easing;
+}
+
+// アニメーション
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animation($name, $duration: 1s, $timing-function: ease, $delay: 0s, $iteration-count: 1, $direction: normal, $fill-mode: forwards) {
+  animation: $name $duration $timing-function $delay $iteration-count $direction $fill-mode;
+}
+
+// マルチライン省略
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// アスペクト比の保持
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// ボタンスタイル
+@mixin button-style($bg-color: $color-primary, $text-color: $color-text-light, $hover-darken: 10%) {
+  display: inline-block;
+  background-color: $bg-color;
+  color: $text-color;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-md;
+  border: none;
+  cursor: pointer;
+  @include transition;
+
+  &:hover {
+    background-color: darken($bg-color, $hover-darken);
+  }
+}
+
+// メディア（画像・ビデオ）のレスポンシブ対応
+@mixin responsive-media {
+  max-width: 100%;
+  height: auto;
+}
+
+// スクロールバースタイリング
+@mixin custom-scrollbar($width: 8px, $track-color: #f1f1f1, $thumb-color: #888) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $width / 2;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: darken($thumb-color, 10%);
+  }
+}

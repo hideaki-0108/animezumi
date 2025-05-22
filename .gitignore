@@ -1,0 +1,41 @@
+# VSCode設定
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+
+# Cursorの設定
+cursor/
+
+# キャッシュファイル
+.cache/
+
+# ビルド時に生成される一時ファイル
+.temp/
+.tmp/
+
+# TypeScript生成ファイル
+*.tsbuildinfo
+
+# カバレッジレポート
+coverage/
+
+# テストファイル
+.nyc_output/
+
+# husky, lint-staged関連（必要に応じて）
+.husky/_
+
+# エディタ関連
+*.swp
+*.swo
+.history/
+
+# OS関連ファイル（Windowsなど）
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ローカル設定
+.prettierrc.local
+.eslintrc.local

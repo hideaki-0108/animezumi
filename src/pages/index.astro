@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout title="Animezumi - アニメーションのアイデア集">
+	<div class="hero">
+		<div class="hero__content container">
+			<h1 class="hero__title">
+				<span class="text-gradient">Anime</span><span class="text-accent">zumi</span>
+			</h1>
+			<p class="hero__subtitle">クリエイティブなアニメーションの世界へようこそ</p>
+			<p class="hero__description">
+				様々なアニメーションテクニックを探求し、<br>
+				インスピレーションあふれる表現を集めたポートフォリオ
+			</p>
+			<div class="hero__cta">
+				<a href="#animations" class="button button--primary">作品を見る</a>
+				<a href="#about" class="button button--secondary">詳しく知る</a>
+			</div>
+		</div>
+		<div class="hero__visual">
+			<div class="circle circle--1"></div>
+			<div class="circle circle--2"></div>
+			<div class="circle circle--3"></div>
+			<div class="square"></div>
+			<div class="triangle"></div>
+		</div>
+	</div>
+
+	<section id="animations" class="animation-showcase">
+		<div class="container">
+			<h2 class="section-title">アニメーション作品</h2>
+			<div class="animation-grid">
+				<a href="/animations/pulse" class="animation-card">
+					<div class="animation-card__visual pulse-demo"></div>
+					<h3 class="animation-card__title">Pulse</h3>
+					<p class="animation-card__desc">鼓動のようなリズミカルなアニメーション</p>
+				</a>
+				<a href="/animations/float" class="animation-card">
+					<div class="animation-card__visual float-demo"></div>
+					<h3 class="animation-card__title">Float</h3>
+					<p class="animation-card__desc">滑らかに浮遊する要素の動き</p>
+				</a>
+				<a href="/animations/morph" class="animation-card">
+					<div class="animation-card__visual morph-demo"></div>
+					<h3 class="animation-card__title">Morph</h3>
+					<p class="animation-card__desc">形状が変化するSVGアニメーション</p>
+				</a>
+			</div>
+			<div class="animation-more">
+				<a href="/animations" class="button button--outline">もっと見る</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="about" class="about">
+		<div class="container">
+			<div class="about__content">
+				<h2 class="section-title">Animezumiについて</h2>
+				<p class="about__text">
+					「ズミ」は宮古島の方言で「最高」を意味します。<br>
+					Animezumiは、クリエイティブなアニメーションを追求し、表現の可能性を広げるプロジェクトです。
+				</p>
+				<p class="about__text">
+					モーションデザイン、インタラクティブアニメーション、エフェクトなど、
+					さまざまな技術を組み合わせた作品を集めています。
+				</p>
+				<div class="tech-stack">
+					<div class="tech-item">
+						<span class="tech-logo">⚡</span>
+						<span class="tech-name">Astro</span>
+					</div>
+					<div class="tech-item">
+						<span class="tech-logo">🔄</span>
+						<span class="tech-name">GSAP</span>
+					</div>
+					<div class="tech-item">
+						<span class="tech-logo">🎨</span>
+						<span class="tech-name">Sass</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<div class="container">
+			<p>© 2023 Animezumi. クリエイティブなアニメーションを追求するプロジェクト</p>
+		</div>
+	</footer>
+</Layout>
+
+<style lang="scss">
+	@import '../assets/css/pages/top';
+</style>
+
+<script>
+	// ページ読み込み完了時のアニメーション
+	document.addEventListener('DOMContentLoaded', () => {
+		// ビジュアル要素のアニメーション調整
+		const animElements = document.querySelectorAll('.circle, .square, .triangle');
+		animElements.forEach(el => {
+			(el as HTMLElement).style.opacity = '0';
+			setTimeout(() => {
+				(el as HTMLElement).style.transition = 'opacity 1s ease-out';
+				(el as HTMLElement).style.opacity = '0.6';
+			}, 500);
+		});
+
+		// スクロールアニメーション
+		const animateSections = () => {
+			const sections = document.querySelectorAll('section');
+			sections.forEach(section => {
+				const rect = section.getBoundingClientRect();
+				const isVisible = rect.top < window.innerHeight * 0.8;
+				
+				if (isVisible) {
+					(section as HTMLElement).style.opacity = '1';
+					(section as HTMLElement).style.transform = 'translateY(0)';
+				}
+			});
+		};
+
+		// 初期スタイル設定
+		const sections = document.querySelectorAll('section');
+		sections.forEach(section => {
+			(section as HTMLElement).style.opacity = '0';
+			(section as HTMLElement).style.transform = 'translateY(3rem)';
+			(section as HTMLElement).style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+		});
+
+		// スクロールイベント
+		window.addEventListener('scroll', animateSections);
+		animateSections(); // 初期表示時にも実行
+	});
+</script>

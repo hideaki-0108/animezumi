@@ -1,0 +1,40 @@
+// Base
+@import "./base/reset";
+@import "./base/typography";
+
+// Abstracts
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+
+// Components
+@import "./components/buttons";
+
+// Layouts
+@import "./layout/header";
+@import "./layout/footer";
+
+// Animations
+@import "./animations/keyframes";
+@import "./animations/transitions";
+@import "./animations/effects";
+
+// Pages
+@import "./pages/top";
+
+/* グローバルスタイル */
+html {
+  font-family: system-ui, sans-serif;
+  font-size: 62.5%; // 1rem = 10px
+  background: #f6f6f6;
+  color: #444;
+}
+
+body {
+  font-size: 1.6rem; // 16pxに戻す
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
