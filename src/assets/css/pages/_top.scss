@@ -401,7 +401,7 @@
 }
 
 // レスポンシブ調整
-@include respond-to("md") {
+@include mix.respond-to("md") {
   .hero {
     &__title {
       font-size: 8rem;
@@ -409,7 +409,7 @@
   }
 }
 
-@include respond-to("sm") {
+@include mix.respond-to("sm") {
   .animation-grid {
     grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   }
