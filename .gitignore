@@ -1,40 +1,46 @@
+# 依存関係
+node_modules/
+
+# ビルド時に生成される一時ファイル
+.temp/
+.tmp/
+.astro/
+dist/
+build/
+.cache/
+
 # VSCode設定
 .vscode/*
 !.vscode/extensions.json
 !.vscode/launch.json
 !.vscode/settings.json
 
-# Cursorの設定
+# エディタ設定
 cursor/
-
-# キャッシュファイル
-.cache/
-
-# ビルド時に生成される一時ファイル
-.temp/
-.tmp/
-
-# TypeScript生成ファイル
-*.tsbuildinfo
-
-# カバレッジレポート
-coverage/
-
-# テストファイル
-.nyc_output/
-
-# husky, lint-staged関連（必要に応じて）
-.husky/_
-
-# エディタ関連
 *.swp
 *.swo
 .history/
 
-# OS関連ファイル（Windowsなど）
+# TypeScript生成ファイル
+*.tsbuildinfo
+
+# テストとカバレッジ
+coverage/
+.nyc_output/
+
+# 環境変数（シークレットを含むため）
+.env
+.env.*
+!.env.example
+
+# OS関連ファイル
+.DS_Store
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# husky, lint-staged関連
+.husky/_
 
 # ローカル設定
 .prettierrc.local
