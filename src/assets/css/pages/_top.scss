@@ -2,6 +2,7 @@
 @use "../abstracts/variables" as vars;
 @use "../abstracts/mixins" as mix;
 @use "../base/typography" as type;
+@use "../layout/index" as layout;
 
 // ヒーローセクション
 .hero {
@@ -129,6 +130,7 @@
 .section-title {
   font-size: type.$font-size-3xl;
   margin-bottom: vars.$spacing-xl;
+  padding-bottom: vars.$spacing-lg;
   text-align: center;
   position: relative;
 
@@ -232,15 +234,6 @@
     font-size: type.$font-size-sm;
     font-weight: type.$weight-medium;
   }
-}
-
-// フッター
-.footer {
-  padding: vars.$spacing-lg 0;
-  background-color: vars.$color-dark;
-  color: vars.$color-text-light;
-  text-align: center;
-  font-size: type.$font-size-sm;
 }
 
 // ユーティリティクラス
