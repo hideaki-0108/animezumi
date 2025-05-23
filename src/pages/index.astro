@@ -6,7 +6,7 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Animezumi - アニメーションのアイデア集">
-	<div class="hero">
+	<section class="hero">
 		<div class="hero__content container">
 			<h1 class="hero__title">
 				<span class="text-gradient">Anime</span><span class="text-accent">zumi</span>
@@ -28,7 +28,7 @@ import Layout from '../layouts/Layout.astro';
 			<div class="square"></div>
 			<div class="triangle"></div>
 		</div>
-	</div>
+	</section>
 
 	<section id="animations" class="animation-showcase">
 		<div class="container">
@@ -94,7 +94,7 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style lang="scss">
-	@use '../assets/css/pages/top';
+	@use '../assets/css/index.scss';
 </style>
 
 <script>

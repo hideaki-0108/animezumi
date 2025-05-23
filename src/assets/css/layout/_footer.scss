@@ -1,0 +1,12 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+@use "../base/typography" as type;
+
+// フッター
+.footer {
+  padding: vars.$spacing-lg 0;
+  background-color: vars.$color-dark;
+  color: vars.$color-text-light;
+  text-align: center;
+  font-size: type.$font-size-xxs;
+}
