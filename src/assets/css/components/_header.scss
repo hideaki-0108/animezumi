@@ -1,0 +1,65 @@
+@use "sass:color";
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as mix;
+@use "../base/typography" as type;
+@use "../layout/index" as layout;
+@use "../base/reset" as reset;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(245, 245, 245, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  &__logo {
+    font-size: type.$font-size-2xl;
+    transition: opacity 0.2s ease-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.headerNav {
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    font-size: type.$font-size-md;
+
+    & + & {
+      margin-left: 20px;
+    }
+  }
+
+  a {
+    transition: opacity 0.2s ease-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, $color-primary, $color-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-accent {
+  color: $color-tertiary;
+}

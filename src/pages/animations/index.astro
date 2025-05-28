@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const title = 'アニメーション集 - Animezumi';
+const description = '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオAnimezumi。';
+---
+
+<Layout title={title} description={description}>
+	<section class="animation-showcase">
+		<div class="container">
+			<h2 class="section-title">アニメーション作品</h2>
+		</div>
+	</section>
+</Layout>

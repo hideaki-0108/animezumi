@@ -1,4 +1,6 @@
 ---
+import HeaderLayout from '../components/header.astro';
+
 export interface Props {
 	title?: string;
 	description?: string;
@@ -95,6 +97,7 @@ const structuredData = {
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
 	</head>
 	<body>
+		<HeaderLayout />
 		<slot />
 	</body>
 </html>
