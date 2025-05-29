@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import { Code } from 'astro:components';
 
+const title = 'Pulse Animation';
+const description = '鼓動のようなリズミカルなアニメーション';
+
 const codeExample = `const pulse = gsap.to(".pulse-animation", {
   scale: 1.2,
   repeat: -1,
@@ -12,8 +15,7 @@ const codeExample = `const pulse = gsap.to(".pulse-animation", {
 
 const htmlExample = `<div class="pulse-animation"></div>`;
 
-const cssExample = `
-  .pulse-animation {
+const cssExample = `.pulse-animation {
     width: 100px;
     height: 100px;
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
@@ -24,68 +26,46 @@ const cssExample = `
 `;
 ---
 
-<Layout>
-  <h1>Pulse Animation</h1>
-  <p>鼓動のようなリズミカルなアニメーション</p>
-  <div class="pulse-animation"></div>
-
-  <section>
-    <h2>GSAP</h2>
-    <Code lang="js" code={codeExample} />
+<Layout title={title} description={description}>
+  <div class="container">
+    <h1 class="animation__title">Pulse Animation</h1>
+    <p>鼓動のようなリズミカルなアニメーション</p>
+    <div class="animation__box">
+      <div class="pulse-animation"></div>
+    </div>
+  
     <section>
-      <h3>GSAPコードの解説</h3>
-      <p>
-        <code>gsap.to()</code> は、GSAPのアニメーションを開始するためのメソッドです。<br>
-        <code>scale: 1.2</code> は、要素のサイズを1.2倍にします。<br>
-        <code>repeat: -1</code> は、アニメーションを無限に繰り返します。<br>
-        <code>yoyo: true</code> は、アニメーションを行った後に逆方向にアニメーションを行います。repeatと組み合わせることで、純再生→逆再生→純再生のようなループが出来上がります。<br>
-        <code>duration: 1</code> は、アニメーションの時間を1秒にします。<br>
-        <code>ease: "power2.inOut"</code> は、アニメーションのイージングを設定します。<br>
-      </p>
+      <h2>GSAP</h2>
+      <Code lang="js" code={codeExample} class="code -block" />
+      <section>
+        <h3>GSAPコードの解説</h3>
+        <p><code class="code -inline">gsap.to()</code> は、GSAPのアニメーションを開始するためのメソッドです。</p>
+        <p><code class="code -inline">scale: 1.2</code> は、要素のサイズを1.2倍にします。</p>
+        <p><code class="code -inline">repeat: -1</code> は、アニメーションを無限に繰り返します。</p>
+        <p><code class="code -inline">yoyo: true</code> は、アニメーションを行った後に逆方向にアニメーションを行います。repeatと組み合わせることで、純再生→逆再生→純再生のようなループが出来上がります。</p>
+        <p><code class="code -inline">duration: 1</code> は、アニメーションの時間を1秒にします。</p>
+        <p><code class="code -inline">ease: "power2.inOut"</code> は、アニメーションのイージングを設定します。</p>
+        </p>
+      </section>
+  
+      <h2>HTML / CSS</h2>
+      <Code lang="html" code={htmlExample} class="code -block" />
+      <Code lang="css" code={cssExample} class="code -block" />
     </section>
 
-    <h2>HTML / CSS</h2>
-    <Code lang="html" code={htmlExample} />
-    <Code lang="css" code={cssExample} />
-  </section>
-  <div>
-    <a href="/">トップに戻る</a>
+    <div class="animation__back">
+      <a href="/">トップに戻る</a>
+    </div>
   </div>
+
+  
 </Layout>
 
-<style>
-  .pulse-animation {
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-    border-radius: 50%;
-    margin: 2rem auto;
-    transform-origin: center;
-  }
-
-  pre {
-    background: #f4f4f4;
-    padding: 1rem;
-    border-radius: 8px;
-    overflow-x: auto;
-  }
-
-  code {
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-  }
-
-  section {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
-
-  h2 {
-    color: #333;
-    margin-top: 2rem;
-  }
+<style lang="scss">
+	@use '../../assets/css/index.scss';
+	@use '../../assets/css/pages/animations/_pulse.scss';
 </style>
+
 
 <script>
   import { gsap } from 'gsap';

@@ -1,0 +1,21 @@
+@use "../abstracts/variables" as *;
+@use "../base/typography" as *;
+
+.code {
+  &.-block {
+    padding: 14px 20px;
+    display: block;
+    font-size: $font-size-base;
+    border-radius: 4px;
+  }
+
+  &.-inline {
+    padding: 2px 4px;
+    margin-right: 0.1em;
+    display: inline-block;
+    font-family: $font-code;
+    font-size: 1em;
+    background-color: $color-code;
+    border-radius: 2px;
+  }
+}

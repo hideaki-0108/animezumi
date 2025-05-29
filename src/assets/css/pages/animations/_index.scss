@@ -1,0 +1,30 @@
+@use "../../abstracts/variables" as *;
+@use "../../base/typography" as *;
+
+.animation {
+  &__title {
+    margin-top: 20px;
+  }
+
+  &__box {
+    padding: 20px 40px;
+    width: 100%;
+    height: auto;
+    background-color: $color-code;
+    border-radius: 4px;
+    box-shadow: $shadow-md;
+  }
+
+  &__back {
+    padding-left: calc(1em + 4px);
+    font-size: $font-size-md;
+    margin: 60px 0 0;
+
+    &::before {
+      content: "<";
+      margin-right: 4px;
+      display: inline-block;
+      color: $color-primary;
+    }
+  }
+}
