@@ -6,19 +6,28 @@
 @use "../base/reset" as reset;
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 20px;
+  width: 100%;
+  height: 70px;
+  max-height: 70px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(245, 245, 245, 0.8);
+  background: rgba(245, 245, 245, 0.7);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(245, 245, 245, 0.8);
+
+  &__inner {
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
 
   &__logo {
     font-size: type.$font-size-2xl;
@@ -39,7 +48,7 @@
     font-size: type.$font-size-md;
 
     & + & {
-      margin-left: 20px;
+      margin-left: 40px;
     }
   }
 

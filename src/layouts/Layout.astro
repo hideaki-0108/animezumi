@@ -98,6 +98,17 @@ const structuredData = {
 	</head>
 	<body>
 		<HeaderLayout />
-		<slot />
+		<main class="main">
+			<slot />
+		</main>
+		<footer class="footer">
+			<div class="footer__inner">
+				<p>&copy; 2025 Hideaki Tomori All Rights Reserved.</p>
+			</div>
+		</footer>
 	</body>
 </html>
+
+<style lang="scss">
+	@use '../assets/css/index.scss';
+</style>

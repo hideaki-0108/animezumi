@@ -1,5 +1,5 @@
 // Base
-@use "./base" as base;
+@use "./base" as *;
 
 // Abstracts
 @use "./abstracts" as *;
@@ -8,13 +8,10 @@
 @use "./components" as *;
 
 // Layouts
-@use "./layout" as layout;
+@use "./layout" as *;
 
 // Animations
-@use "./animations" as animations;
-
-// Pages
-@use "./pages" as pages;
+@use "./animations" as *;
 
 /* グローバルスタイル */
 html {
@@ -22,14 +19,4 @@ html {
   font-size: 62.5%; // 1rem = 10px
   background: #f6f6f6;
   color: #444;
-}
-
-body {
-  font-size: 1.6rem;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
 }

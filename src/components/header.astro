@@ -14,20 +14,22 @@ const navItems = [
 ---
 
 <header class="header">
-  <h1 class="header__logo">
-    <a href="/" aria-label="トップに戻る">
-      <span class="text-gradient">Anime</span><span class="text-accent">zumi</span>
-    </a>
-  </h1>
-  <nav class="headerNav">
-    <ul class="headerNav__list">
-      {navItems.map((item) => (
-        <li class="headerNav__item">
-          <a href={item.href} class="headerNav__link">{item.label}</a>
-        </li>
-      ))}
-    </ul>
-  </nav>
+  <div class="header__inner">
+    <h1 class="header__logo">
+      <a href="/" aria-label="トップに戻る">
+        <span class="text-gradient">Anime</span><span class="text-accent">zumi</span>
+      </a>
+    </h1>
+    <nav class="headerNav">
+      <ul class="headerNav__list">
+        {navItems.map((item) => (
+          <li class="headerNav__item">
+            <a href={item.href} class="headerNav__link">{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <style lang="scss">
