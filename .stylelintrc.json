@@ -1,0 +1,24 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "order/properties-order": [
+      "position",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "display",
+      "flex",
+      "grid",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "background",
+      "color",
+      "font",
+      "text",
+      "border"
+    ]
+  }
+}
