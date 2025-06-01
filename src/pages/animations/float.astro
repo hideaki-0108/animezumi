@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Code } from 'astro:components';
+
+const title = 'float Animation';
+const description = '滑らかに浮遊する要素の動き';
+
+const codeExample = `const float = gsap.fromTo(".float-animation", {
+  y: 10,
+}, {
+  y: -10,
+  repeat: -1,
+  yoyo: true,
+  duration: 1,
+  ease: "power2.inOut",
+});`;
+
+const htmlExample = `<div class="float-animation"></div>`;
+
+const cssExample = `.float-animation {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 50%;
+    margin: 2rem auto;
+    transform-origin: center;
+  }
+`;
+---
+
+<Layout title={title} description={description}>
+  <div class="container">
+    <h1 class="animation__title">float Animation</h1>
+    <p>滑らかに浮遊する要素の動き</p>
+    <div class="animation__box">
+      <div class="float-animation"></div>
+    </div>
+  
+    <section>
+      <h2>GSAP</h2>
+      <Code lang="js" code={codeExample} class="code -block" />
+      <section>
+        <h3>GSAPコードの解説</h3>
+        <p><code class="code -inline">gsap.fromTo()</code> は、GSAPアニメーションの開始と終了の値を設定するためのメソッドです。</p>
+        <p><code class="code -inline">y: 10</code> は、アニメーションの開始時のy軸方向の位置を10px下にします。</p>
+        <p><code class="code -inline">y: -10</code> は、アニメーションの終了時のy軸方向の位置を10px上にします。</p>
+        <p><code class="code -inline">repeat: -1</code> は、アニメーションを無限に繰り返します。</p>
+        <p><code class="code -inline">yoyo: true</code> は、アニメーションを行った後に逆方向にアニメーションを行います。repeatと組み合わせることで、純再生→逆再生→純再生のようなループが出来上がります。</p>
+        <p><code class="code -inline">duration: 1</code> は、アニメーションの時間を1秒にします。</p>
+        <p><code class="code -inline">ease: "power2.inOut"</code> は、アニメーションのイージングを設定します。</p>
+        </p>
+      </section>
+  
+      <h2>HTML / CSS</h2>
+      <Code lang="html" code={htmlExample} class="code -block" />
+      <Code lang="css" code={cssExample} class="code -block" />
+    </section>
+
+    <div class="animation__back">
+      <a href="/">トップに戻る</a>
+    </div>
+  </div>
+
+  
+</Layout>
+
+<style lang="scss">
+	@use '../../assets/css/index.scss';
+	@use '../../assets/css/pages/animations/_float.scss';
+</style>
+
+
+<script>
+  import { gsap } from 'gsap';
+
+  // DOMが読み込まれた後にアニメーションを開始
+  document.addEventListener('DOMContentLoaded', () => {
+    const float = gsap.fromTo(".float-animation", {
+      y: 10,
+    }, {
+      y: -10,
+      repeat: -1,
+      yoyo: true,
+      duration: 1,
+      ease: "power2.inOut",
+    });
+  });
+</script> 
