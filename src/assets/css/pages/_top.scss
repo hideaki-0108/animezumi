@@ -198,7 +198,7 @@
 
 // Aboutセクション
 .about {
-  padding: $spacing-3xl 0;
+  padding: 0 0 $spacing-3xl;
   background-color: color.adjust($color-light, $lightness: -3%);
 
   &__content {
@@ -211,6 +211,11 @@
     margin-bottom: $spacing-md;
     line-height: 1.6;
   }
+}
+
+.tech-section {
+  padding: $spacing-3xl 0 0;
+  background-color: color.adjust($color-light, $lightness: -3%);
 }
 
 .tech-stack {
@@ -258,48 +263,6 @@
   color: $color-tertiary;
 }
 
-// ボタン
-.button {
-  display: inline-block;
-  padding: $spacing-sm $spacing-lg;
-  border-radius: $border-radius-md;
-  font-weight: $weight-medium;
-  text-decoration: none;
-  text-align: center;
-  transition: all 0.3s ease;
-
-  &--primary {
-    background: $color-primary;
-    color: white;
-
-    &:hover {
-      background: color.adjust($color-primary, $lightness: -10%);
-      transform: translateY(-3px);
-    }
-  }
-
-  &--secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    backdrop-filter: blur(10px);
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-3px);
-    }
-  }
-
-  &--outline {
-    border: 2px solid $color-primary;
-    color: $color-primary;
-
-    &:hover {
-      background: $color-primary;
-      color: white;
-      transform: translateY(-3px);
-    }
-  }
-}
 
 // アニメーションデモ
 .pulse-demo {

@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Code } from 'astro:components';
+
+const title = 'morph Animation';
+const description = '滑らかに浮遊する要素の動き';
+
+const codeExample = `const morph = gsap.fromTo(".morph-animation", {
+  y: 10,
+}, {
+  y: -10,
+  repeat: -1,
+  yoyo: true,
+  duration: 1,
+  ease: "power2.inOut",
+});`;
+
+const htmlExample = `<div class="morph-animation"></div>`;
+
+const cssExample = `.morph-animation {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 50%;
+    margin: 2rem auto;
+    transform-origin: center;
+  }
+`;
+---
+
+<Layout title={title} description={description}>
+  <div class="container">
+    <h1 class="animation__title">Morph Animation</h1>
+    <p>滑らかに浮遊する要素の動き</p>
+    <div class="animation__box">
+      <div class="morph-animation">
+        <svg class="morph-animation__svg" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#ff6b6b" />
+              <stop offset="100%" style="stop-color:#4ecdc4" />
+            </linearGradient>
+          </defs>
+          <path id="morph-path" d="M10,10 L70,10 L70,70 L10,70 Z" fill="url(#grad1)"/>
+        </svg>
+      </div>
+    </div>
+  
+    <section>
+      <h2>GSAP</h2>
+      <Code lang="js" code={codeExample} class="code -block" />
+      <section>
+        <h3>GSAPコードの解説</h3>
+        <p><code class="code -inline">gsap.fromTo()</code> は、GSAPアニメーションの開始と終了の値を設定するためのメソッドです。</p>
+        <p><code class="code -inline">y: 10</code> は、アニメーションの開始時のy軸方向の位置を10px下にします。</p>
+        <p><code class="code -inline">y: -10</code> は、アニメーションの終了時のy軸方向の位置を10px上にします。</p>
+        <p><code class="code -inline">repeat: -1</code> は、アニメーションを無限に繰り返します。</p>
+        <p><code class="code -inline">yoyo: true</code> は、アニメーションを行った後に逆方向にアニメーションを行います。repeatと組み合わせることで、純再生→逆再生→純再生のようなループが出来上がります。</p>
+        <p><code class="code -inline">duration: 1</code> は、アニメーションの時間を1秒にします。</p>
+        <p><code class="code -inline">ease: "power2.inOut"</code> は、アニメーションのイージングを設定します。</p>
+        </p>
+      </section>
+  
+      <h2>HTML / CSS</h2>
+      <Code lang="html" code={htmlExample} class="code -block" />
+      <Code lang="css" code={cssExample} class="code -block" />
+    </section>
+
+    <div class="animation__back">
+      <a href="/">トップに戻る</a>
+    </div>
+  </div>
+
+  
+</Layout>
+
+<style lang="scss">
+	@use '../../assets/css/index.scss';
+	@use '../../assets/css/pages/animations/_morph.scss';
+</style>
+
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const morph = gsap.timeline({
+      repeat: -1,
+      defaults: {
+        duration: 1,
+        ease: "power2.inOut"
+      }
+    });
+
+    // 1. 四角から円への変形（180度回転）
+    morph.to("#morph-path", {
+      morphSVG: "M40,10 A30,30 0 1,1 40,70 A30,30 0 1,1 40,10",
+      rotate: 180
+    })
+    // 2. 円から四角への変形（0度回転）
+    .to("#morph-path", {
+      morphSVG: "M10,10 L70,10 L70,70 L10,70 Z",
+      rotate: 0
+    })
+    // 3. 四角から円への変形（-180度回転）
+    .to("#morph-path", {
+      morphSVG: "M40,10 A30,30 0 1,1 40,70 A30,30 0 1,1 40,10",
+      rotate: -180
+    })
+    // 4. 円から四角への変形（0度回転）
+    .to("#morph-path", {
+      morphSVG: "M10,10 L70,10 L70,70 L10,70 Z",
+      rotate: 0
+    });
+  });
+</script> 

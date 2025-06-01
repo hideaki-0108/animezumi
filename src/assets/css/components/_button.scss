@@ -1,0 +1,49 @@
+@use "sass:color";
+@use "../base/" as *;
+@use "../abstracts/variables" as *;
+@use "../base/typography" as *;
+@use "../abstracts/mixins" as *;
+
+// ボタン
+.button {
+  display: inline-block;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius-md;
+  font-size: $font-size-base;
+  font-weight: $weight-medium;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+
+  &--primary {
+    background: $color-primary;
+    color: white;
+
+    &:hover {
+      background: color.adjust($color-primary, $lightness: -10%);
+      transform: translateY(-3px);
+    }
+  }
+
+  &--secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+    }
+  }
+
+  &--outline {
+    border: 2px solid $color-primary;
+    color: $color-primary;
+
+    &:hover {
+      background: $color-primary;
+      color: white;
+      transform: translateY(-3px);
+    }
+  }
+}
