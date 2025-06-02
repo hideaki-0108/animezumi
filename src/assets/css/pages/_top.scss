@@ -171,7 +171,9 @@
   }
 
   &__visual {
-    height: 20rem;
+    height: auto;
+    max-height: 200px;
+    padding: 24px 0;
     background: #f0f0f0;
     position: relative;
     overflow: hidden;

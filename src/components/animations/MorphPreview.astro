@@ -1,0 +1,63 @@
+---
+// Morphアニメーションのプレビューコンポーネント
+---
+
+<div class="morph-preview">
+  <div class="morph-animation">
+    <svg class="morph-animation__svg" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 80 80">
+      <defs>
+        <linearGradient id="grad1-preview" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#ff6b6b" />
+          <stop offset="100%" style="stop-color:#4ecdc4" />
+        </linearGradient>
+      </defs>
+      <path id="morph-path-preview" d="M10,10 L70,10 L70,70 L10,70 Z" fill="url(#grad1-preview)"/>
+    </svg>
+  </div>
+</div>
+
+<style>
+.morph-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 120px;
+}
+
+.morph-animation {
+  display: inline-block;
+}
+
+.morph-animation__svg {
+  width: 60px;
+  height: 60px;
+}
+</style>
+
+<script>
+import { gsap } from 'gsap';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const morphElements = document.querySelectorAll('#morph-path-preview');
+  morphElements.forEach(element => {
+    const morph = gsap.timeline({
+      repeat: -1,
+      defaults: {
+        duration: 1,
+        ease: "power2.inOut"
+      }
+    });
+
+    // 簡略化されたモーフィングアニメーション
+    morph.to(element, {
+      attr: { d: "M40,10 A30,30 0 1,1 40,70 A30,30 0 1,1 40,10" },
+      rotate: 180
+    })
+    .to(element, {
+      attr: { d: "M10,10 L70,10 L70,70 L10,70 Z" },
+      rotate: 0
+    });
+  });
+});
+</script> 

@@ -1,0 +1,44 @@
+---
+// Floatアニメーションのプレビューコンポーネント
+---
+
+<div class="float-preview">
+  <div class="float-animation"></div>
+</div>
+
+<style>
+.float-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 120px;
+}
+
+.float-animation {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  border-radius: 50%;
+  transform-origin: center;
+}
+</style>
+
+<script>
+import { gsap } from 'gsap';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const floatElements = document.querySelectorAll('.float-animation');
+  floatElements.forEach(element => {
+    gsap.fromTo(element, {
+      y: 10,
+    }, {
+      y: -10,
+      repeat: -1,
+      yoyo: true,
+      duration: 1,
+      ease: "power2.inOut",
+    });
+  });
+});
+</script> 

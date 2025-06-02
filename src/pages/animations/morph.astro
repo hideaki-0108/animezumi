@@ -5,6 +5,20 @@ import { Code } from 'astro:components';
 const title = 'morph Animation';
 const description = '滑らかに浮遊する要素の動き';
 
+export const visual = `
+<div class="morph-animation">
+  <svg class="morph-animation__svg" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+    <defs>
+      <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#ff6b6b" />
+        <stop offset="100%" style="stop-color:#4ecdc4" />
+      </linearGradient>
+    </defs>
+    <path id="morph-path" d="M10,10 L70,10 L70,70 L10,70 Z" fill="url(#grad1)"/>
+  </svg>
+</div>
+`;
+
 const codeExample = `const morph = gsap.fromTo(".morph-animation", {
   y: 10,
 }, {

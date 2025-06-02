@@ -2,11 +2,21 @@
 import Layout from '../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { animations } from './animations/index.astro';
+import PulsePreview from '../components/animations/PulsePreview.astro';
+import MorphPreview from '../components/animations/MorphPreview.astro';
+import FloatPreview from '../components/animations/FloatPreview.astro';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const title = 'Animezumi - アニメーションのアイデア集';
 const description = '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオAnimezumi。';
+
+const componentMap = {
+	'PulsePreview': PulsePreview,
+	'FloatPreview': FloatPreview,
+};
+
 ---
 
 <Layout title={title} description={description}>
@@ -37,23 +47,20 @@ const description = '様々なアニメーションテクニックを探求し�
 	<section id="animations" class="animation-showcase">
 		<div class="container">
 			<h2 class="section-title">アニメーション作品</h2>
-			<div class="animation-grid">
-				<a href="/animations/pulse" class="animation-card">
-					<div class="animation-card__visual pulse-demo"></div>
-					<h3 class="animation-card__title">Pulse</h3>
-					<p class="animation-card__desc">鼓動のようなリズミカルなアニメーション</p>
-				</a>
-				<a href="/animations/float" class="animation-card">
-					<div class="animation-card__visual float-demo"></div>
-					<h3 class="animation-card__title">Float</h3>
-					<p class="animation-card__desc">滑らかに浮遊する要素の動き</p>
-				</a>
-				<a href="/animations/morph" class="animation-card">
-					<div class="animation-card__visual morph-demo"></div>
-					<h3 class="animation-card__title">Morph</h3>
-					<p class="animation-card__desc">形状が変化するSVGアニメーション</p>
-				</a>
-			</div>
+			<ul class="animation-grid">
+				{animations.map((item) => (
+					<li class="animation-card">
+						<a href={item.link}>
+							<div class="animation-card__visual">
+								{item.component === 'PulsePreview' && <PulsePreview />}
+								{item.component === 'FloatPreview' && <FloatPreview />}
+							</div>
+							<h3 class="animation-card__title">{item.title}</h3>
+							<p class="animation-card__desc">{item.description}</p>
+						</a>
+					</li>
+				))}
+			</ul>
 			<div class="animation-more">
 				<a href="/animations" class="button button--outline">もっと見る</a>
 			</div>

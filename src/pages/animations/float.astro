@@ -5,6 +5,10 @@ import { Code } from 'astro:components';
 const title = 'float Animation';
 const description = '滑らかに浮遊する要素の動き';
 
+export const visual = `
+<div class="float-animation"></div>
+`;
+
 const codeExample = `const float = gsap.fromTo(".float-animation", {
   y: 10,
 }, {
