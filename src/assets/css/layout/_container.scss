@@ -5,9 +5,9 @@
   width: 100%;
   max-width: $container-max-width;
   margin: 0 auto;
-  padding: 70px $spacing-xl 0;
+  padding: 70px $spacing-xl 80px;
 
   @include respond-to("md") {
-    padding: 70px $spacing-2xl 0;
+    padding: 70px $spacing-2xl 80px;
   }
 }

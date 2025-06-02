@@ -1,0 +1,56 @@
+@use "sass:color";
+@use "../abstracts/variables" as *;
+@use "../base/" as *;
+@use "../abstracts/mixins" as *;
+@use "../base/typography" as *;
+
+// カードリストのスタイル
+.animation-card {
+  background: white;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  text-decoration: none;
+  color: $color-text-dark;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: $shadow-lg;
+  }
+
+  &__visual {
+    height: auto;
+    max-height: 200px;
+    padding: 24px 0;
+    background: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    padding: $spacing-md $spacing-md $spacing-xs;
+    margin: 0;
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    padding: 0 $spacing-md $spacing-md;
+    margin: 0;
+    color: $color-text-muted;
+  }
+}
+
+.animation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+
+  @include respond-to("sm") {
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  }
+}

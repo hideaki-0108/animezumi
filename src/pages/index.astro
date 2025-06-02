@@ -4,7 +4,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { animations } from './animations/index.astro';
 import PulsePreview from '../components/animations/PulsePreview.astro';
-import MorphPreview from '../components/animations/MorphPreview.astro';
 import FloatPreview from '../components/animations/FloatPreview.astro';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -112,6 +111,7 @@ const componentMap = {
 <style lang="scss">
 	@use '../assets/css/index.scss';
 	@use '../assets/css/pages/_top.scss';
+	@use '../assets/css/components/_card.scss';
 </style>
 
 <script>

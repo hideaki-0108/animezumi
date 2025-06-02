@@ -2,11 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { PulsePreview, FloatPreview } from '../../components/animations/_index.astro';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const title = 'アニメーション集 - Animezumi';
 const description = '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオAnimezumi。';
+
+const componentMap = {
+	'PulsePreview': PulsePreview,
+	'FloatPreview': FloatPreview,
+};
 
 export const animations = [
 	{
@@ -28,11 +34,29 @@ export const animations = [
 <Layout title={title} description={description}>
 	<section class="animation-showcase">
 		<div class="container">
-			<h2 class="section-title">アニメーション作品</h2>
+				<h2 class="section-title">アニメーション作品</h2>
+			<ul class="animation-grid">
+				{animations.map((item) => (
+					<li class="animation-card">
+						<a href={item.link}>
+							<div class="animation-card__visual">
+								{item.component === 'PulsePreview' && <PulsePreview />}
+								{item.component === 'FloatPreview' && <FloatPreview />}
+							</div>
+							<h3 class="animation-card__title">{item.title}</h3>
+							<p class="animation-card__desc">{item.description}</p>
+						</a>
+					</li>
+				))}
+			</ul>
+			<div class="animation__back">
+				<a href="/">トップに戻る</a>
+			</div>
 		</div>
 	</section>
 </Layout>
 
 <style lang="scss">
 	@use '../../assets/css/index.scss';
+	@use '../../assets/css/components/_card.scss';
 </style>
