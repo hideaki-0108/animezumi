@@ -10,6 +10,8 @@ export interface Props {
 	author?: string;
 	siteName?: string;
 	twitterHandle?: string;
+	basePath?: string;
+	baseUrl?: string;
 }
 
 const { 
@@ -20,7 +22,9 @@ const {
 	keywords = '',
 	author = 'Hideaki Tomori',
 	siteName = 'Animezumi',
-	twitterHandle = ''
+	twitterHandle = '',
+	basePath = '/animezumi',
+	baseUrl = 'https://tmr-hide.com/animezumi',
 } = Astro.props;
 
 // ページタイトルの最適化
@@ -28,7 +32,7 @@ const pageTitle = title ? `${title} | ${siteName}` : siteName;
 const metaDescription = description || '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオAnimezumi。';
 
 // サイトURLの安全な取得
-const siteUrl = Astro.site?.href || 'https://animezumi.com';
+const siteUrl = Astro.site?.href || baseUrl;
 const fullOgImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
 // 構造化データの準備

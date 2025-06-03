@@ -6,6 +6,7 @@ import {
 // https://astro.build/config
 export default defineConfig({
   base: '/animezumi',
+  outDir: 'dist/animezumi',
   build: {
     assets: '_astro'
   }
