@@ -4,60 +4,88 @@
 
 <div class="morph-preview">
   <div class="morph-animation">
-    <svg class="morph-animation__svg" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 80 80">
+    <svg class="morph-animation__svg" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
       <defs>
-        <linearGradient id="grad1-preview" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" style="stop-color:#ff6b6b" />
           <stop offset="100%" style="stop-color:#4ecdc4" />
         </linearGradient>
       </defs>
-      <path id="morph-path-preview" d="M10,10 L70,10 L70,70 L10,70 Z" fill="url(#grad1-preview)"/>
+      <path id="morph-path" d="M10,10 L70,10 L70,70 L10,70 Z" fill="url(#grad1)"/>
     </svg>
   </div>
 </div>
 
-<style>
-.morph-preview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 120px;
-}
+<style lang="scss">
+  @use "../../assets/css/pages/animations/_morph.scss";
 
-.morph-animation {
-  display: inline-block;
-}
-
-.morph-animation__svg {
-  width: 60px;
-  height: 60px;
-}
+  .morph-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+  }
 </style>
 
 <script>
-import { gsap } from 'gsap';
+  import { gsap } from 'gsap';
+  import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
+  gsap.registerPlugin(MorphSVGPlugin);
 
-document.addEventListener('DOMContentLoaded', () => {
-  const morphElements = document.querySelectorAll('#morph-path-preview');
-  morphElements.forEach(element => {
+  document.addEventListener('DOMContentLoaded', () => {
+    // 円と四角のSVGパス
+    const circle = "M10 40C10 23.4315 23.4315 10 40 10C56.5685 10 70 23.4315 70 40C70 56.5685 56.5685 70 40 70C23.4315 70 10 56.5685 10 40Z";
+    const square = "M10,10 L70,10 L70,70 L10,70 Z";
+
+    // アニメーションの設定
     const morph = gsap.timeline({
       repeat: -1,
       defaults: {
-        duration: 1,
+        duration: 1.5,
         ease: "power2.inOut"
       }
     });
 
-    // 簡略化されたモーフィングアニメーション
-    morph.to(element, {
-      attr: { d: "M40,10 A30,30 0 1,1 40,70 A30,30 0 1,1 40,10" },
-      rotate: 180
+    // アニメーションの軸を中心に設定
+    gsap.set("#morph-path", {
+      transformOrigin: "center center"
+    });
+
+    // 1. 四角から円への変形
+    morph.to("#morph-path", {
+      rotate: 180,
+      morphSVG: {
+        shape: circle,
+        type: "rotational"
+      },
     })
-    .to(element, {
-      attr: { d: "M10,10 L70,10 L70,70 L10,70 Z" },
-      rotate: 0
+    // 2. 円から四角への変形（360度回転）
+    .to("#morph-path", {
+      rotate: 0,
+      morphSVG: {
+        shape: square,
+        type: "rotational",
+        origin: "center center"
+      },
+    })
+    // 3. 四角から円への変形（540度回転）
+    .to("#morph-path", {
+      rotate: -180,
+      morphSVG: {
+        shape: circle,
+        type: "rotational",
+        origin: "center center"
+      },
+    })
+    // 4. 円から四角への変形（720度回転）
+    .to("#morph-path", {
+      rotate: 0,
+      morphSVG: {
+        shape: square,
+        type: "rotational",
+        origin: "center center"
+      },
     });
   });
-});
 </script> 

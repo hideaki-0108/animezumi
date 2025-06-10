@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { PulsePreview, FloatPreview } from '../../components/animations/_index.astro';
+import { PulsePreview, FloatPreview, MorphPreview } from '../../components/animations/_index.astro';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +12,7 @@ const description = '様々なアニメーションテクニックを探求し�
 const componentMap = {
 	'PulsePreview': PulsePreview,
 	'FloatPreview': FloatPreview,
+	'MorphPreview': MorphPreview,
 };
 
 export const animations = [
@@ -26,6 +27,12 @@ export const animations = [
 		link: '/animations/float',
 		component: 'FloatPreview',
 		description: '滑らかに浮遊する要素の動き',
+	},
+	{
+		title: 'Morph Animation',
+		link: '/animations/morph',
+		component: 'MorphPreview',
+		description: 'SVGパスの形状を別の形状に変形させるアニメーション',
 	},
 ]
 
@@ -42,6 +49,7 @@ export const animations = [
 							<div class="animation-card__visual">
 								{item.component === 'PulsePreview' && <PulsePreview />}
 								{item.component === 'FloatPreview' && <FloatPreview />}
+								{item.component === 'MorphPreview' && <MorphPreview />}
 							</div>
 							<h3 class="animation-card__title">{item.title}</h3>
 							<p class="animation-card__desc">{item.description}</p>

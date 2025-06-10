@@ -3,8 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { animations } from './animations/index.astro';
-import PulsePreview from '../components/animations/PulsePreview.astro';
-import FloatPreview from '../components/animations/FloatPreview.astro';
+import {PulsePreview, FloatPreview, MorphPreview} from '../components/animations/_index.astro';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +13,7 @@ const description = '様々なアニメーションテクニックを探求し�
 const componentMap = {
 	'PulsePreview': PulsePreview,
 	'FloatPreview': FloatPreview,
+	'MorphPreview': MorphPreview,
 };
 
 ---
@@ -53,6 +53,7 @@ const componentMap = {
 							<div class="animation-card__visual">
 								{item.component === 'PulsePreview' && <PulsePreview />}
 								{item.component === 'FloatPreview' && <FloatPreview />}
+								{item.component === 'MorphPreview' && <MorphPreview />}
 							</div>
 							<h3 class="animation-card__title">{item.title}</h3>
 							<p class="animation-card__desc">{item.description}</p>
@@ -61,7 +62,7 @@ const componentMap = {
 				))}
 			</ul>
 			<div class="animation-more">
-				<a href="/animezumi/animations" class="button button--outline">もっと見る</a>
+				<a href="/animations" class="button button--outline">もっと見る</a>
 			</div>
 		</div>
 	</section>
