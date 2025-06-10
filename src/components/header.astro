@@ -1,13 +1,13 @@
 ---
-
+const base = Astro.url.pathname;
 const navItems = [
   {
     label: 'TOP',
-    href: '/'
+    href: `${base}`
   },
   {
     label: 'アニメーション集',
-    href: '/animations'
+    href: `${base}animations`
   },
 ]
 
@@ -16,7 +16,7 @@ const navItems = [
 <header class="header">
   <div class="header__inner">
     <h1 class="header__logo">
-      <a href="/" aria-label="トップに戻る">
+      <a href="/animezumi/" aria-label="トップに戻る">
         <span class="text-gradient">Anime</span><span class="text-accent">zumi</span>
       </a>
     </h1>

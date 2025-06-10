@@ -1,4 +1,5 @@
 ---
+const base = Astro.url.pathname;
 import Layout from '../../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -18,23 +19,24 @@ const componentMap = {
 export const animations = [
 	{
 		title: 'Pulse Animation',
-		link: '/animations/pulse',
+		link: `animations/pulse`,
 		component: 'PulsePreview',
 		description: '鼓動のようなリズミカルなアニメーション',
 	},
 	{
 		title: 'Float Animation',
-		link: '/animations/float',
+		link: `animations/float`,
 		component: 'FloatPreview',
 		description: '滑らかに浮遊する要素の動き',
 	},
 	{
 		title: 'Morph Animation',
-		link: '/animations/morph',
+		link: `animations/morph`,
 		component: 'MorphPreview',
 		description: 'SVGパスの形状を別の形状に変形させるアニメーション',
 	},
 ]
+
 
 ---
 
@@ -45,7 +47,7 @@ export const animations = [
 			<ul class="animation-grid">
 				{animations.map((item) => (
 					<li class="animation-card">
-						<a href={item.link}>
+						<a href={`${base}${item.link}`}>
 							<div class="animation-card__visual">
 								{item.component === 'PulsePreview' && <PulsePreview />}
 								{item.component === 'FloatPreview' && <FloatPreview />}
@@ -58,7 +60,7 @@ export const animations = [
 				))}
 			</ul>
 			<div class="animation__back">
-				<a href="/">トップに戻る</a>
+				<a href={`${base}`}>トップに戻る</a>
 			</div>
 		</div>
 	</section>
