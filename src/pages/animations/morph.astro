@@ -81,7 +81,7 @@ const cssExample = `.morph-animation {
     </section>
 
     <div class="animation__back">
-      <a href="/animezumi/animations">アニメーション一覧に戻る</a>
+      <a href="/animations">アニメーション一覧に戻る</a>
     </div>
   </div>
 
@@ -109,22 +109,26 @@ const cssExample = `.morph-animation {
     // 1. 四角から円への変形（180度回転）
     morph.to("#morph-path", {
       morphSVG: "M40,10 A30,30 0 1,1 40,70 A30,30 0 1,1 40,10",
-      rotate: 180
+      rotate: 180,
+      transformOrigin: "center center"
     })
     // 2. 円から四角への変形（0度回転）
     .to("#morph-path", {
       morphSVG: "M10,10 L70,10 L70,70 L10,70 Z",
-      rotate: 0
+      rotate: 0,
+      transformOrigin: "center center"
     })
     // 3. 四角から円への変形（-180度回転）
     .to("#morph-path", {
       morphSVG: "M40,10 A30,30 0 1,1 40,70 A30,30 0 1,1 40,10",
-      rotate: -180
+      rotate: -180,
+      transformOrigin: "center center"
     })
     // 4. 円から四角への変形（0度回転）
     .to("#morph-path", {
       morphSVG: "M10,10 L70,10 L70,70 L10,70 Z",
-      rotate: 0
+      rotate: 0,
+      transformOrigin: "center center"
     });
   });
 </script> 
