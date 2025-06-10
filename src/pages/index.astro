@@ -17,8 +17,6 @@ const componentMap = {
 	'MorphPreview': MorphPreview,
 };
 
-console.log("animations", animations);
-
 ---
 
 <Layout title={title} description={description}>
@@ -54,9 +52,10 @@ console.log("animations", animations);
 					<li class="animation-card">
 						<a href={`${base}${item.link}`}>
 							<div class="animation-card__visual">
-								{item.component === 'PulsePreview' && <PulsePreview />}
-								{item.component === 'FloatPreview' && <FloatPreview />}
-								{item.component === 'MorphPreview' && <MorphPreview />}
+								{(() => {
+									const Component = componentMap[item.component as keyof typeof componentMap];
+									return Component ? <Component /> : null;
+								})()}
 							</div>
 							<h3 class="animation-card__title">{item.title}</h3>
 							<p class="animation-card__desc">{item.description}</p>
