@@ -1,13 +1,14 @@
 ---
-const base = Astro.url.pathname;
+import { BASE_PATH } from '../assets/js/lib/config';
+
 const navItems = [
   {
     label: 'TOP',
-    href: `${base}`
+    href: `${BASE_PATH}`
   },
   {
     label: 'アニメーション集',
-    href: `${base}animations`
+    href: `${BASE_PATH}animations`
   },
 ]
 
