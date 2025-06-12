@@ -10,7 +10,8 @@ export const visual = `
 <div class="float-animation"></div>
 `;
 
-const codeExample = `const float = gsap.fromTo(".float-animation", {
+const codeExample = `import { gsap } from 'gsap';
+const float = gsap.fromTo(".float-animation", {
   y: 10,
 }, {
   y: -10,

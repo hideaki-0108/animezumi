@@ -1,0 +1,41 @@
+---
+// Orbitアニメーションのプレビューコンポーネント
+---
+
+<div class="orbit-preview">
+    <svg class="orbit-animation__circle" width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="orbit__circle" d="M 10,50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" stroke="#595959" stroke-width="2" />
+    </svg>
+    <div class="orbit-animation"></div>
+</div>
+
+<style lang="scss">
+  @use "../../assets/css/pages/animations/_orbit.scss";
+
+  .orbit-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+  gsap.registerPlugin(MotionPathPlugin);
+
+  document.addEventListener('DOMContentLoaded', () => {
+      const orbit = gsap.to(".orbit-animation", {
+        duration: 2,
+        repeat: -1,
+        ease: "linear",
+        motionPath: {
+          path: "#orbit__circle",
+          align: "#orbit__circle",
+        }
+      });
+  });
+</script>

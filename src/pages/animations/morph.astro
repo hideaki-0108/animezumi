@@ -20,12 +20,9 @@ export const visual = `
 </div>
 `;
 
-const codeExample = `/*
-* ※プラグインの読み込みは必須！
-* import { gsap } from 'gsap';
-* import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
-* gsap.registerPlugin(MorphSVGPlugin);
-*/
+const codeExample = `import { gsap } from 'gsap';
+import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
+gsap.registerPlugin(MorphSVGPlugin);
 
 // 円と四角のSVGパス
 const circle = "M10 40C10 23.4315 23.4315 10 40 10C56.5685 10 70 23.4315 70 40C70 56.5685 56.5685 70 40 70C23.4315 70 10 56.5685 10 40Z";
