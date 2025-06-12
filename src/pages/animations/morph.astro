@@ -1,5 +1,5 @@
 ---
-const base = Astro.url.pathname;
+import { BASE_PATH } from '../../assets/js/lib/config';
 import Layout from '../../layouts/Layout.astro';
 import { Code } from 'astro:components';
 
@@ -135,7 +135,7 @@ const cssExample = `.morph-animation {
     </section>
 
     <div class="animation__back">
-      <a href={`${base}animations`}>アニメーション一覧に戻る</a>
+      <a href={`${BASE_PATH}animations`}>アニメーション一覧に戻る</a>
     </div>
   </div>
 

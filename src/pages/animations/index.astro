@@ -1,5 +1,5 @@
 ---
-const base = Astro.url.pathname;
+import { BASE_PATH } from '../../assets/js/lib/config';
 import Layout from '../../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -47,7 +47,7 @@ export const animations = [
 			<ul class="animation-grid">
 				{animations.map((item) => (
 					<li class="animation-card">
-						<a href={`${base}${item.link}`}>
+						<a href={`${BASE_PATH}${item.link}`}>
 							<div class="animation-card__visual">
 								{(() => {
 									const Component = componentMap[item.component as keyof typeof componentMap];
@@ -61,7 +61,7 @@ export const animations = [
 				))}
 			</ul>
 			<div class="animation__back">
-				<a href={`${base}`}>トップに戻る</a>
+				<a href={`${BASE_PATH}`}>トップに戻る</a>
 			</div>
 		</div>
 	</section>
