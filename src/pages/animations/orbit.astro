@@ -1,0 +1,110 @@
+---
+import { BASE_PATH } from '../../assets/js/lib/config';
+import Layout from '../../layouts/Layout.astro';
+import { Code } from 'astro:components';
+
+const title = 'Orbit Animation';
+const description = '要素を軌道上で回転させるアニメーション';
+
+const codeExample = `import gsap from "gsap";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+gsap.registerPlugin(MotionPathPlugin);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const orbit = gsap.to(".orbit-animation", {
+      duration: 2,
+      repeat: -1,
+      ease: "linear",
+      motionPath: {
+        path: "#orbit__circle",
+        align: "#orbit__circle",
+      }
+    });
+});
+`
+
+const htmlExample = `<!-- 円形の軌道となるSVGパス -->
+<svg class="orbit-animation__circle" width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path id="orbit__circle" d="M 10,50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" stroke="#595959" stroke-width="2" />
+</svg>
+<!-- アニメーションの要素 -->
+<div class="orbit-animation"></div>
+`
+
+const cssExample = `.orbit-animation {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  border-radius: 50%;
+  margin: 2rem auto;
+  transform-origin: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+`
+
+
+---
+
+<Layout title={title} description={description}>
+  <div class="container">
+    <h1 class="animation__title">Orbit Animation</h1>
+    <p>要素を軌道上で回転させるアニメーション</p>
+    <div class="animation__box">
+      <svg class="orbit-animation__circle" width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path id="orbit__circle" d="M 10,50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" stroke="#595959" stroke-width="2" />
+      </svg>
+      <div class="orbit-animation"></div>
+    </div>
+
+    <section>
+      <h2>GSAP</h2>
+      <Code lang="js" code={codeExample} class="code -block" />
+      <section>
+        <h3>GSAPコードの解説</h3>
+        <p><code class="code -inline">gsap.to()</code> は、GSAPのアニメーションを開始するためのメソッドです。</p>
+        <p><code class="code -inline">duration: 2</code> は、アニメーションの時間を2秒に設定します。</p>
+        <p><code class="code -inline">repeat: -1</code> は、アニメーションを無限に繰り返します。</p>
+        <p><code class="code -inline">ease: "linear"</code> は、アニメーションのイージング（加速・減速）を線形（一定速度）に設定します。</p>
+        <p><code class="code -inline">motionPath</code> は、GSAPのMotionPathPluginを使用して、要素を指定されたパスに沿って移動させるプロパティです。</p>
+        <p><code class="code -inline">path: "#orbit__circle"</code> は、要素が移動する軌道となるSVGパスを指定します。ここでは円形のパスを参照しています。</p>
+        <p><code class="code -inline">align: "#orbit__circle"</code> は、要素をパスの方向に合わせて回転させるオプションです。要素がパスの接線方向を向くようになります。</p>
+      </section>
+
+      <h2>HTML / CSS</h2>
+      <Code lang="html" code={htmlExample} class="code -block" />
+      <Code lang="css" code={cssExample} class="code -block" />
+    </section>
+
+    <div class="animation__back">
+      <a href={`${BASE_PATH}animations`}>アニメーション一覧に戻る</a>
+    </div>
+  </div>
+</Layout>
+
+<style lang="scss">
+  @use '../../assets/css/index.scss';
+  @use '../../assets/css/pages/animations/_orbit.scss';
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+  gsap.registerPlugin(MotionPathPlugin);
+
+  document.addEventListener('DOMContentLoaded', () => {
+      const orbit = gsap.to(".orbit-animation", {
+        duration: 2,
+        repeat: -1,
+        ease: "linear",
+        motionPath: {
+          path: "#orbit__circle",
+          align: "#orbit__circle",
+        }
+      });
+  });
+</script>

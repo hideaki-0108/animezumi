@@ -6,7 +6,8 @@ import { Code } from 'astro:components';
 const title = 'Pulse Animation';
 const description = '鼓動のようなリズミカルなアニメーション';
 
-const codeExample = `const pulse = gsap.to(".pulse-animation", {
+const codeExample = `import { gsap } from 'gsap';
+const pulse = gsap.to(".pulse-animation", {
   scale: 1.2,
   repeat: -1,
   yoyo: true,
