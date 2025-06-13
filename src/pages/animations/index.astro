@@ -3,7 +3,7 @@ import { BASE_PATH } from '../../assets/js/lib/config';
 import Layout from '../../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { PulsePreview, FloatPreview, MorphPreview, OrbitPreview } from '../../components/animations/_index.astro';
+import { PulsePreview, FloatPreview, MorphPreview, OrbitPreview, TextPreview } from '../../components/animations/_index.astro';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +15,7 @@ const componentMap = {
 	'FloatPreview': FloatPreview,
 	'MorphPreview': MorphPreview,
 	'OrbitPreview': OrbitPreview,
+	'TextPreview': TextPreview,
 };
 
 export const animations = [
@@ -41,6 +42,12 @@ export const animations = [
 		link: `animations/orbit`,
 		component: 'OrbitPreview',
 		description: '要素を軌道上で回転させるアニメーション',
+	},
+	{
+		title: 'Text Animation',
+		link: `animations/text`,
+		component: 'TextPreview',
+		description: 'テキストを文字単位でアニメーションさせるアニメーション',
 	},
 ]
 
