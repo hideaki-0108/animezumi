@@ -4,5 +4,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "prettier.enable": false
+  "prettier.enable": false,
+  "cSpell.words": [
+    "gsap"
+  ]
 }

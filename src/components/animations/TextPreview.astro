@@ -1,0 +1,49 @@
+---
+// Textアニメーションのプレビューコンポーネント
+---
+
+<div class="text-preview">
+  <p class="text-animation">Hello World!</p>
+</div>
+
+<style lang="scss">
+@use "../../assets/css/pages/animations/_text.scss";
+
+.text-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
+
+  gsap.registerPlugin(SplitText);
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const text = document.querySelector('.text-animation');
+    const splitText = new SplitText(text, { type: 'chars', linesClass: 'text-animation__line' });
+
+    const tl = gsap.timeline();
+
+    tl.fromTo(splitText.chars, {
+      display: 'inline-block',
+      opacity: 0,
+      y: '8px',
+
+    }, {
+      opacity: 1,
+      y: 0,
+      ease: 'ease',
+      stagger: 0.05,
+    });
+
+    // 3秒間隔でリピートさせる
+    tl.repeat(-1).repeatDelay(2.5);
+  });
+</script>
