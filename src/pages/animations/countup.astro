@@ -1,0 +1,108 @@
+---
+import { BASE_PATH } from '../../assets/js/lib/config';
+import Layout from '../../layouts/Layout.astro';
+import { Code } from 'astro:components';
+
+const title = 'countup Animation';
+const description = '数値をカウントアップするアニメーション';
+
+export const visual = `
+<div class="countup-animation" data-count="777">777</div>
+`;
+
+const codeExample = `import gsap from "gsap";
+
+const countFrom = 0; // 開始数値
+const countTo = Number(document.querySelector('.countup-animation[data-count]')?.getAttribute('data-count') || 0); // 終了数値
+const countElement = document.querySelector('.countup-animation');
+
+// 数値をカウントアップするアニメーション
+gsap.fromTo(countElement, {
+  innerText: countFrom,
+}, {
+  innerText: countTo,
+  delay: 1,
+  duration: 2,
+  ease: "power3.out",
+  onUpdate: function() {
+    const progress = this.progress();
+    const currentCount = Math.floor(countFrom + (countTo - countFrom) * progress);
+    if (countElement) {
+      countElement.textContent = currentCount.toString();
+    }
+  },
+});`;
+
+const htmlExample = `<div class="countup-animation" data-count="777">777</div>`;
+
+---
+
+<Layout title={title} description={description}>
+  <div class="container">
+    <h1 class="animation__title">countup Animation</h1>
+    <p>数値をカウントアップするアニメーション</p>
+    <div class="animation__box">
+      <div class="countup-animation" data-count="777">777</div>
+    </div>
+
+    <section>
+      <h2>GSAP</h2>
+      <Code lang="js" code={codeExample} class="code -block" />
+      <section>
+        <h3>GSAPコードの解説</h3>
+        <p><code class="code -inline">gsap.fromTo()</code> は、GSAPアニメーションの開始と終了の値を設定するためのメソッドです。</p>
+        <p><code class="code -inline">innerText: countFrom</code> は、アニメーションの開始時の数値を設定します。ただし、実際の数値の更新は<code class="code -inline">onUpdate</code>内で<code class="code -inline">textContent</code>を使用して行われます。</p>
+        <p><code class="code -inline">innerText: countTo</code> は、アニメーションの終了時の数値を設定します。</p>
+        <p><code class="code -inline">delay: 1</code> は、アニメーションの開始を1秒遅らせます。</p>
+        <p><code class="code -inline">duration: 2</code> は、アニメーションの時間を2秒にします。</p>
+        <p><code class="code -inline">ease: "power3.out"</code> は、アニメーションのイージングを設定します。数値の変化が自然に減速する効果を与えます。</p>
+        <p><code class="code -inline">onUpdate</code> は、アニメーションの各フレームで実行されるコールバック関数です。<code class="code -inline">progress()</code>で現在の進行度（0〜1）を取得し、それに基づいて表示する数値を計算します。</p>
+        <p><code class="code -inline">Math.floor()</code> を使用して、計算された数値の小数点以下を切り捨て、整数値として表示します。</p>
+        <p><code class="code -inline">repeat: -1</code> は、アニメーションを無限に繰り返します。</p>
+        <p><code class="code -inline">repeatDelay: 2</code> は、アニメーションの完了後、次の繰り返しを開始するまでの待機時間を2秒に設定します。</p>
+      </section>
+
+    </section>
+
+    <section>
+      <h2>HTML</h2>
+      <Code lang="html" code={htmlExample} class="code -block" />
+    </section>
+
+    <div class="animation__back">
+      <a href={`${BASE_PATH}animations`}>アニメーション一覧に戻る</a>
+    </div>
+  </div>
+</Layout>
+
+<style lang="scss">
+  @use '../../assets/css/index.scss';
+  @use '../../assets/css/pages/animations/_countup.scss';
+</style>
+
+<script>
+  import gsap from "gsap";
+
+  const countFrom = 0; // 開始数値
+  const countTo = Number(document.querySelector('.countup-animation[data-count]')?.getAttribute('data-count') || 0); // 終了数値
+  const countElement = document.querySelector('.countup-animation');
+
+  // 数値をカウントアップするアニメーション
+  gsap.fromTo(countElement, {
+    innerText: countFrom,
+  }, {
+    innerText: countTo,
+    duration: 2,
+    delay: 1,
+    ease: "power3.out",
+    onUpdate: function() {
+      const progress = this.progress();
+      const currentCount = Math.floor(countFrom + (countTo - countFrom) * progress);
+      if (countElement) {
+        countElement.textContent = currentCount.toString();
+      }
+    },
+    repeat: -1,
+    repeatDelay: 2,
+  });
+</script>
