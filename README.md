@@ -137,7 +137,7 @@ src/assets/css/
 
 ## 将来の展望
 
-現在は GSAP や CSS アニメーションを中心に実装していますが、今後は以下の技術も取り入れる予定です：
+現在は GSAP や CSS アニメーションを中心に実装していますが、今後は以下の技術も取り入れる予定です！
 
 - [Three.js](https://threejs.org/) - 3D グラフィックス
 - [A-Frame](https://aframe.io/) - WebVR 体験
