@@ -1,0 +1,120 @@
+---
+import { BASE_PATH } from '../../assets/js/lib/config';
+import Layout from '../../layouts/Layout.astro';
+import { Code } from 'astro:components';
+
+const title = 'lineWeight Animation';
+const description = '線の太さをアニメーションさせる';
+
+const visual = `
+<div class="animation__box">
+  <div class="lineWeight-animation"></div>
+</div>
+`;
+
+const htmlExample = `
+<div class="animation__box">
+  <div class="lineWeight-animation"></div>
+</div>
+`;
+
+const cssExample = `.lineWeight-animation {
+  width: 100px;
+  height: 100px;
+  border: 0px solid #ff6b6b;
+  border-radius: 50%;
+  margin: 2rem auto;
+  transform-origin: center;
+  box-sizing: border-box;
+}
+`;
+
+const codeExample = `import gsap from "gsap";
+
+const lineWeight = gsap.fromTo(".lineWeight-animation", {
+  borderWidth: 0,
+}, {
+  borderWidth: 10,
+  duration: 0.5,
+  ease: "power2.out",
+  repeat: -1,
+  yoyo: true,
+  repeatDelay: 1,
+});`;
+---
+
+<Layout title={title} description={description}>
+  <div class="container">
+    <h1 class="animation__title">lineWeight Animation</h1>
+    <p>線の太さをアニメーションさせる</p>
+    <div class="animation__box">
+      <div class="lineWeight-animation"></div>
+    </div>
+  
+    <section>
+      <h2>GSAP</h2>
+      <Code lang="js" code={codeExample} class="code -block" />
+      <section>
+        <h3>GSAPコードの解説</h3>
+        <p>
+          <code class="code -inline">gsap.fromTo()</code> は、アニメーションの開始値と終了値を明示的に指定してアニメーションを実行するメソッドです。
+        </p>
+        <p>
+          <code class="code -inline">borderWidth: 0</code> は、アニメーション開始時の枠線の太さを0px（枠なし）に設定します。
+        </p>
+        <p>
+          <code class="code -inline">borderWidth: 10</code> は、アニメーション終了時の枠線の太さを10pxに設定します。
+        </p>
+        <p>
+          <code class="code -inline">duration: 0.5</code> は、アニメーションの所要時間を0.5秒に設定します。
+        </p>
+        <p>
+          <code class="code -inline">ease: &quot;power2.out&quot;</code> は、アニメーションのイージング（加速・減速のカーブ）を指定します。
+        </p>
+        <p>
+          <code class="code -inline">repeat: -1</code> は、アニメーションを無限に繰り返します。
+        </p>
+        <p>
+          <code class="code -inline">yoyo: true</code> は、アニメーションを往復（元に戻る）させます。
+        </p>
+        <p>
+          <code class="code -inline">repeatDelay: 1</code> は、アニメーションの繰り返し間隔を1秒に設定します。
+        </p>
+      </section>
+  
+      <h2>HTML / CSS</h2>
+      <Code lang="html" code={htmlExample} class="code -block" />
+      <Code lang="css" code={cssExample} class="code -block" />
+    </section>
+
+    <div class="animation__back">
+      <a href={`${BASE_PATH}animations`}>アニメーション一覧に戻る</a>
+    </div>
+  </div>
+
+  
+</Layout>
+
+<style lang="scss">
+	@use '../../assets/css/index.scss';
+	@use '../../assets/css/pages/animations/_lineWeight.scss';
+</style>
+
+
+<script>
+  import { gsap } from 'gsap';
+
+  // DOMが読み込まれた後にアニメーションを開始
+  document.addEventListener('DOMContentLoaded', () => {
+    const lineWeight = gsap.fromTo(".lineWeight-animation", {
+      borderWidth: 0,
+    }, {
+      borderWidth: 10,
+      duration: 0.5,
+      ease: "power2.out",
+      repeat: -1,
+      yoyo: true,
+      repeatDelay: 1,
+    });
+  });
+</script> 

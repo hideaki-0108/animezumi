@@ -3,7 +3,7 @@ import { BASE_PATH } from '../../assets/js/lib/config';
 import Layout from '../../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { PulsePreview, FloatPreview, MorphPreview, OrbitPreview, TextPreview, CountUpPreview } from '../../components/animations/_index.astro';
+import { PulsePreview, FloatPreview, MorphPreview, OrbitPreview, TextPreview, CountUpPreview, LineWeightPreview } from '../../components/animations/_index.astro';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +17,7 @@ const componentMap = {
 	'OrbitPreview': OrbitPreview,
 	'TextPreview': TextPreview,
 	'CountUpPreview': CountUpPreview,
+	'LineWeightPreview': LineWeightPreview,
 };
 
 export const animations = [
@@ -55,6 +56,12 @@ export const animations = [
 		link: `animations/countup`,
 		component: 'CountUpPreview',
 		description: '数値をカウントアップするアニメーション',
+	},
+	{
+		title: 'LineWeight Animation',
+		link: `animations/lineWeight`,
+		component: 'LineWeightPreview',
+		description: '線の太さをアニメーションさせる',
 	},
 ]
 
