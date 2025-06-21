@@ -1,0 +1,197 @@
+---
+import { BASE_PATH } from '../../assets/js/lib/config';
+import Layout from '../../layouts/Layout.astro';
+import { Code } from 'astro:components';
+
+const title = 'path Animation';
+const description = 'パスをアニメーションさせる';
+
+// 三角形の各辺のパスを正しく定義
+const side1 = 'M117 0 L2 198'; // 左辺
+const side2 = 'M2 198 L232 198'; // 底辺
+const side3 = 'M232 198 L117 0'; // 右辺
+
+const htmlExample = `<div class="path-animation">
+  <svg width="234" height="200" viewBox="0 -2 234 202" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 各辺を個別のパスとして定義 -->
+    <path class="triangle-side side1" d={side1} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path class="triangle-side side2" d={side2} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path class="triangle-side side3" d={side3} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
+  </svg>
+</div>
+
+// パスはAstroの変数で定義してます
+// const side1 = 'M117 0 L2 198'; // 左辺
+// const side2 = 'M2 198 L232 198'; // 底辺
+// const side3 = 'M232 198 L117 0'; // 右辺
+`
+
+const cssExample = `.path-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.triangle-side {
+  // パスの初期状態（非表示）
+  opacity: 1;
+  // 統一された線のスタイル
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke; // 線の太さを一定に保つ
+}
+` 
+
+const codeExample = `import { gsap } from 'gsap';
+import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
+
+// DrawSVGプラグインを登録
+gsap.registerPlugin(DrawSVGPlugin);
+
+// DOMが読み込まれた後にアニメーションを開始
+document.addEventListener('DOMContentLoaded', () => {
+  // 各辺のパスを初期状態に設定（非表示）
+  gsap.set('.triangle-side', { drawSVG: '0%' });
+
+  // タイムラインを作成
+  const tl = gsap.timeline();
+
+  // 各辺を順番にアニメーション
+  tl.to('.side1', {
+    drawSVG: '100%',
+    duration: 0.5,
+    ease: 'power2.out'
+  })
+  .to('.side2', {
+    drawSVG: '100%',
+    duration: 0.5,
+    ease: 'power2.out'
+  }, '-=0.3') // 0.3秒早く開始
+  .to('.side3', {
+    drawSVG: '100%',
+    duration: 0.5,
+    ease: 'power2.out'
+  }, '-=0.3'); // 0.3秒早く開始
+
+  // アニメーションをループ
+  tl.repeat(-1);
+  tl.yoyo(true);
+  tl.repeatDelay(0.5);
+});
+`
+
+---
+
+<Layout title={title} description={description}>
+  <div class="container">
+    <h1 class="animation__title">path Animation</h1>
+    <p>パスをアニメーションさせる</p>
+    <div class="animation__box">
+      <div class="path-animation">
+        <svg width="234" height="200" viewBox="0 -2 234 202" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- 各辺を個別のパスとして定義 -->
+          <path class="triangle-side side1" d={side1} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path class="triangle-side side2" d={side2} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path class="triangle-side side3" d={side3} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <section>
+      <h2>GSAP</h2>
+      <Code lang="js" code={codeExample} class="code -block" />
+      <section>
+        <h3>GSAPコードの解説</h3>
+        <p>
+          <code class="code -inline">DrawSVGPlugin</code> は、SVGパスの描画アニメーションを制御するGSAPの専用プラグインです。パスの一部分を段階的に表示・非表示にすることができます。
+        </p>
+        <p>
+          <code class="code -inline">gsap.registerPlugin(DrawSVGPlugin)</code> は、DrawSVGプラグインをGSAPに登録し、使用可能にします。
+        </p>
+        <p>
+          <code class="code -inline">gsap.set('.triangle-side', &#123; drawSVG: '0%' &#125;)</code> は、アニメーション開始前にすべての三角形の辺を非表示（0%）に設定します。
+        </p>
+        <p>
+          <code class="code -inline">gsap.timeline()</code> は、複数のアニメーションを順序立てて実行するためのタイムラインオブジェクトを作成します。
+        </p>
+        <p>
+          <code class="code -inline">drawSVG: '100%'</code> は、パスを完全に表示（100%）するように設定します。0%から100%へのアニメーションで線が描画されます。
+        </p>
+        <p>
+          <code class="code -inline">duration: 0.5</code> は、各辺の描画アニメーションの所要時間を0.5秒に設定します。
+        </p>
+        <p>
+          <code class="code -inline">ease: 'power2.out'</code> は、アニメーションのイージング（加速・減速のカーブ）を指定し、滑らかな動きを実現します。
+        </p>
+        <p>
+          <code class="code -inline">'-=0.3'</code> は、前のアニメーションが完了する0.3秒前に次のアニメーションを開始することで、自然な流れを作ります。
+        </p>
+        <p>
+          <code class="code -inline">repeat: -1</code> は、アニメーションを無限に繰り返します。
+        </p>
+        <p>
+          <code class="code -inline">yoyo: true</code> は、アニメーションを往復（描画→消去→描画...）させます。
+        </p>
+        <p>
+          <code class="code -inline">repeatDelay: 0.5</code> は、アニメーションサイクル間の待機時間を0.5秒に設定します。
+        </p>
+      </section>
+
+      <section>
+        <h3>HTML/CSS</h3>
+        <Code lang="html" code={htmlExample} class="code -block" />
+        <Code lang="css" code={cssExample} class="code -block" />
+      </section>
+    </section>
+  </div>
+</Layout>
+
+<style lang="scss">
+	@use '../../assets/css/index.scss';
+	@use '../../assets/css/pages/animations/_path.scss';
+</style>
+
+
+<script>
+  import { gsap } from 'gsap';
+  import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
+
+  // DrawSVGプラグインを登録
+  gsap.registerPlugin(DrawSVGPlugin);
+
+  // DOMが読み込まれた後にアニメーションを開始
+  document.addEventListener('DOMContentLoaded', () => {
+    // 各辺のパスを初期状態に設定（非表示）
+    gsap.set('.triangle-side', { drawSVG: '0%' });
+
+    // タイムラインを作成
+    const tl = gsap.timeline();
+
+    // 各辺を順番にアニメーション
+    tl.to('.side1', {
+      drawSVG: '100%',
+      duration: 0.5,
+      ease: 'power2.out'
+    })
+    .to('.side2', {
+      drawSVG: '100%',
+      duration: 0.5,
+      ease: 'power2.out'
+    }, '-=0.3') // 0.3秒早く開始
+    .to('.side3', {
+      drawSVG: '100%',
+      duration: 0.5,
+      ease: 'power2.out'
+    }, '-=0.3'); // 0.3秒早く開始
+
+    // アニメーションをループ
+    tl.repeat(-1);
+    tl.yoyo(true);
+    tl.repeatDelay(0.5);
+  });
+</script>
