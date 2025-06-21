@@ -1,0 +1,56 @@
+@use "_index" as *;
+
+.animation__box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.path-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.triangle-side {
+  // パスの初期状態（非表示）
+  opacity: 1;
+  // 統一された線のスタイル
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke; // 線の太さを一定に保つ
+}
+
+
+// レスポンシブ対応
+@media (max-width: 768px) {
+  .path-animation svg {
+    width: 200px;
+    height: auto;
+  }
+}
+
+pre {
+  background: #f4f4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+h2 {
+  color: #333;
+  margin-top: 2rem;
+}

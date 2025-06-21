@@ -1,0 +1,82 @@
+---
+// pathアニメーションのプレビューコンポーネント
+
+const side1 = 'M117 0 L2 198'; // 左辺
+const side2 = 'M2 198 L232 198'; // 底辺
+const side3 = 'M232 198 L117 0'; // 右辺
+
+---
+
+<div class="path-preview">
+  <div class="path-animation">
+    <svg width="117" height="100" viewBox="0 -2 234 202" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="triangle-side side1" d={side1} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path class="triangle-side side2" d={side2} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path class="triangle-side side3" d={side3} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+</div>
+
+<style>
+.path-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 120px;
+}
+
+.path-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.triangle-side {
+  opacity: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+</style>  
+
+<script>
+  import { gsap } from 'gsap';
+  import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
+
+  // DrawSVGプラグインを登録
+  gsap.registerPlugin(DrawSVGPlugin);
+
+  // DOMが読み込まれた後にアニメーションを開始
+  document.addEventListener('DOMContentLoaded', () => {
+    // 各辺のパスを初期状態に設定（非表示）
+    gsap.set('.triangle-side', { drawSVG: '0%' });
+
+    // タイムラインを作成
+    const tl = gsap.timeline();
+
+    // 各辺を順番にアニメーション
+    tl.to('.side1', {
+      drawSVG: '100%',
+      duration: 0.5,
+      ease: 'power2.out'
+    })
+    .to('.side2', {
+      drawSVG: '100%',
+      duration: 0.5,
+      ease: 'power2.out'
+    }, '-=0.3') // 0.3秒早く開始
+    .to('.side3', {
+      drawSVG: '100%',
+      duration: 0.5,
+      ease: 'power2.out'
+    }, '-=0.3'); // 0.3秒早く開始
+
+    // アニメーションをループ
+    tl.repeat(-1);
+    tl.yoyo(true);
+    tl.repeatDelay(0.5);
+  });
+</script>
