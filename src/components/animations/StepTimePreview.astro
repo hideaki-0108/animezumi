@@ -1,0 +1,54 @@
+---
+// StepTimeアニメーションのプレビューコンポーネント
+---
+
+<div class="stepTime-preview">
+  <div class="stepTime__clock">
+    <svg viewBox="0 0 160 160" width="160" height="160" class="stepTime__clock-svg">
+      <circle cx="80" cy="80" r="70" fill="none" stroke="#333" stroke-width="3"/>
+    </svg>
+    <div class="stepTime__clockLine">
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+.stepTime-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 120px;
+}
+
+.stepTime {
+  &__clock {
+    position: relative;
+    width: 160px;
+    height: 160px;
+
+    &Line {
+      border-top: 2px solid #333;
+      width: calc(50% - 18px);
+      height: 2px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: left center;
+      rotate: -90deg;
+    }
+  }
+}
+</style>
+
+<script>
+  import gsap from "gsap";
+
+  gsap.to(".stepTime__clockLine", {
+    rotation: 360,
+    duration: 30,
+    repeat: -1,
+    ease: "steps(30)",
+    transformOrigin: "left center"
+  });
+</script>

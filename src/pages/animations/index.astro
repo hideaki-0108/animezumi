@@ -3,7 +3,7 @@ import { BASE_PATH } from '../../assets/js/lib/config';
 import Layout from '../../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { PulsePreview, FloatPreview, MorphPreview, OrbitPreview, TextPreview, CountUpPreview, LineWeightPreview, PathPreview } from '../../components/animations/_index.astro';
+import { PulsePreview, FloatPreview, MorphPreview, OrbitPreview, TextPreview, CountUpPreview, LineWeightPreview, PathPreview, StepTimePreview } from '../../components/animations/_index.astro';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +19,7 @@ const componentMap = {
 	'CountUpPreview': CountUpPreview,
 	'LineWeightPreview': LineWeightPreview,
 	'PathPreview': PathPreview,
+	'StepTimePreview': StepTimePreview,
 };
 
 export const animations = [
@@ -69,6 +70,12 @@ export const animations = [
 		link: `animations/path`,
 		component: 'PathPreview',
 		description: 'パスをアニメーションさせる',
+	},
+	{
+		title: 'Step Time Animation',
+		link: `animations/stepTime`,
+		component: 'StepTimePreview',
+		description: '秒針のようなアニメーション',
 	},
 ]
 

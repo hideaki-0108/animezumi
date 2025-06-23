@@ -4,157 +4,64 @@ import Layout from '../../layouts/Layout.astro';
 import { Code } from 'astro:components';
 
 const title = 'Step Time Animation';
-const description = 'ステップ時間を使用してアニメーションを制御する';
+const description = '秒針のようなアニメーションを作成する';
 
 const codeExample = `import gsap from "gsap";
 
-// 秒針の要素を取得
-const secondHand = document.getElementById('second-hand');
+gsap.to(".stepTime__clockLine", {
+  rotation: 360,
+  duration: 30,
+  repeat: -1,
+  ease: "steps(30)",
+  transformOrigin: "left center"
+});
+`;
 
-// 時間の状態
-let currentHour = 12;
-let currentMinute = 0;
-let currentSecond = 0;
-let timeline;
+const cssExample = `.stepTime {
+  &__clock {
+    position: relative;
+    width: 200px;
+    height: 200px;
 
-// 秒針をステップ移動
-function moveSecondHand() {
-  const secondAngle = (currentSecond * 6) - 90; // 6度/秒
-  
-  gsap.to(secondHand, {
-    rotation: secondAngle,
-    duration: 0.1,
-    ease: "power2.out"
-  });
-}
-
-// 時間を進める
-function advanceTime() {
-  currentSecond++;
-  if (currentSecond >= 60) {
-    currentSecond = 0;
+    &Line {
+      border-top: 2px solid #333;
+      width: calc(50% - 24px);
+      height: 2px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: left center;
+      rotate: -90deg;
+    }
   }
-  moveSecondHand();
-}
-
-// アニメーション開始
-function startAnimation() {
-  timeline = gsap.timeline({ repeat: -1 });
-  timeline.call(advanceTime);
-  timeline.to({}, { duration: 1 });
 }
 `;
 
-const htmlExample = `<!-- シンプルな時計のSVG -->
-<svg viewBox="0 0 200 200" class="clock-svg">
-  <!-- 時計の外枠 -->
-  <circle cx="100" cy="100" r="90" fill="none" stroke="#333" stroke-width="2"/>
-  
-  <!-- 12時間の目盛り -->
-  <g class="clock-marks">
-    <!-- 主要な目盛り（12, 3, 6, 9時） -->
-    <line x1="100" y1="15" x2="100" y2="25" stroke="#333" stroke-width="3"/>
-    <line x1="185" y1="100" x2="175" y2="100" stroke="#333" stroke-width="3"/>
-    <line x1="100" y1="185" x2="100" y2="175" stroke="#333" stroke-width="3"/>
-    <line x1="15" y1="100" x2="25" y2="100" stroke="#333" stroke-width="3"/>
-  </g>
-  
-  <!-- 秒針 -->
-  <line 
-    id="second-hand" 
-    x1="100" y1="100" 
-    x2="100" y2="30" 
-    stroke="#e74c3c" 
-    stroke-width="2" 
-    stroke-linecap="round"
-    transform-origin="100 100"
-  />
-  
-  <!-- 中心の点 -->
-  <circle cx="100" cy="100" r="3" fill="#333"/>
-</svg>
-
-<!-- 制御ボタン -->
-<div class="controls">
-  <button id="start-btn">開始</button>
-  <button id="reset-btn">リセット</button>
+const htmlExample = `<div class="animation__box">
+  <div class="stepTime__clock">
+    <svg viewBox="0 0 200 200" width="200" height="200" class="stepTime__clock-svg">
+      <circle cx="100" cy="100" r="90" fill="none" stroke="#333" stroke-width="3"/>
+    </svg>
+    <div class="stepTime__clockLine">
+    </div>
+  </div>
 </div>
-`;
 
-const cssExample = `.clock {
-  width: 200px;
-  height: 200px;
-  margin: 2rem auto;
-}
-
-.clock-svg {
-  width: 100%;
-  height: 100%;
-}
-
-#second-hand {
-  transition: transform 0.1s ease-out;
-}
-
-.controls {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2rem;
-}
-
-.controls button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
 `;
 ---
 
 <Layout title={title} description={description}>
   <div class="container">
     <h1 class="animation__title">Step Time Animation</h1>
-    <p>ステップ時間を使用してアニメーションを制御する</p>
+    <p>秒針のようなアニメーションを作成する</p>
     
     <div class="animation__box">
-      <div class="clock">
-        <svg viewBox="0 0 200 200" class="clock-svg">
-          <!-- 時計の外枠 -->
-          <circle cx="100" cy="100" r="90" fill="none" stroke="#333" stroke-width="2"/>
-          
-          <!-- 12時間の目盛り（主要な4つのみ） -->
-          <g class="clock-marks">
-            <line x1="100" y1="15" x2="100" y2="25" stroke="#333" stroke-width="3"/>
-            <line x1="185" y1="100" x2="175" y2="100" stroke="#333" stroke-width="3"/>
-            <line x1="100" y1="185" x2="100" y2="175" stroke="#333" stroke-width="3"/>
-            <line x1="15" y1="100" x2="25" y2="100" stroke="#333" stroke-width="3"/>
-          </g>
-          
-          <!-- 秒針 -->
-          <line 
-            id="second-hand" 
-            x1="100" y1="100" 
-            x2="100" y2="30" 
-            stroke="#e74c3c" 
-            stroke-width="3" 
-            stroke-linecap="round"
-            style="transform-origin: center; visibility: visible; opacity: 1;"
-          />
-          
-          <!-- 中心の点 -->
-          <circle cx="100" cy="100" r="3" fill="#333"/>
+      <div class="stepTime__clock">
+        <svg viewBox="0 0 200 200" width="200" height="200" class="stepTime__clock-svg">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#333" stroke-width="3"/>
         </svg>
-      </div>
-      
-      <div class="controls">
-        <button id="start-btn" class="control-btn">開始</button>
-        <button id="pause-btn" class="control-btn">一時停止</button>
-        <button id="reset-btn" class="control-btn">リセット</button>
-      </div>
-      
-      <div class="info">
-        <p>秒: <span id="current-second">0</span></p>
+        <div class="stepTime__clockLine">
+        </div>
       </div>
     </div>
 
@@ -163,11 +70,14 @@ const cssExample = `.clock {
       <Code lang="js" code={codeExample} class="code -block" />
       <section>
         <h3>GSAPコードの解説</h3>
+
         <p><code class="code -inline">gsap.to()</code> は、GSAPのアニメーションを開始するためのメソッドです。</p>
-        <p><code class="code -inline">rotation: secondAngle</code> は、要素を指定した角度まで回転させるプロパティです。</p>
-        <p><code class="code -inline">duration: 0.1</code> は、アニメーションの時間を0.1秒に設定します。</p>
-        <p><code class="code -inline">ease: "power2.out"</code> は、アニメーションのイージング（加速・減速）を設定します。</p>
-        <p><code class="code -inline">gsap.timeline()</code> は、複数のアニメーションを順序立てて実行するためのタイムラインを作成します。</p>
+        <p><code class="code -inline">rotation: 360</code> は、要素を360度（1回転）回転させるプロパティです。</p>
+        <p><code class="code -inline">duration: 30</code> は、アニメーションの時間を30秒に設定します。つまり30秒で1周します。</p>
+        <p><code class="code -inline">repeat: -1</code> は、アニメーションを無限に繰り返します。</p>
+        <p><code class="code -inline">ease: "steps(30)"</code> は、アニメーションを30個のステップに分割する特殊なイージングです。これにより滑らかな回転ではなく、カクカクとしたステップ状の動きになります。</p>
+        <p><code class="code -inline">transformOrigin: "left center"</code> は、回転の中心点を要素の左端中央に設定します。これにより時計の針のような動きを実現できます。</p>
+        <p>このアニメーションでは、30秒間で30ステップ（1秒に1ステップ）の時計の秒針のような動きを作成しています。</p>
       </section>
 
       <h2>HTML / CSS</h2>
@@ -183,143 +93,17 @@ const cssExample = `.clock {
 
 <style lang="scss">
   @use '../../assets/css/index.scss';
-  @use '../../assets/css/pages/animations/_stepAnime.scss';
+  @use '../../assets/css/pages/animations/_stepTime.scss';
 </style>
 
 <script>
   import gsap from "gsap";
 
-  // DOM読み込み完了後に実行
-  document.addEventListener('DOMContentLoaded', () => {
-    // 秒針の要素を取得
-    const secondHand = document.getElementById('second-hand');
-    const currentSecondDisplay = document.getElementById('current-second');
-    
-    // 制御ボタン
-    const startBtn = document.getElementById('start-btn');
-    const pauseBtn = document.getElementById('pause-btn');
-    const resetBtn = document.getElementById('reset-btn');
-    
-    // 要素が見つからない場合のエラーハンドリング
-    if (!secondHand) {
-      console.error('秒針の要素が見つかりません');
-      return;
-    }
-    
-    // 秒の状態
-    let currentSecond = 0;
-    let isRunning = false;
-    let timeline: gsap.core.Timeline;
-    
-    // 秒表示を更新
-    function updateSecondDisplay() {
-      if (currentSecondDisplay) {
-        currentSecondDisplay.textContent = currentSecond.toString();
-      }
-    }
-    
-    // 秒針をステップ移動
-    function moveSecondHand() {
-      const secondAngle = (currentSecond * 6) - 90; // 6度/秒
-      
-      if (secondHand) {
-        console.log(`秒針を ${currentSecond} 秒位置 (${secondAngle}度) に移動`);
-        gsap.to(secondHand, {
-          rotation: secondAngle,
-          duration: 0.1,
-          ease: "power2.out",
-          transformOrigin: "center center", // centerを使用
-          onComplete: () => {
-            console.log('秒針移動完了');
-          }
-        });
-      }
-    }
-    
-    // 時間を進める
-    function advanceTime() {
-      currentSecond++;
-      
-      if (currentSecond >= 60) {
-        currentSecond = 0;
-      }
-      
-      updateSecondDisplay();
-      moveSecondHand();
-    }
-    
-    // アニメーション開始
-    function startAnimation() {
-      if (!isRunning) {
-        isRunning = true;
-        timeline = gsap.timeline({ repeat: -1 });
-        
-        // 1秒ごとに時間を進める
-        timeline.call(advanceTime);
-        timeline.to({}, { duration: 1 });
-        
-        // 無限ループ
-        timeline.repeat(-1);
-      }
-    }
-    
-    // アニメーション停止
-    function pauseAnimation() {
-      if (isRunning && timeline) {
-        timeline.pause();
-        isRunning = false;
-      }
-    }
-    
-    // リセット
-    function resetAnimation() {
-      if (timeline) {
-        timeline.kill();
-      }
-      
-      currentSecond = 0;
-      isRunning = false;
-      
-      updateSecondDisplay();
-      
-      // 針を初期位置に戻す
-      if (secondHand) {
-        console.log('秒針をリセット');
-        gsap.set(secondHand, { 
-          rotation: -90,
-          transformOrigin: "center center"
-        });
-      }
-    }
-    
-    // イベントリスナー
-    startBtn?.addEventListener('click', startAnimation);
-    pauseBtn?.addEventListener('click', pauseAnimation);
-    resetBtn?.addEventListener('click', resetAnimation);
-    
-    // 初期化 - 少し遅延させて確実に要素が存在することを確認
-    setTimeout(() => {
-      updateSecondDisplay();
-      if (secondHand) {
-        console.log('秒針要素を発見:', secondHand);
-        // 初期状態を設定（12時位置）
-        gsap.set(secondHand, { 
-          rotation: -90,
-          transformOrigin: "center center",
-          visibility: "visible",
-          opacity: 1 // 透明度も明示的に設定
-        });
-        console.log('秒針を初期化しました - 12時位置(-90度)');
-        
-        // 初期化後に一度手動で描画確認
-        setTimeout(() => {
-          console.log('秒針の現在の状態:', {
-            rotation: gsap.getProperty(secondHand, "rotation"),
-            visibility: gsap.getProperty(secondHand, "visibility"),
-            opacity: gsap.getProperty(secondHand, "opacity")
-          });
-        }, 50);
-      }
-    }, 100);
+  gsap.to(".stepTime__clockLine", {
+    rotation: 360,
+    duration: 30,
+    repeat: -1,
+    ease: "steps(30)",
+    transformOrigin: "left center"
   });
 </script>
