@@ -5,8 +5,8 @@
 // フッター
 .footer {
   padding: vars.$spacing-lg 0;
-  background-color: vars.$color-dark;
+  font-size: type.$font-size-xxs;
   color: vars.$color-text-light;
   text-align: center;
-  font-size: type.$font-size-xxs;
+  background-color: vars.$color-dark;
 }

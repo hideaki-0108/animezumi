@@ -8,16 +8,16 @@
 .button {
   display: inline-block;
   padding: $spacing-sm $spacing-lg;
-  border-radius: $border-radius-md;
   font-size: $font-size-base;
   font-weight: $weight-medium;
-  text-decoration: none;
   text-align: center;
+  text-decoration: none;
+  border-radius: $border-radius-md;
   transition: all 0.3s ease;
 
   &--primary {
-    background: $color-primary;
     color: white;
+    background: $color-primary;
 
     &:hover {
       background: color.adjust($color-primary, $lightness: -10%);
@@ -26,8 +26,8 @@
   }
 
   &--secondary {
-    background: rgba(255, 255, 255, 0.1);
     color: white;
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
 
     &:hover {
@@ -37,12 +37,12 @@
   }
 
   &--outline {
-    border: 2px solid $color-primary;
     color: $color-primary;
+    border: 2px solid $color-primary;
 
     &:hover {
-      background: $color-primary;
       color: white;
+      background: $color-primary;
       transform: translateY(-3px);
     }
   }
@@ -51,14 +51,14 @@
 .animation {
   &__back {
   padding-left: calc(1em + 4px);
-  font-size: $font-size-md;
   margin: 60px 0 0;
+  font-size: $font-size-md;
 
   &::before {
-      content: "<";
-      margin-right: 4px;
       display: inline-block;
+      margin-right: 4px;
       color: $color-primary;
+      content: "<";
     }
   }
 }

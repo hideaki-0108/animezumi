@@ -6,40 +6,40 @@
 
 // カードリストのスタイル
 .animation-card {
+  overflow: hidden;
+  color: $color-text-dark;
+  text-decoration: none;
   background: white;
   border-radius: $border-radius-md;
-  overflow: hidden;
   box-shadow: $shadow-md;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-  text-decoration: none;
-  color: $color-text-dark;
 
   &:hover {
-    transform: translateY(-0.5rem);
     box-shadow: $shadow-lg;
+    transform: translateY(-0.5rem);
   }
 
   &__visual {
+    position: relative;
     height: auto;
     max-height: 200px;
     padding: 24px 0;
-    background: #f0f0f0;
-    position: relative;
     overflow: hidden;
+    background: #f0f0f0;
   }
 
   &__title {
-    font-size: $font-size-lg;
     padding: $spacing-md $spacing-md $spacing-xs;
     margin: 0;
+    font-size: $font-size-lg;
   }
 
   &__desc {
-    font-size: $font-size-sm;
     padding: 0 $spacing-md $spacing-md;
     margin: 0;
+    font-size: $font-size-sm;
     color: $color-text-muted;
   }
 }

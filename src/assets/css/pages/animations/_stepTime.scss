@@ -1,17 +1,17 @@
-@use "_index" as *;
+@use "index" as *;
 
 .animation__box {
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   min-height: 300px;
 }
 
 .stepTime-animation {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   
   svg {
     max-width: 100%;
@@ -26,12 +26,12 @@
     height: 200px;
 
     &Line {
-      border-top: 2px solid #333;
-      width: calc(50% - 24px);
-      height: 2px;
       position: absolute;
       top: 50%;
       left: 50%;
+      width: calc(50% - 24px);
+      height: 2px;
+      border-top: 2px solid #333;
       transform-origin: left center;
       rotate: -90deg;
     }
@@ -57,19 +57,19 @@
 }
 
 pre {
-  background: #f4f4f4;
   padding: 1rem;
-  border-radius: 8px;
   overflow-x: auto;
+  background: #f4f4f4;
+  border-radius: 8px;
 }
 
 section {
   max-width: 800px;
-  margin: 2rem auto;
   padding: 0 1rem;
+  margin: 2rem auto;
 }
 
 h2 {
-  color: #333;
   margin-top: 2rem;
+  color: #333;
 }
