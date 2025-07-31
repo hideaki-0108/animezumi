@@ -7,13 +7,13 @@
 // ヒーローセクション
 .hero {
   position: relative;
-  padding: 10px 40px;
-  min-height: 90vh;
   display: flex;
   align-items: center;
+  min-height: 90vh;
+  padding: 10px 40px;
   overflow: hidden;
-  background: linear-gradient(120deg, $color-dark, color.adjust($color-primary, $lightness: -25%));
   color: $color-text-light;
+  background: linear-gradient(120deg, $color-dark, color.adjust($color-primary, $lightness: -25%));
 
   &__content {
     position: relative;
@@ -22,25 +22,25 @@
   }
 
   &__title {
-    font-size: 6.4rem;
     margin-bottom: $spacing-md;
+    font-size: 6.4rem;
     line-height: 1;
     letter-spacing: -0.02em;
     animation: fadeInUp 0.8s ease-out forwards;
   }
 
   &__subtitle {
-    font-size: $font-size-xl;
     margin-bottom: $spacing-md;
+    font-size: $font-size-xl;
     font-weight: $weight-medium;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out 0.2s forwards;
   }
 
   &__description {
-    font-size: $font-size-md;
-    margin-bottom: $spacing-xl;
     max-width: 60rem;
+    margin-bottom: $spacing-xl;
+    font-size: $font-size-md;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out 0.4s forwards;
   }
@@ -56,9 +56,9 @@
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 1;
     width: 100%;
     height: 100%;
-    z-index: 1;
   }
 }
 
@@ -78,8 +78,8 @@
   }
 
   &--2 {
-    bottom: 15%;
     right: 20%;
+    bottom: 15%;
     width: 12rem;
     height: 12rem;
     background: $color-tertiary;
@@ -98,8 +98,8 @@
 
 .square {
   position: absolute;
-  bottom: 30%;
   right: 15%;
+  bottom: 30%;
   width: 15rem;
   height: 15rem;
   background: $color-secondary;
@@ -114,9 +114,9 @@
   right: 25%;
   width: 0;
   height: 0;
-  border-left: 8rem solid transparent;
   border-right: 8rem solid transparent;
   border-bottom: 14rem solid $color-tertiary;
+  border-left: 8rem solid transparent;
   opacity: 0.5;
   animation: float 12s ease-in-out infinite 1.5s;
 }
@@ -128,22 +128,22 @@
 }
 
 .section-title {
-  font-size: $font-size-3xl;
-  margin-bottom: $spacing-xl;
-  padding-bottom: $spacing-lg;
-  text-align: center;
   position: relative;
+  padding-bottom: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  font-size: $font-size-3xl;
+  text-align: center;
 
   &:after {
-    content: "";
     position: absolute;
     bottom: $spacing-sm;
     left: 50%;
-    transform: translateX(-50%);
     width: 6rem;
     height: 0.4rem;
+    content: "";
     background: $color-primary;
     border-radius: $border-radius-pill;
+    transform: translateX(-50%);
   }
 }
 
@@ -155,8 +155,8 @@
 }
 
 .animation-more {
-  text-align: center;
   margin-top: $spacing-xl;
+  text-align: center;
 }
 
 // Aboutセクション
@@ -170,8 +170,8 @@
   }
 
   &__text {
-    font-size: $font-size-md;
     margin-bottom: $spacing-md;
+    font-size: $font-size-md;
     line-height: 1.6;
   }
 }
@@ -184,19 +184,19 @@
 .tech-stack {
   display: flex;
   gap: $spacing-lg;
-  margin-top: $spacing-xl;
   justify-content: center;
+  margin-top: $spacing-xl;
 }
 
 .tech-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 32px;
+  align-items: center;
 
   .tech-logo {
-    font-size: 3.2rem;
     max-height: 60px ;
+    font-size: 3.2rem;
 
     img {
       max-height: 60px;
@@ -215,11 +215,11 @@
 
 // ユーティリティクラス
 .text-gradient {
+  color: transparent;
   background: linear-gradient(90deg, $color-primary, $color-secondary);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .text-accent {
@@ -232,9 +232,9 @@
   @include flex-center;
 
   &:after {
-    content: "";
     width: 6rem;
     height: 6rem;
+    content: "";
     background: $color-primary;
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
@@ -245,9 +245,9 @@
   @include flex-center;
 
   &:after {
-    content: "";
     width: 6rem;
     height: 6rem;
+    content: "";
     background: $color-tertiary;
     border-radius: 50%;
     animation: float 3s ease-in-out infinite;
@@ -258,9 +258,9 @@
   @include flex-center;
 
   &:after {
-    content: "";
     width: 6rem;
     height: 6rem;
+    content: "";
     background: $color-secondary;
     animation: morph 5s ease-in-out infinite;
   }
@@ -291,12 +291,12 @@
 @keyframes pulse {
   0%,
   100% {
-    transform: scale(0.8);
     opacity: 0.5;
+    transform: scale(0.8);
   }
   50% {
-    transform: scale(1.2);
     opacity: 1;
+    transform: scale(1.2);
   }
 }
 

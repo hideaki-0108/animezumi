@@ -1,36 +1,36 @@
-@use "_index" as *;
+@use "index" as *;
 
 .animation__box {
   position: relative;
 }
 
 .orbit-animation {
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-  border-radius: 50%;
-  margin: 2rem auto;
-  transform-origin: center;
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 2rem auto;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  border-radius: 50%;
   transform: translate(-50%, -50%);
+  transform-origin: center;
 }
 
 pre {
-  background: #f4f4f4;
   padding: 1rem;
-  border-radius: 8px;
   overflow-x: auto;
+  background: #f4f4f4;
+  border-radius: 8px;
 }
 
 section {
   max-width: 800px;
-  margin: 2rem auto;
   padding: 0 1rem;
+  margin: 2rem auto;
 }
 
 h2 {
-  color: #333;
   margin-top: 2rem;
+  color: #333;
 }

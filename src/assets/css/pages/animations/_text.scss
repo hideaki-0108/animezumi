@@ -1,4 +1,4 @@
-@use "_index" as *;
+@use "index" as *;
 
 .text-animation {
   margin: 2rem auto;
@@ -12,19 +12,19 @@
 }
 
 pre {
-  background: #f4f4f4;
   padding: 1rem;
-  border-radius: 8px;
   overflow-x: auto;
+  background: #f4f4f4;
+  border-radius: 8px;
 }
 
 section {
   max-width: 800px;
-  margin: 2rem auto;
   padding: 0 1rem;
+  margin: 2rem auto;
 }
 
 h2 {
-  color: #333;
   margin-top: 2rem;
+  color: #333;
 }

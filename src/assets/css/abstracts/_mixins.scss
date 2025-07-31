@@ -73,9 +73,9 @@
 // マルチライン省略
 @mixin line-clamp($lines) {
   display: -webkit-box;
+  overflow: hidden;
   -webkit-line-clamp: $lines;
   -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 // アスペクト比の保持
@@ -83,9 +83,9 @@
   position: relative;
 
   &:before {
-    content: "";
     display: block;
     padding-top: ($height / $width) * 100%;
+    content: "";
   }
 
   > * {
@@ -100,16 +100,16 @@
 // ボタンスタイル
 @mixin button-style($bg-color: vars.$color-primary, $text-color: vars.$color-text-light, $hover-darken: 10%) {
   display: inline-block;
-  background-color: $bg-color;
-  color: $text-color;
   padding: vars.$spacing-sm vars.$spacing-md;
-  border-radius: vars.$border-radius-md;
-  border: none;
+  color: $text-color;
   cursor: pointer;
+  background-color: $bg-color;
+  border: none;
+  border-radius: vars.$border-radius-md;
   @include transition;
 
   &:hover {
-    background-color: color.adjust($bg-color, $lightness: -$hover-darken);
+    background-color: color.adjust($bg-color, $lightness: - $hover-darken);
   }
 }
 
