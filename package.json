@@ -1,7 +1,7 @@
 {
-  "name": "temper",
+  "name": "animezum",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "lint:css": "stylelint \"**/*.{css,scss}\" --fix",
     "lint:js": "eslint \"**/*.{js,ts,jsx,tsx}\" --fix",
