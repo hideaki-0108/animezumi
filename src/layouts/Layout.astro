@@ -14,9 +14,9 @@ export interface Props {
   baseUrl?: string;
 }
 
-const { 
-  title, 
-  description, 
+const {
+  title,
+  description,
   ogImage = '/og-image.jpg',
   canonicalUrl = Astro.url.href,
   keywords = '',
@@ -29,20 +29,24 @@ const {
 
 // ページタイトルの最適化
 const pageTitle = title ? `${title} | ${siteName}` : siteName;
-const metaDescription = description || '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオAnimezumi。';
+const metaDescription =
+  description ||
+  '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオAnimezumi。';
 
 // サイトURLの安全な取得
 const siteUrl = Astro.site?.href || baseUrl;
-const fullOgImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+const fullOgImageUrl = ogImage.startsWith('http')
+  ? ogImage
+  : `${siteUrl}${ogImage}`;
 
 // 構造化データの準備
 const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": siteName,
-  "url": siteUrl,
-  "description": metaDescription,
-  "inLanguage": "ja-JP"
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteName,
+  url: siteUrl,
+  description: metaDescription,
+  inLanguage: 'ja-JP',
 };
 
 const isProduction = import.meta.env.MODE === 'production';
@@ -53,7 +57,7 @@ const isProduction = import.meta.env.MODE === 'production';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- SEO基本設定 -->
     <title>{pageTitle}</title>
     <meta name="description" content={metaDescription} />
@@ -61,7 +65,7 @@ const isProduction = import.meta.env.MODE === 'production';
     <meta name="author" content={author} />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalUrl} />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
@@ -70,7 +74,7 @@ const isProduction = import.meta.env.MODE === 'production';
     <meta property="og:image" content={fullOgImageUrl} />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:locale" content="ja_JP" />
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalUrl} />
@@ -78,17 +82,17 @@ const isProduction = import.meta.env.MODE === 'production';
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={fullOgImageUrl} />
     {twitterHandle && <meta name="twitter:creator" content={twitterHandle} />}
-    
+
     <!-- ファビコンとアイコン -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    
+
     <!-- その他のSEO要素 -->
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#ffffff" />
-    
+
     <!-- Font読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -96,21 +100,29 @@ const isProduction = import.meta.env.MODE === 'production';
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    
+
     <!-- 構造化データ（JSON-LD） -->
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
-    {isProduction && (
-      <>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRNX4SRDP4"></script>
-        <script>
-          {`window.dataLayer = window.dataLayer || [];
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+    {
+      isProduction && (
+        <>
+          {/* Google tag (gtag.js) */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-ZRNX4SRDP4"
+          />
+          <script>
+            {`window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-ZRNX4SRDP4');`}
-        </script>
-      </>
-    )}
+          </script>
+        </>
+      )
+    }
   </head>
   <body>
     <HeaderLayout />

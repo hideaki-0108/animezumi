@@ -1,32 +1,32 @@
 /* 
   Mixins
 */
-@use "sass:color";
-@use "variables" as vars;
+@use 'sass:color';
+@use 'variables' as vars;
 
 // レスポンシブブレイクポイント
 @mixin respond-to($breakpoint) {
-  @if $breakpoint == "xs" {
+  @if $breakpoint == 'xs' {
     @media (min-width: vars.$breakpoint-xs) {
       @content;
     }
-  } @else if $breakpoint == "sm" {
+  } @else if $breakpoint == 'sm' {
     @media (min-width: vars.$breakpoint-sm) {
       @content;
     }
-  } @else if $breakpoint == "md" {
+  } @else if $breakpoint == 'md' {
     @media (min-width: vars.$breakpoint-md) {
       @content;
     }
-  } @else if $breakpoint == "lg" {
+  } @else if $breakpoint == 'lg' {
     @media (min-width: vars.$breakpoint-lg) {
       @content;
     }
-  } @else if $breakpoint == "xl" {
+  } @else if $breakpoint == 'xl' {
     @media (min-width: vars.$breakpoint-xl) {
       @content;
     }
-  } @else if $breakpoint == "2xl" {
+  } @else if $breakpoint == '2xl' {
     @media (min-width: vars.$breakpoint-2xl) {
       @content;
     }
@@ -55,7 +55,11 @@
 }
 
 // トランジション
-@mixin transition($property: all, $duration: vars.$transition-normal, $easing: vars.$easing-standard) {
+@mixin transition(
+  $property: all,
+  $duration: vars.$transition-normal,
+  $easing: vars.$easing-standard
+) {
   transition: $property $duration $easing;
 }
 
@@ -66,8 +70,17 @@
   }
 }
 
-@mixin animation($name, $duration: 1s, $timing-function: ease, $delay: 0s, $iteration-count: 1, $direction: normal, $fill-mode: forwards) {
-  animation: $name $duration $timing-function $delay $iteration-count $direction $fill-mode;
+@mixin animation(
+  $name,
+  $duration: 1s,
+  $timing-function: ease,
+  $delay: 0s,
+  $iteration-count: 1,
+  $direction: normal,
+  $fill-mode: forwards
+) {
+  animation: $name $duration $timing-function $delay $iteration-count $direction
+    $fill-mode;
 }
 
 // マルチライン省略
@@ -85,7 +98,7 @@
   &:before {
     display: block;
     padding-top: ($height / $width) * 100%;
-    content: "";
+    content: '';
   }
 
   > * {
@@ -98,7 +111,11 @@
 }
 
 // ボタンスタイル
-@mixin button-style($bg-color: vars.$color-primary, $text-color: vars.$color-text-light, $hover-darken: 10%) {
+@mixin button-style(
+  $bg-color: vars.$color-primary,
+  $text-color: vars.$color-text-secondary,
+  $hover-darken: 10%
+) {
   display: inline-block;
   padding: vars.$spacing-sm vars.$spacing-md;
   color: $text-color;
@@ -120,7 +137,11 @@
 }
 
 // スクロールバースタイリング
-@mixin custom-scrollbar($width: 8px, $track-color: #f1f1f1, $thumb-color: #888) {
+@mixin custom-scrollbar(
+  $width: 8px,
+  $track-color: #f1f1f1,
+  $thumb-color: #888
+) {
   &::-webkit-scrollbar {
     width: $width;
   }

@@ -50,7 +50,7 @@ const lineWeight = gsap.fromTo(".lineWeight-animation", {
     <div class="animation__box">
       <div class="lineWeight-animation"></div>
     </div>
-  
+
     <section>
       <h2>GSAP</h2>
       <Code lang="js" code={codeExample} class="code -block" />
@@ -81,7 +81,7 @@ const lineWeight = gsap.fromTo(".lineWeight-animation", {
           <code class="code -inline">repeatDelay: 1</code> は、アニメーションの繰り返し間隔を1秒に設定します。
         </p>
       </section>
-  
+
       <h2>HTML / CSS</h2>
       <Code lang="html" code={htmlExample} class="code -block" />
       <Code lang="css" code={cssExample} class="code -block" />
@@ -91,30 +91,32 @@ const lineWeight = gsap.fromTo(".lineWeight-animation", {
       <a href={`${BASE_PATH}animations`}>アニメーション一覧に戻る</a>
     </div>
   </div>
-
-  
 </Layout>
 
 <style lang="scss">
-	@use '../../assets/css/index.scss';
-	@use '../../assets/css/pages/animations/_lineWeight.scss';
+  @use '../../assets/css/index.scss';
+  @use '../../assets/css/pages/animations/_lineWeight.scss';
 </style>
-
 
 <script>
   import { gsap } from 'gsap';
 
   // DOMが読み込まれた後にアニメーションを開始
   document.addEventListener('DOMContentLoaded', () => {
-    const lineWeight = gsap.fromTo(".lineWeight-animation", {
-      borderWidth: 0,
-    }, {
-      borderWidth: 10,
-      duration: 0.5,
-      ease: "power2.out",
-      repeat: -1,
-      yoyo: true,
-      repeatDelay: 1,
-    });
+    const lineWeight = gsap.fromTo(
+      '.lineWeight-animation',
+      {
+        borderWidth: 0,
+      },
+      {
+        borderWidth: 10,
+        duration: 0.5,
+        ease: 'power2.out',
+        repeat: -1,
+        yoyo: true,
+        repeatDelay: 1,
+      }
+    );
   });
-</script> 
+</script>
+

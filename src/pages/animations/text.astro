@@ -53,17 +53,44 @@ const cssExample = `.text-animation {
       <Code lang="js" code={codeExample} class="code -block" />
       <section>
         <h3>GSAPコードの解説</h3>
-        <p>※プレビューでのみわかりやすいように2.5秒間隔でリピートさせています。</p>
-        <p><code class="code -inline">document.querySelector('.text-animation')</code> は、アニメーションを適用するテキスト要素を選択します。</p>
-        <p><code class="code -inline">new SplitText(text, {'{'} type: 'chars', linesClass: 'text-animation__line' {'}'})</code> は、テキストを文字単位で分割し、アニメーション可能な状態にします。</p>
-        <p><code class="code -inline">gsap.fromTo()</code> は、GSAPアニメーションの開始と終了の値を設定するためのメソッドです。</p>
-        <p><code class="code -inline">display: 'inline-block'</code> は、分割された文字をインラインブロック要素として表示します。</p>
-        <p><code class="code -inline">opacity: 0</code> は、アニメーション開始時の文字の透明度を0（完全に透明）にします。</p>
-        <p><code class="code -inline">y: '8px'</code> は、アニメーション開始時の文字の位置を8px下に設定します。</p>
-        <p><code class="code -inline">opacity: 1</code> は、アニメーション終了時の文字の透明度を1（完全に不透明）にします。</p>
-        <p><code class="code -inline">y: 0</code> は、アニメーション終了時の文字の位置を元の位置に戻します。</p>
-        <p><code class="code -inline">ease: 'ease'</code> は、アニメーションのイージングを設定します。</p>
-        <p><code class="code -inline">stagger: 0.05</code> は、各文字のアニメーション開始を0.05秒ずつ遅らせ、順番に表示されるようにします。</p>
+        <p>
+          ※プレビューでのみわかりやすいように2.5秒間隔でリピートさせています。
+        </p>
+        <p>
+          <code class="code -inline"
+            >document.querySelector('.text-animation')</code
+          > は、アニメーションを適用するテキスト要素を選択します。
+        </p>
+        <p>
+          <code class="code -inline"
+            >new SplitText(text, {'{'} type: 'chars', linesClass: 'text-animation__line'
+            {'}'})</code
+          > は、テキストを文字単位で分割し、アニメーション可能な状態にします。
+        </p>
+        <p>
+          <code class="code -inline">gsap.fromTo()</code> は、GSAPアニメーションの開始と終了の値を設定するためのメソッドです。
+        </p>
+        <p>
+          <code class="code -inline">display: 'inline-block'</code> は、分割された文字をインラインブロック要素として表示します。
+        </p>
+        <p>
+          <code class="code -inline">opacity: 0</code> は、アニメーション開始時の文字の透明度を0（完全に透明）にします。
+        </p>
+        <p>
+          <code class="code -inline">y: '8px'</code> は、アニメーション開始時の文字の位置を8px下に設定します。
+        </p>
+        <p>
+          <code class="code -inline">opacity: 1</code> は、アニメーション終了時の文字の透明度を1（完全に不透明）にします。
+        </p>
+        <p>
+          <code class="code -inline">y: 0</code> は、アニメーション終了時の文字の位置を元の位置に戻します。
+        </p>
+        <p>
+          <code class="code -inline">ease: 'ease'</code> は、アニメーションのイージングを設定します。
+        </p>
+        <p>
+          <code class="code -inline">stagger: 0.05</code> は、各文字のアニメーション開始を0.05秒ずつ遅らせ、順番に表示されるようにします。
+        </p>
       </section>
 
       <h2>HTML / CSS</h2>
@@ -78,8 +105,8 @@ const cssExample = `.text-animation {
 </Layout>
 
 <style lang="scss">
-	@use '../../assets/css/index.scss';
-	@use '../../assets/css/pages/animations/_text.scss';
+  @use '../../assets/css/index.scss';
+  @use '../../assets/css/pages/animations/_text.scss';
 </style>
 
 <script>
@@ -89,24 +116,29 @@ const cssExample = `.text-animation {
 
   gsap.registerPlugin(SplitText);
 
-
   document.addEventListener('DOMContentLoaded', () => {
     const text = document.querySelector('.text-animation');
-    const splitText = new SplitText(text, { type: 'chars', linesClass: 'text-animation__line' });
+    const splitText = new SplitText(text, {
+      type: 'chars',
+      linesClass: 'text-animation__line',
+    });
 
     const tl = gsap.timeline();
 
-    tl.fromTo(splitText.chars, {
-      display: 'inline-block',
-      opacity: 0,
-      y: '8px',
-
-    }, {
-      opacity: 1,
-      y: 0,
-      ease: 'ease',
-      stagger: 0.05,
-    });
+    tl.fromTo(
+      splitText.chars,
+      {
+        display: 'inline-block',
+        opacity: 0,
+        y: '8px',
+      },
+      {
+        opacity: 1,
+        y: 0,
+        ease: 'ease',
+        stagger: 0.05,
+      }
+    );
 
     tl.repeat(-1).repeatDelay(2.5);
   });

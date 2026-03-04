@@ -1,8 +1,8 @@
-@use "sass:color";
-@use "../base/" as *;
-@use "../abstracts/variables" as *;
-@use "../base/typography" as *;
-@use "../abstracts/mixins" as *;
+@use 'sass:color';
+@use '../base/' as *;
+@use '../abstracts/variables' as *;
+@use '../base/typography' as *;
+@use '../abstracts/mixins' as *;
 
 // ボタン
 .button {
@@ -50,15 +50,15 @@
 
 .animation {
   &__back {
-  padding-left: calc(1em + 4px);
-  margin: 60px 0 0;
-  font-size: $font-size-md;
+    padding-left: calc(1em + 4px);
+    margin: 60px 0 0;
+    font-size: $font-size-md;
 
-  &::before {
+    &::before {
       display: inline-block;
       margin-right: 4px;
       color: $color-primary;
-      content: "<";
+      content: '<';
     }
   }
 }

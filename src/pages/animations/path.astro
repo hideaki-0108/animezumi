@@ -24,7 +24,7 @@ const htmlExample = `<div class="path-animation">
 // const side1 = 'M117 0 L2 198'; // 左辺
 // const side2 = 'M2 198 L232 198'; // 底辺
 // const side3 = 'M232 198 L117 0'; // 右辺
-`
+`;
 
 const cssExample = `.path-animation {
   display: flex;
@@ -45,7 +45,7 @@ const cssExample = `.path-animation {
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke; // 線の太さを一定に保つ
 }
-` 
+`;
 
 const codeExample = `import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
@@ -83,8 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
   tl.yoyo(true);
   tl.repeatDelay(0.5);
 });
-`
-
+`;
 ---
 
 <Layout title={title} description={description}>
@@ -93,11 +92,35 @@ document.addEventListener('DOMContentLoaded', () => {
     <p>パスをアニメーションさせる</p>
     <div class="animation__box">
       <div class="path-animation">
-        <svg width="234" height="200" viewBox="0 -2 234 202" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="234"
+          height="200"
+          viewBox="0 -2 234 202"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <!-- 各辺を個別のパスとして定義 -->
-          <path class="triangle-side side1" d={side1} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
-          <path class="triangle-side side2" d={side2} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
-          <path class="triangle-side side3" d={side3} stroke="black" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path
+            class="triangle-side side1"
+            d={side1}
+            stroke="black"
+            stroke-width="3"
+            stroke-linecap="round"
+            fill="none"></path>
+          <path
+            class="triangle-side side2"
+            d={side2}
+            stroke="black"
+            stroke-width="3"
+            stroke-linecap="round"
+            fill="none"></path>
+          <path
+            class="triangle-side side3"
+            d={side3}
+            stroke="black"
+            stroke-width="3"
+            stroke-linecap="round"
+            fill="none"></path>
         </svg>
       </div>
     </div>
@@ -114,7 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <code class="code -inline">gsap.registerPlugin(DrawSVGPlugin)</code> は、DrawSVGプラグインをGSAPに登録し、使用可能にします。
         </p>
         <p>
-          <code class="code -inline">gsap.set('.triangle-side', &#123; drawSVG: '0%' &#125;)</code> は、アニメーション開始前にすべての三角形の辺を非表示（0%）に設定します。
+          <code class="code -inline"
+            >gsap.set('.triangle-side', &#123; drawSVG: '0%' &#125;)</code
+          > は、アニメーション開始前にすべての三角形の辺を非表示（0%）に設定します。
         </p>
         <p>
           <code class="code -inline">gsap.timeline()</code> は、複数のアニメーションを順序立てて実行するためのタイムラインオブジェクトを作成します。
@@ -152,10 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
 </Layout>
 
 <style lang="scss">
-	@use '../../assets/css/index.scss';
-	@use '../../assets/css/pages/animations/_path.scss';
+  @use '../../assets/css/index.scss';
+  @use '../../assets/css/pages/animations/_path.scss';
 </style>
-
 
 <script>
   import { gsap } from 'gsap';
@@ -176,18 +200,26 @@ document.addEventListener('DOMContentLoaded', () => {
     tl.to('.side1', {
       drawSVG: '100%',
       duration: 0.5,
-      ease: 'power2.out'
+      ease: 'power2.out',
     })
-    .to('.side2', {
-      drawSVG: '100%',
-      duration: 0.5,
-      ease: 'power2.out'
-    }, '-=0.3') // 0.3秒早く開始
-    .to('.side3', {
-      drawSVG: '100%',
-      duration: 0.5,
-      ease: 'power2.out'
-    }, '-=0.3'); // 0.3秒早く開始
+      .to(
+        '.side2',
+        {
+          drawSVG: '100%',
+          duration: 0.5,
+          ease: 'power2.out',
+        },
+        '-=0.3'
+      ) // 0.3秒早く開始
+      .to(
+        '.side3',
+        {
+          drawSVG: '100%',
+          duration: 0.5,
+          ease: 'power2.out',
+        },
+        '-=0.3'
+      ); // 0.3秒早く開始
 
     // アニメーションをループ
     tl.repeat(-1);

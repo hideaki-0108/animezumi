@@ -1,4 +1,4 @@
-@use "index" as *;
+@use 'index' as *;
 
 .animation__box {
   position: relative;
@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   svg {
     max-width: 100%;
     height: auto;
@@ -46,7 +46,6 @@
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke; // 線の太さを一定に保つ
 }
-
 
 // レスポンシブ対応
 @media (max-width: 768px) {

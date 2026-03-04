@@ -3,113 +3,125 @@ import { BASE_PATH } from '../../assets/js/lib/config';
 import Layout from '../../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { PulsePreview, FloatPreview, MorphPreview, OrbitPreview, TextPreview, CountUpPreview, LineWeightPreview, PathPreview, StepTimePreview } from '../../components/animations/_index.astro';
+import {
+  PulsePreview,
+  FloatPreview,
+  MorphPreview,
+  OrbitPreview,
+  TextPreview,
+  CountUpPreview,
+  LineWeightPreview,
+  PathPreview,
+  StepTimePreview,
+} from '../../components/animations/_index.astro';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const title = 'アニメーション集 - Animezumi';
-const description = '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオAnimezumi。';
+const description =
+  '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオAnimezumi。';
 
 const componentMap = {
-	'PulsePreview': PulsePreview,
-	'FloatPreview': FloatPreview,
-	'MorphPreview': MorphPreview,
-	'OrbitPreview': OrbitPreview,
-	'TextPreview': TextPreview,
-	'CountUpPreview': CountUpPreview,
-	'LineWeightPreview': LineWeightPreview,
-	'PathPreview': PathPreview,
-	'StepTimePreview': StepTimePreview,
+  PulsePreview: PulsePreview,
+  FloatPreview: FloatPreview,
+  MorphPreview: MorphPreview,
+  OrbitPreview: OrbitPreview,
+  TextPreview: TextPreview,
+  CountUpPreview: CountUpPreview,
+  LineWeightPreview: LineWeightPreview,
+  PathPreview: PathPreview,
+  StepTimePreview: StepTimePreview,
 };
 
 export const animations = [
-	{
-		title: 'Pulse Animation',
-		link: `animations/pulse`,
-		component: 'PulsePreview',
-		description: '鼓動のようなリズミカルなアニメーション',
-	},
-	{
-		title: 'Float Animation',
-		link: `animations/float`,
-		component: 'FloatPreview',
-		description: '滑らかに浮遊する要素の動き',
-	},
-	{
-		title: 'Morph Animation',
-		link: `animations/morph`,
-		component: 'MorphPreview',
-		description: 'SVGパスの形状を別の形状に変形させるアニメーション',
-	},
-	{
-		title: 'Orbit Animation',
-		link: `animations/orbit`,
-		component: 'OrbitPreview',
-		description: '要素を軌道上で回転させるアニメーション',
-	},
-	{
-		title: 'Text Animation',
-		link: `animations/text`,
-		component: 'TextPreview',
-		description: 'テキストを文字単位でアニメーションさせるアニメーション',
-	},
-	{
-		title: 'CountUp Animation',
-		link: `animations/countup`,
-		component: 'CountUpPreview',
-		description: '数値をカウントアップするアニメーション',
-	},
-	{
-		title: 'LineWeight Animation',
-		link: `animations/lineWeight`,
-		component: 'LineWeightPreview',
-		description: '線の太さをアニメーションさせる',
-	},
-	{
-		title: 'Path Animation',
-		link: `animations/path`,
-		component: 'PathPreview',
-		description: 'パスをアニメーションさせる',
-	},
-	{
-		title: 'Step Time Animation',
-		link: `animations/stepTime`,
-		component: 'StepTimePreview',
-		description: '秒針のようなアニメーション',
-	},
-]
-
-
+  {
+    title: 'Pulse Animation',
+    link: `animations/pulse`,
+    component: 'PulsePreview',
+    description: '鼓動のようなリズミカルなアニメーション',
+  },
+  {
+    title: 'Float Animation',
+    link: `animations/float`,
+    component: 'FloatPreview',
+    description: '滑らかに浮遊する要素の動き',
+  },
+  {
+    title: 'Morph Animation',
+    link: `animations/morph`,
+    component: 'MorphPreview',
+    description: 'SVGパスの形状を別の形状に変形させるアニメーション',
+  },
+  {
+    title: 'Orbit Animation',
+    link: `animations/orbit`,
+    component: 'OrbitPreview',
+    description: '要素を軌道上で回転させるアニメーション',
+  },
+  {
+    title: 'Text Animation',
+    link: `animations/text`,
+    component: 'TextPreview',
+    description: 'テキストを文字単位でアニメーションさせるアニメーション',
+  },
+  {
+    title: 'CountUp Animation',
+    link: `animations/countup`,
+    component: 'CountUpPreview',
+    description: '数値をカウントアップするアニメーション',
+  },
+  {
+    title: 'LineWeight Animation',
+    link: `animations/lineWeight`,
+    component: 'LineWeightPreview',
+    description: '線の太さをアニメーションさせる',
+  },
+  {
+    title: 'Path Animation',
+    link: `animations/path`,
+    component: 'PathPreview',
+    description: 'パスをアニメーションさせる',
+  },
+  {
+    title: 'Step Time Animation',
+    link: `animations/stepTime`,
+    component: 'StepTimePreview',
+    description: '秒針のようなアニメーション',
+  },
+];
 ---
 
 <Layout title={title} description={description}>
-	<section class="animation-showcase">
-		<div class="container">
-				<h2 class="section-title">アニメーション作品</h2>
-			<ul class="animation-grid">
-				{animations.map((item) => (
-					<li class="animation-card">
-						<a href={`${BASE_PATH}${item.link}`}>
-							<div class="animation-card__visual">
-								{(() => {
-									const Component = componentMap[item.component as keyof typeof componentMap];
-									return Component ? <Component /> : null;
-								})()}
-							</div>
-							<h3 class="animation-card__title">{item.title}</h3>
-							<p class="animation-card__desc">{item.description}</p>
-						</a>
-					</li>
-				))}
-			</ul>
-			<div class="animation__back">
-				<a href={`${BASE_PATH}`}>トップに戻る</a>
-			</div>
-		</div>
-	</section>
+  <section class="animation-showcase">
+    <div class="container">
+      <h2 class="section-title">アニメーション作品</h2>
+      <ul class="animation-grid">
+        {
+          animations.map((item) => (
+            <li class="animation-card">
+              <a href={`${BASE_PATH}${item.link}`}>
+                <div class="animation-card__visual">
+                  {(() => {
+                    const Component =
+                      componentMap[item.component as keyof typeof componentMap];
+                    return Component ? <Component /> : null;
+                  })()}
+                </div>
+                <h3 class="animation-card__title">{item.title}</h3>
+                <p class="animation-card__desc">{item.description}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="animation__back">
+        <a href={`${BASE_PATH}`}>トップに戻る</a>
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style lang="scss">
-	@use '../../assets/css/index.scss';
-	@use '../../assets/css/components/_card.scss';
+  @use '../../assets/css/index.scss';
+  @use '../../assets/css/components/_card.scss';
 </style>

@@ -54,14 +54,24 @@ const htmlExample = `<div class="animation__box">
   <div class="container">
     <h1 class="animation__title">Step Time Animation</h1>
     <p>秒針のようなアニメーションを作成する</p>
-    
+
     <div class="animation__box">
       <div class="stepTime__clock">
-        <svg viewBox="0 0 200 200" width="200" height="200" class="stepTime__clock-svg">
-          <circle cx="100" cy="100" r="90" fill="none" stroke="#333" stroke-width="3"/>
+        <svg
+          viewBox="0 0 200 200"
+          width="200"
+          height="200"
+          class="stepTime__clock-svg"
+        >
+          <circle
+            cx="100"
+            cy="100"
+            r="90"
+            fill="none"
+            stroke="#333"
+            stroke-width="3"></circle>
         </svg>
-        <div class="stepTime__clockLine">
-        </div>
+        <div class="stepTime__clockLine"></div>
       </div>
     </div>
 
@@ -71,13 +81,27 @@ const htmlExample = `<div class="animation__box">
       <section>
         <h3>GSAPコードの解説</h3>
 
-        <p><code class="code -inline">gsap.to()</code> は、GSAPのアニメーションを開始するためのメソッドです。</p>
-        <p><code class="code -inline">rotation: 360</code> は、要素を360度（1回転）回転させるプロパティです。</p>
-        <p><code class="code -inline">duration: 30</code> は、アニメーションの時間を30秒に設定します。つまり30秒で1周します。</p>
-        <p><code class="code -inline">repeat: -1</code> は、アニメーションを無限に繰り返します。</p>
-        <p><code class="code -inline">ease: "steps(30)"</code> は、アニメーションを30個のステップに分割する特殊なイージングです。これにより滑らかな回転ではなく、カクカクとしたステップ状の動きになります。</p>
-        <p><code class="code -inline">transformOrigin: "left center"</code> は、回転の中心点を要素の左端中央に設定します。これにより時計の針のような動きを実現できます。</p>
-        <p>このアニメーションでは、30秒間で30ステップ（1秒に1ステップ）の時計の秒針のような動きを作成しています。</p>
+        <p>
+          <code class="code -inline">gsap.to()</code> は、GSAPのアニメーションを開始するためのメソッドです。
+        </p>
+        <p>
+          <code class="code -inline">rotation: 360</code> は、要素を360度（1回転）回転させるプロパティです。
+        </p>
+        <p>
+          <code class="code -inline">duration: 30</code> は、アニメーションの時間を30秒に設定します。つまり30秒で1周します。
+        </p>
+        <p>
+          <code class="code -inline">repeat: -1</code> は、アニメーションを無限に繰り返します。
+        </p>
+        <p>
+          <code class="code -inline">ease: "steps(30)"</code> は、アニメーションを30個のステップに分割する特殊なイージングです。これにより滑らかな回転ではなく、カクカクとしたステップ状の動きになります。
+        </p>
+        <p>
+          <code class="code -inline">transformOrigin: "left center"</code> は、回転の中心点を要素の左端中央に設定します。これにより時計の針のような動きを実現できます。
+        </p>
+        <p>
+          このアニメーションでは、30秒間で30ステップ（1秒に1ステップ）の時計の秒針のような動きを作成しています。
+        </p>
       </section>
 
       <h2>HTML / CSS</h2>
@@ -97,13 +121,13 @@ const htmlExample = `<div class="animation__box">
 </style>
 
 <script>
-  import gsap from "gsap";
+  import gsap from 'gsap';
 
-  gsap.to(".stepTime__clockLine", {
+  gsap.to('.stepTime__clockLine', {
     rotation: 360,
     duration: 30,
     repeat: -1,
-    ease: "steps(30)",
-    transformOrigin: "left center"
+    ease: 'steps(30)',
+    transformOrigin: 'left center',
   });
 </script>
