@@ -5,52 +5,97 @@
 @use '../base/typography' as *;
 
 // カードリストのスタイル
-.animation-card {
-  overflow: hidden;
-  color: $color-text-primary;
-  text-decoration: none;
-  background: white;
-  border-radius: $border-radius-md;
-  box-shadow: $shadow-md;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-
-  &:hover {
-    box-shadow: $shadow-lg;
-    transform: translateY(-0.5rem);
+.animationCard {
+  &__item {
+    position: relative;
+    border: 1px solid $color-quaternary;
   }
 
-  &__visual {
+  &__link {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+
+  &__preview {
+    width: 100%;
+    height: 30vw;
+    max-height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    height: auto;
-    max-height: 200px;
-    padding: 24px 0;
-    overflow: hidden;
-    background: #f0f0f0;
+    border-bottom: 1px solid $color-quaternary;
+  }
+
+  &__description {
+    padding: 32px 28px;
   }
 
   &__title {
-    padding: $spacing-md $spacing-md $spacing-xs;
-    margin: 0;
-    font-size: $font-size-lg;
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 0;
   }
 
-  &__desc {
-    padding: 0 $spacing-md $spacing-md;
-    margin: 0;
-    font-size: $font-size-sm;
-    color: $color-text-tertiary;
-  }
-}
-
-.animation-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
-  gap: $spacing-lg;
-  margin-bottom: $spacing-xl;
-
-  @include respond-to('sm') {
-    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  &__text {
+    font-size: 1.8rem;
+    color: $color-text-secondary;
+    margin-top: 16px;
+    margin-bottom: 0;
+    line-height: 1.2;
   }
 }
+
+// .animation-card {
+//   overflow: hidden;
+//   color: $color-text-primary;
+//   text-decoration: none;
+//   background: white;
+//   border-radius: $border-radius-md;
+//   box-shadow: $shadow-md;
+//   transition:
+//     transform 0.3s ease,
+//     box-shadow 0.3s ease;
+
+//   &:hover {
+//     box-shadow: $shadow-lg;
+//     transform: translateY(-0.5rem);
+//   }
+
+//   &__visual {
+//     position: relative;
+//     height: auto;
+//     max-height: 200px;
+//     padding: 24px 0;
+//     overflow: hidden;
+//     background: #f0f0f0;
+//   }
+
+//   &__title {
+//     padding: $spacing-md $spacing-md $spacing-xs;
+//     margin: 0;
+//     font-size: $font-size-lg;
+//   }
+
+//   &__desc {
+//     padding: 0 $spacing-md $spacing-md;
+//     margin: 0;
+//     font-size: $font-size-sm;
+//     color: $color-text-tertiary;
+//   }
+// }
+
+// .animation-grid {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+//   gap: $spacing-lg;
+//   margin-bottom: $spacing-xl;
+
+//   @include respond-to('sm') {
+//     grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+//   }
+// }

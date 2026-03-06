@@ -1,0 +1,24 @@
+---
+const { label, href } = Astro.props;
+---
+
+<a class='buttonSecondary' href=`${href}`>
+  <span class='buttonSecondary__label'>{label}</span>
+</a>
+
+<style lang='sass'>
+  .buttonSecondary
+    border: 2px solid #3E3E3E
+    padding: 18px 48px 19px 48px
+    font-size: 18px
+    line-height: 100%
+    transition: all 0.2s ease-out
+
+    &:hover
+      text-decoration: none
+      opacity: 0.5
+
+    &__label
+      color: #BCBCBC
+      font-weight: bold
+</style>

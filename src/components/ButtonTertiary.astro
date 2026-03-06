@@ -1,0 +1,34 @@
+---
+const { label = 'もっと見る', href } = Astro.props;
+---
+
+<a href=`${href}` class='buttonTertiary'>{label}</a>
+
+<style lang='sass'>
+  @use '../assets/css/abstracts/_variables.scss' as *
+
+  .buttonTertiary
+    margin: 0 auto
+    text-align: center
+    position: relative
+    display: inline-flex
+    justify-content: center
+    align-items: center
+    color: $color-text-secondary
+    font-weight: 600
+    font-size: 1.6rem
+    text-decoration: none
+
+    &::before,
+    &::after
+      display: inline-block
+      content: ""
+      width: 80px
+      border: 1px solid $color-text-secondary
+
+    &::before
+      margin-right: 32px
+
+    &::after
+      margin-left: 32px
+</style>

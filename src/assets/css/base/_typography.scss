@@ -37,7 +37,6 @@ h3,
 h4,
 h5,
 h6 {
-  margin-bottom: 0.5em;
   font-family: $font-primary;
   font-weight: $weight-bold;
   line-height: $line-height-tight;
@@ -65,39 +64,4 @@ h5 {
 
 h6 {
   font-size: $font-size-md;
-}
-
-// 段落
-p {
-  margin-bottom: 1rem;
-  font-size: $font-size-base;
-  line-height: $line-height-normal;
-}
-
-// リンク
-a {
-  color: #0077cc;
-  text-decoration: none;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: #005fa3;
-    text-decoration: underline;
-  }
-}
-
-// リスト
-ul,
-ol {
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-// 引用
-blockquote {
-  padding-left: 1rem;
-  margin-left: 0;
-  font-style: italic;
-  color: #666;
-  border-left: 4px solid #ddd;
 }

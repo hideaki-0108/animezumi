@@ -10,6 +10,10 @@ import {
   MorphPreview,
   OrbitPreview,
 } from '../components/animations/_index.astro';
+import ButtonPrimary from '../components/ButtonPrimary.astro';
+import ButtonSecondary from '../components/ButtonSecondary.astro';
+import TitlePrimary from '../components/TitlePrimary.astro';
+import ButtonTertiary from '../components/ButtonTertiary.astro';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,8 +75,8 @@ const useTech = [
         >
       </p>
       <div class='topFv__cta'>
-        <a href='./animations/' class='button button--primary'>作品を見る</a>
-        <a href='./#about' class='button button--secondary'>詳しく知る</a>
+        <ButtonPrimary label='作品を見る' href='./animations/' />
+        <ButtonSecondary label='詳しく知る' href='./#about' />
       </div>
       <div class='topFv__scroll'>
         <p class='topFv__scroll--text'>SCROLL</p>
@@ -80,21 +84,22 @@ const useTech = [
       </div>
     </section>
     <!-- /FirstView Section -->
+
     <!-- Animations Section -->
-    <section id='animations' class='top__animations topAnimations'>
-      <div>
-        <span>#1</span>
-        <h2 class='topAnimations__title'>ANIMATIONS</h2>
-      </div>
-      <ul class='topAnimations__list'>
+    <section id='animations' class='top__animation topAnimation'>
+      <TitlePrimary label='ANIMATIONS' num='01' />
+      <ul class='topAnimation__list animationCard'>
         {
           animations &&
             animations.map(
               (item, index) =>
                 index < 4 && (
-                  <li>
-                    <a href={`${BASE_PATH}${item.link}`}>
-                      <div>
+                  <li class='animationCard__item'>
+                    <a
+                      class='animationCard__link'
+                      href={`${BASE_PATH}${item.link}`}
+                    >
+                      <div class='animationCard__preview'>
                         {() => {
                           const Component =
                             exampleAnimation[
@@ -103,49 +108,58 @@ const useTech = [
                           return Component ? <Component /> : null;
                         }}
                       </div>
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
+                      <div class='animationCard__description'>
+                        <h3 class='animationCard__title'>{item.title}</h3>
+                        <p class='animationCard__text'>{item.description}</p>
+                      </div>
                     </a>
                   </li>
                 )
             )
         }
       </ul>
-      <div>
-        <a href='./animations/'>もっと見る</a>
+      <div class='topAnimation__cta'>
+        <ButtonTertiary href='./animations/' />
       </div>
     </section>
     <!-- /Animations Section -->
+
     <!-- About Section -->
-    <section id='about' class='about'>
-      <div>
-        <h2>ABOUT</h2>
-        <span>#2</span>
-      </div>
+    <section id='about' class='topAbout top__about'>
+      <TitlePrimary label='ABOUT' num='02' />
+
       <section>
-        <h3>「ズミ」は宮古島の方言で「最高」を意味します。</h3>
-        <p>
-          Animezumiは、クリエイティブなアニメーションを追求し、表現の可能性を広げるプロジェクトを目指しています。
-        </p>
-        <p>
-          モーションデザイン、インタラクティブアニメーション、エフェクトなど、さまざまな技術を組み合わせた作品を集めています。
-        </p>
+        <h3 class='topAbout__subTitle'>
+          「ズミ」は宮古島の方言で「最高」を意味します。
+        </h3>
+        <div class='topAbout__description'>
+          <p>
+            Animezumiは、クリエイティブなアニメーションを追求し、表現の可能性を広げるプロジェクトを目指しています。
+          </p>
+          <p>
+            モーションデザイン、インタラクティブアニメーション、エフェクトなど、さまざまな技術を組み合わせた作品を集めています。
+          </p>
+        </div>
         <div>
-          <p>アニメーション + ズミ（最高） = <span>ANIMEZUMI</span></p>
+          <p class='topAbout__concept'>
+            アニメーション + ズミ（最高）<span class='topAbout__concept--space'
+              >=</span
+            ><span>ANIMEZUMI</span>
+          </p>
         </div>
       </section>
       <section>
-        <h3>Technologies</h3>
-        <dl>
+        <h3 class='topAbout__title'>Technologies</h3>
+        <ul class='topAbout__tech'>
           {
             useTech.map((item) => (
-              <>
-                <dt>{item.title}</dt>
-                <dd>{item.description}</dd>
-              </>
+              <li class='topAbout__techItem'>
+                <p class='topAbout__techTitle'>{item.title}</p>
+                <p class='topAbout__techPara'>{item.description}</p>
+              </li>
             ))
           }
-        </dl>
+        </ul>
       </section>
     </section>
     <!-- /About Section -->
@@ -153,7 +167,6 @@ const useTech = [
 </Layout>
 
 <style lang='scss'>
-  @use '../assets/css/index.scss';
   @use '../assets/css/pages/_top.scss';
   @use '../assets/css/components/_card.scss';
 </style>

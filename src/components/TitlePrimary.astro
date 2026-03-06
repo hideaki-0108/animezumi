@@ -1,0 +1,41 @@
+---
+const { label, num } = Astro.props;
+---
+
+<div class='titlePrimary'>
+  {
+    () => {
+      if (num !== null) {
+        return <span class='titlePrimary__num'>{num}</span>;
+      }
+    }
+  }
+  <h2 class='titlePrimary__label'>{label}</h2>
+</div>
+
+<style lang='sass'>
+  @use '../assets/css/abstracts/_variables.scss' as *
+
+  .titlePrimary
+    display: flex
+    align-items: center
+    font-weight: bold
+
+    &__num
+      padding-right: $spacing-md
+      font-size: 1.6rem
+      color: $color-text-secondary
+
+    &__label
+      margin-bottom: 0
+      margin-right: 28px
+      margin-top: 0
+      font-size: 4.8rem
+
+    &::after
+      content: ""
+      margin-top: 3px
+      display: inline-block
+      width: 100%
+      border-top: 1px solid $color-text-secondary
+</style>
