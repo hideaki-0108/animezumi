@@ -1,0 +1,138 @@
+---
+import { Code } from 'astro:components';
+import { defineAnimationMeta } from '../assets/js/utils/animationMeta';
+
+export const meta = defineAnimationMeta({
+  slug: 'orbit',
+  title: 'Orbit Animation',
+  description: '要素を軌道上で回転させるアニメーション',
+  order: 4,
+  tags: {
+    primary: ['GSAP', 'TRANSFORM', 'ANIMATION'],
+    free: ['motionPath', 'svg'],
+  },
+  keywords: ['orbit', '軌道', 'motion path', 'svg', 'gsap'],
+  engine: ['gsap', 'svg'],
+  difficulty: 'intermediate',
+});
+
+const { preview = false } = Astro.props;
+
+const codeExample = `import gsap from 'gsap';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+
+gsap.registerPlugin(MotionPathPlugin);
+
+gsap.to('.orbit-animation', {
+  duration: 2,
+  repeat: -1,
+  ease: 'linear',
+  motionPath: {
+    path: '#orbit__circle',
+    align: '#orbit__circle',
+  },
+});`;
+
+const htmlExample = `<svg width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path id="orbit__circle" d="M 10,50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" stroke="#595959" stroke-width="2"></path>
+</svg>
+<div class="orbit-animation"></div>`;
+
+const cssExample = `.orbit-animation {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+}`;
+---
+
+{
+  preview ? (
+    <div class="orbit-preview">
+      <svg
+        class="orbit-animation__circle"
+        width="101"
+        height="101"
+        viewBox="0 0 101 101"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          id="orbit__circle"
+          d="M 10,50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+          fill="none"
+          stroke="#595959"
+          stroke-width="2"
+        ></path>
+      </svg>
+      <div class="orbit-animation"></div>
+    </div>
+  ) : (
+    <>
+      <p>{meta.description}</p>
+      <div class="animation__box">
+        <div class="orbit-preview">
+          <svg
+            class="orbit-animation__circle"
+            width="201"
+            height="201"
+            viewBox="0 0 101 101"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="orbit__circle"
+              d="M 10,50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+              fill="none"
+              stroke="#595959"
+              stroke-width="2"
+            ></path>
+          </svg>
+          <div class="orbit-animation"></div>
+        </div>
+      </div>
+
+      <section>
+        <h2>GSAP</h2>
+        <Code lang="js" code={codeExample} class="code -block" />
+      </section>
+
+      <h2>HTML / CSS</h2>
+      <Code lang="html" code={htmlExample} class="code -block" />
+      <Code lang="css" code={cssExample} class="code -block" />
+    </>
+  )
+}
+
+<style lang="scss">
+  @use '../assets/css/pages/animations/_orbit.scss';
+
+  .orbit-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    position: relative;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+
+  gsap.registerPlugin(MotionPathPlugin);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    gsap.to('.orbit-animation', {
+      duration: 2,
+      repeat: -1,
+      ease: 'linear',
+      motionPath: {
+        path: '#orbit__circle',
+        align: '#orbit__circle',
+      },
+    });
+  });
+</script>
+

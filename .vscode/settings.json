@@ -6,7 +6,15 @@
     "source.fixAll.stylelint": "explicit"
   },
   "prettier.enable": true,
-  "cSpell.words": ["ANIMEZUMI", "Animeumi", "Hideaki Tomori", "gsap"],
+  "cSpell.words": [
+    "Animeumi",
+    "ANIMEZUMI",
+    "gsap",
+    "Hideaki",
+    "Hideaki Tomori",
+    "Tomori",
+    "ZUMI"
+  ],
   "css.validate": false,
   "scss.validate": false,
   "[astro]": {

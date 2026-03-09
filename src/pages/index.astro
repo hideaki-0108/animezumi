@@ -3,17 +3,11 @@ import { BASE_PATH } from '../assets/js/lib/config';
 import Layout from '../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { animations } from './animations/index.astro';
-import {
-  PulsePreview,
-  FloatPreview,
-  MorphPreview,
-  OrbitPreview,
-} from '../components/animations/_index.astro';
 import ButtonPrimary from '../components/ButtonPrimary.astro';
 import ButtonSecondary from '../components/ButtonSecondary.astro';
 import TitlePrimary from '../components/TitlePrimary.astro';
 import ButtonTertiary from '../components/ButtonTertiary.astro';
+import type { AnimationTag } from '@/assets/js/utils/animationTagMaster';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,13 +16,16 @@ const title = 'ANIMEZUMI - Webサイトのアニメーション集';
 const description =
   '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオANIMEZUMI。';
 
-// アニメーションサンプル（ANIMATIONS）セクションに表示するアイテム
-const exampleAnimation = {
-  PulsePreview: PulsePreview,
-  FloatPreview: FloatPreview,
-  MorphPreview: MorphPreview,
-  OrbitPreview: OrbitPreview,
-};
+const animationModules = import.meta.glob('../animations/*.astro', {
+  eager: true,
+});
+const featuredAnimations = Object.values(animationModules)
+  .map((mod: any) => ({
+    meta: mod.meta,
+    Component: mod.default,
+  }))
+  .sort((a, b) => (a.meta.order ?? 999) - (b.meta.order ?? 999))
+  .slice(0, 4);
 
 // 使用技術（Technologies)セクションに表示するアイテム
 const useTech = [
@@ -90,32 +87,37 @@ const useTech = [
       <TitlePrimary label='ANIMATIONS' num='01' />
       <ul class='topAnimation__list animationCard'>
         {
-          animations &&
-            animations.map(
-              (item, index) =>
-                index < 4 && (
-                  <li class='animationCard__item'>
-                    <a
-                      class='animationCard__link'
-                      href={`${BASE_PATH}${item.link}`}
-                    >
-                      <div class='animationCard__preview'>
-                        {() => {
-                          const Component =
-                            exampleAnimation[
-                              item.component as keyof typeof exampleAnimation
-                            ];
-                          return Component ? <Component /> : null;
-                        }}
-                      </div>
-                      <div class='animationCard__description'>
-                        <h3 class='animationCard__title'>{item.title}</h3>
-                        <p class='animationCard__text'>{item.description}</p>
-                      </div>
-                    </a>
-                  </li>
-                )
-            )
+          featuredAnimations.map((item) => (
+            <li class='topAnimation__item animationCard__item'>
+              <a
+                class='animationCard__link'
+                href={`${BASE_PATH}animations/${item.meta.slug}`}
+              >
+                <div class='animationCard__preview'>
+                  <div class='animationCard__previewInner'>
+                    <item.Component preview={true} />
+                  </div>
+                </div>
+                <div class='animationCard__description'>
+                  <h3 class='animationCard__title'>{item.meta.title}</h3>
+                  <p class='animationCard__text'>{item.meta.description}</p>
+                  <ul class='animationCard__tag'>
+                    {item.meta.tags.primary.map((tag: AnimationTag) => {
+                      return <li class='animationCard__tagItem'>{tag}</li>;
+                    })}
+
+                    {() => {
+                      if (item.meta.tags.free) {
+                        return item.meta.tags.free.map((tag: string) => {
+                          return <li class='animationCard__tagItem'>{tag}</li>;
+                        });
+                      }
+                    }}
+                  </ul>
+                </div>
+              </a>
+            </li>
+          ))
         }
       </ul>
       <div class='topAnimation__cta'>

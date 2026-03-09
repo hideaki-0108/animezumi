@@ -7,27 +7,27 @@
 // レスポンシブブレイクポイント
 @mixin respond-to($breakpoint) {
   @if $breakpoint == 'xs' {
-    @media (min-width: vars.$breakpoint-xs) {
+    @media (max-width: vars.$breakpoint-xs) {
       @content;
     }
   } @else if $breakpoint == 'sm' {
-    @media (min-width: vars.$breakpoint-sm) {
+    @media (max-width: vars.$breakpoint-sm) {
       @content;
     }
   } @else if $breakpoint == 'md' {
-    @media (min-width: vars.$breakpoint-md) {
+    @media (max-width: vars.$breakpoint-md) {
       @content;
     }
   } @else if $breakpoint == 'lg' {
-    @media (min-width: vars.$breakpoint-lg) {
+    @media (max-width: vars.$breakpoint-lg) {
       @content;
     }
   } @else if $breakpoint == 'xl' {
-    @media (min-width: vars.$breakpoint-xl) {
+    @media (max-width: vars.$breakpoint-xl) {
       @content;
     }
   } @else if $breakpoint == '2xl' {
-    @media (min-width: vars.$breakpoint-2xl) {
+    @media (max-width: vars.$breakpoint-2xl) {
       @content;
     }
   }
@@ -73,13 +73,13 @@
 @mixin animation(
   $name,
   $duration: 1s,
-  $timing-function: ease,
+  $timaxg-function: ease,
   $delay: 0s,
   $iteration-count: 1,
   $direction: normal,
   $fill-mode: forwards
 ) {
-  animation: $name $duration $timing-function $delay $iteration-count $direction
+  animation: $name $duration $timaxg-function $delay $iteration-count $direction
     $fill-mode;
 }
 

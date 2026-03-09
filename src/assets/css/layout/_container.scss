@@ -4,10 +4,10 @@
 .container {
   width: 100%;
   max-width: $container-max-width;
-  padding: $spacing-xl;
+  padding: $spacing-2xl;
   margin: 0 auto;
 
   @include respond-to('md') {
-    padding: $spacing-2xl;
+    padding: $spacing-xl $spacing-lg;
   }
 }

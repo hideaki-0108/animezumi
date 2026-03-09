@@ -1,127 +1,92 @@
 ---
 import { BASE_PATH } from '../../assets/js/lib/config';
 import Layout from '../../layouts/Layout.astro';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import {
-  PulsePreview,
-  FloatPreview,
-  MorphPreview,
-  OrbitPreview,
-  TextPreview,
-  CountUpPreview,
-  LineWeightPreview,
-  PathPreview,
-  StepTimePreview,
-} from '../../components/animations/_index.astro';
-
-gsap.registerPlugin(ScrollTrigger);
+import type { AnimationTag } from '@/assets/js/utils/animationTagMaster';
 
 const title = 'アニメーション集 - Animezumi';
 const description =
   '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオAnimezumi。';
 
-const componentMap = {
-  PulsePreview: PulsePreview,
-  FloatPreview: FloatPreview,
-  MorphPreview: MorphPreview,
-  OrbitPreview: OrbitPreview,
-  TextPreview: TextPreview,
-  CountUpPreview: CountUpPreview,
-  LineWeightPreview: LineWeightPreview,
-  PathPreview: PathPreview,
-  StepTimePreview: StepTimePreview,
-};
-
-export const animations = [
-  {
-    title: 'Pulse Animation',
-    link: `animations/pulse`,
-    component: 'PulsePreview',
-    description: '鼓動のようなリズミカルなアニメーション',
-  },
-  {
-    title: 'Float Animation',
-    link: `animations/float`,
-    component: 'FloatPreview',
-    description: '滑らかに浮遊する要素の動き',
-  },
-  {
-    title: 'Morph Animation',
-    link: `animations/morph`,
-    component: 'MorphPreview',
-    description: 'SVGパスの形状を別の形状に変形させるアニメーション',
-  },
-  {
-    title: 'Orbit Animation',
-    link: `animations/orbit`,
-    component: 'OrbitPreview',
-    description: '要素を軌道上で回転させるアニメーション',
-  },
-  {
-    title: 'Text Animation',
-    link: `animations/text`,
-    component: 'TextPreview',
-    description: 'テキストを文字単位でアニメーションさせるアニメーション',
-  },
-  {
-    title: 'CountUp Animation',
-    link: `animations/countup`,
-    component: 'CountUpPreview',
-    description: '数値をカウントアップするアニメーション',
-  },
-  {
-    title: 'LineWeight Animation',
-    link: `animations/lineWeight`,
-    component: 'LineWeightPreview',
-    description: '線の太さをアニメーションさせる',
-  },
-  {
-    title: 'Path Animation',
-    link: `animations/path`,
-    component: 'PathPreview',
-    description: 'パスをアニメーションさせる',
-  },
-  {
-    title: 'Step Time Animation',
-    link: `animations/stepTime`,
-    component: 'StepTimePreview',
-    description: '秒針のようなアニメーション',
-  },
-];
+const modules = import.meta.glob('../../animations/*.astro', { eager: true });
+const items = Object.values(modules)
+  .map((mod: any) => ({
+    meta: mod.meta,
+    Component: mod.default,
+  }))
+  .sort((a, b) => (a.meta.order ?? 999) - (b.meta.order ?? 999));
 ---
 
 <Layout title={title} description={description}>
-  <section class="animation-showcase">
-    <div class="container">
-      <h2 class="section-title">アニメーション作品</h2>
-      <ul class="animation-grid">
+  <section class='animation-showcase'>
+    <div class='container'>
+      <h2 class='section-title'>アニメーション作品</h2>
+      <ul class='animation__list animationCard'>
         {
-          animations.map((item) => (
-            <li class="animation-card">
-              <a href={`${BASE_PATH}${item.link}`}>
-                <div class="animation-card__visual">
-                  {(() => {
-                    const Component =
-                      componentMap[item.component as keyof typeof componentMap];
-                    return Component ? <Component /> : null;
-                  })()}
+          items.map((item) => (
+            <li class='animation__item animationCard__item'>
+              <a
+                class='animationCard__link'
+                href={`${BASE_PATH}animations/${item.meta.slug}`}
+              >
+                <div class='animationCard__preview'>
+                  <div class='animationCard__previewInner'>
+                    <item.Component preview={true} />
+                  </div>
                 </div>
-                <h3 class="animation-card__title">{item.title}</h3>
-                <p class="animation-card__desc">{item.description}</p>
+                <div class='animationCard__description'>
+                  <h3 class='animationCard__title'>{item.meta.title}</h3>
+                  <p class='animationCard__text'>{item.meta.description}</p>
+                  <ul class='animationCard__tag'>
+                    {item.meta.tags.primary.map((tag: AnimationTag) => {
+                      return <li class='animationCard__tagItem'>{tag}</li>;
+                    })}
+
+                    {() => {
+                      if (item.meta.tags.free) {
+                        return item.meta.tags.free.map((tag: string) => {
+                          return <li class='animationCard__tagItem'>{tag}</li>;
+                        });
+                      }
+                    }}
+                  </ul>
+                </div>
               </a>
             </li>
           ))
         }
       </ul>
-      <div class="animation__back">
+      <div class='animation__back'>
         <a href={`${BASE_PATH}`}>トップに戻る</a>
       </div>
     </div>
   </section>
 </Layout>
 
-<style lang="scss">
-  @use '../../assets/css/index.scss';
+<style lang='scss'>
+  @use '../../assets/css/abstracts/mixins' as *;
+  @use '../../assets/css/pages/animations/index.scss';
   @use '../../assets/css/components/_card.scss';
+
+  .animation {
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 60px;
+
+      @include respond-to('md') {
+        gap: 12px;
+        margin-top: 38px;
+      }
+    }
+
+    &__item {
+      width: calc(100% / 3 - 12px);
+
+      @include respond-to('md') {
+        // width: calc(100% / 2 - 6px);
+        width: 100%;
+      }
+    }
+  }
 </style>

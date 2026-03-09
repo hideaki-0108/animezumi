@@ -7,18 +7,26 @@ const { label, href } = Astro.props;
 </a>
 
 <style lang='sass'>
+  @use '../assets/css/abstracts/_variables.scss' as *
+  @use '../assets/css/abstracts/mixins' as *
+  @use '../assets/css/base/typography' as *
+
   .buttonSecondary
-    border: 2px solid #3E3E3E
+    border: 2px solid $color-quaternary
     padding: 18px 48px 19px 48px
-    font-size: 18px
+    font-size: $font-size-md
     line-height: 100%
     transition: all 0.2s ease-out
+
+    @include respond-to('md')
+      padding: 12px 26px 12px 26px
+      font-size: $font-size-base
 
     &:hover
       text-decoration: none
       opacity: 0.5
 
     &__label
-      color: #BCBCBC
-      font-weight: bold
+      color: $color-text-secondary
+      font-weight: $weight-bold
 </style>

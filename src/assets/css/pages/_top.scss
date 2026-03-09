@@ -17,9 +17,22 @@
   &__title {
     margin-bottom: 0;
     font-family: 'Inter', serif;
-    font-size: $spacing-8xl;
+    font-size: 18rem;
     letter-spacing: 12%;
     line-height: 100%;
+
+    @include respond-to('md') {
+      font-size: 10rem;
+    }
+
+    @include respond-to('sm') {
+      font-size: 9rem;
+    }
+
+    @include respond-to('xs') {
+      margin-top: 20px;
+      font-size: 7rem;
+    }
 
     &--primary {
       display: block;
@@ -31,32 +44,45 @@
 
   &__keyword {
     margin-top: 80px;
-    display: inline-block;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row: 1fr;
+    align-items: center;
+    justify-content: center;
     position: relative;
     color: $color-text-secondary;
     font-size: $spacing-lg;
     letter-spacing: 11%;
-    line-height: 100%;
+    line-height: 1.5;
+
+    @include respond-to('md') {
+      margin-top: 40px;
+      font-size: $font-size-sm;
+
+      &--second {
+        display: inline-block;
+      }
+    }
 
     &::before,
     &::after {
-      display: inline-block;
+      display: block;
       content: '';
-      width: 130px;
+      width: calc(100% - 46px);
+      max-width: 120px;
       height: 1px;
       background: $color-text-secondary;
-      position: absolute;
       top: 50%;
     }
 
     &::before {
-      transform: translate(-100%, -50%);
-      left: -46px;
+      text-align: right;
+      margin: 0 24px 0 auto;
     }
 
     &::after {
-      transform: translate(100%, -50%);
-      right: -46px;
+      text-align: left;
+      margin: 0 auto 0 24px;
     }
   }
 
@@ -65,8 +91,17 @@
     color: $color-text-secondary;
     font-size: $font-size-md;
 
+    @include respond-to('md') {
+      margin-top: 35px;
+      font-size: $font-size-base;
+    }
+
     &--break {
       display: block;
+
+      @include respond-to('md') {
+        display: inline;
+      }
     }
   }
 
@@ -76,6 +111,11 @@
     justify-content: center;
     gap: 42px;
     margin-top: 60px;
+
+    @include respond-to('md') {
+      margin-top: 48px;
+      gap: 22px;
+    }
   }
 
   &__scroll {
@@ -84,6 +124,7 @@
     letter-spacing: 18%;
 
     &--line {
+      margin-top: 12px;
       display: inline-block;
       width: 1px;
       height: 80px;
@@ -127,33 +168,85 @@
 .topAnimation {
   margin-top: 140px;
 
+  @include respond-to('md') {
+    margin-top: 80px;
+  }
+
   &__list {
     margin-top: $spacing-4xl;
-    display: grid;
-    grid-template-columns: 2fr 2fr;
-    grid-template-rows: 2fr 2fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 36px 24px;
+    counter-reset: num;
+
+    @include respond-to('md') {
+      margin-top: 48px;
+      gap: 24px 16px;
+    }
+  }
+
+  &__item {
+    counter-increment: num;
+    width: calc(100% / 2 - 12px);
+
+    @include respond-to('sm') {
+      width: 100%;
+    }
+
+    &::after {
+      display: inline-block;
+      content: '#0' counter(num);
+      position: absolute;
+      top: 16px;
+      right: 24px;
+      font-size: $font-size-md;
+      color: $color-text-secondary;
+
+      @include respond-to('sm') {
+        top: 10px;
+        right: 14px;
+        font-size: $font-size-xs;
+      }
+    }
   }
 
   &__cta {
     margin-top: 100px;
     text-align: center;
+
+    @include respond-to('md') {
+      margin-top: 60px;
+    }
   }
 }
 
 .topAbout {
   margin-top: 180px;
 
+  @include respond-to('md') {
+    margin-top: 100px;
+  }
+
   &__subTitle {
     margin-top: 80px;
     font-size: $font-size-xl;
     font-weight: $weight-bold;
+
+    @include respond-to('md') {
+      font-size: $font-size-lg;
+      margin-top: 48px;
+    }
   }
 
   &__description {
     margin-top: 32px;
     color: $color-text-secondary;
     font-size: $font-size-md;
+
+    @include respond-to('md') {
+      margin-top: 40px;
+      font-size: $font-size-sm;
+    }
   }
 
   &__concept {
@@ -165,6 +258,11 @@
     font-weight: $weight-bold;
     color: $color-text-secondary;
 
+    @include respond-to('md') {
+      margin-top: 38px;
+      font-size: $font-size-xs;
+    }
+
     &::before {
       margin-top: -2px;
       display: inline-block;
@@ -173,6 +271,12 @@
       height: 28px;
       background-color: $color-text-secondary;
       margin-right: 18px;
+
+      @include respond-to('md') {
+        width: 4px;
+        height: 24px;
+        margin-right: 14px;
+      }
     }
 
     &--space {
@@ -181,15 +285,24 @@
   }
 
   &__title {
-    margin-top: 140px;
+    margin-top: 100px;
     font-size: $font-size-2xl;
     font-weight: $weight-bold;
     color: $color-text-secondary;
+
+    @include respond-to('md') {
+      margin-top: 80px;
+      font-size: $font-size-xl;
+    }
   }
 
   &__tech {
     margin-top: 40px;
     width: 100%;
+
+    @include respond-to('md') {
+      margin-top: 24px;
+    }
 
     &Item {
       padding: 18px 32px;
@@ -198,16 +311,28 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid $color-text-secondary;
+
+      @include respond-to('md') {
+        padding: 14px 10px;
+      }
     }
 
     &Title {
       font-size: $font-size-md;
       font-weight: $weight-medium;
+
+      @include respond-to('md') {
+        font-size: $font-size-sm;
+      }
     }
 
     &Para {
       font-size: $font-size-base;
       color: $color-text-secondary;
+
+      @include respond-to('md') {
+        font-size: $font-size-xs;
+      }
     }
   }
 }

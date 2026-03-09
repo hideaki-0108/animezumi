@@ -6,6 +6,8 @@ const { label = 'もっと見る', href } = Astro.props;
 
 <style lang='sass'>
   @use '../assets/css/abstracts/_variables.scss' as *
+  @use '../assets/css/abstracts/mixins' as *
+  @use '../assets/css/base/typography' as *
 
   .buttonTertiary
     margin: 0 auto
@@ -15,9 +17,12 @@ const { label = 'もっと見る', href } = Astro.props;
     justify-content: center
     align-items: center
     color: $color-text-secondary
-    font-weight: 600
-    font-size: 1.6rem
+    font-weight: $weight-bold
+    font-size: $font-size-base
     text-decoration: none
+
+    @include respond-to('md')
+      font-size: $font-size-sm
 
     &::before,
     &::after
@@ -25,10 +30,33 @@ const { label = 'もっと見る', href } = Astro.props;
       content: ""
       width: 80px
       border: 1px solid $color-text-secondary
+      transition: margin 0.2s ease-out
+
+      @include respond-to('md')
+        width: 40px
 
     &::before
       margin-right: 32px
 
+      @include respond-to('md')
+        margin-right: 24px
+
     &::after
       margin-left: 32px
+
+      @include respond-to('md')
+        margin-left: 24px
+
+    &:hover
+      &::before
+        margin-right: 38px
+
+        @include respond-to('md')
+          margin-right: 24px
+
+      &::after
+        margin-left: 38px
+
+        @include respond-to('md')
+          margin-left: 24px
 </style>
