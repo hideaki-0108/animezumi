@@ -1,338 +1,338 @@
-@use "sass:color";
-@use "../abstracts/variables" as *;
-@use "../base/" as *;
-@use "../abstracts/mixins" as *;
-@use "../base/typography" as *;
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../base/' as *;
+@use '../abstracts/mixins' as *;
+@use '../base/typography' as *;
 
-// ヒーローセクション
-.hero {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-height: 90vh;
-  padding: 10px 40px;
-  overflow: hidden;
-  color: $color-text-light;
-  background: linear-gradient(120deg, $color-dark, color.adjust($color-primary, $lightness: -25%));
+.topContainer {
+  padding: 100px;
+}
 
-  &__content {
-    position: relative;
-    z-index: 2;
-    padding: $spacing-2xl 0;
-  }
+/**
+  FirstView Section
+*/
+.topFv {
+  text-align: center;
 
   &__title {
-    margin-bottom: $spacing-md;
-    font-size: 6.4rem;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    animation: fadeInUp 0.8s ease-out forwards;
+    margin-bottom: 0;
+    font-family: 'Inter', serif;
+    font-size: 18rem;
+    letter-spacing: 12%;
+    line-height: 100%;
+
+    @include respond-to('md') {
+      font-size: 10rem;
+    }
+
+    @include respond-to('sm') {
+      font-size: 9rem;
+    }
+
+    @include respond-to('xs') {
+      margin-top: 20px;
+      font-size: 7rem;
+    }
+
+    &--primary {
+      display: block;
+    }
+    &--secondary {
+      display: block;
+    }
   }
 
-  &__subtitle {
-    margin-bottom: $spacing-md;
-    font-size: $font-size-xl;
-    font-weight: $weight-medium;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  &__keyword {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row: 1fr;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: $color-text-secondary;
+    font-size: $spacing-lg;
+    letter-spacing: 11%;
+    line-height: 1.5;
+
+    @include respond-to('md') {
+      margin-top: 40px;
+      font-size: $font-size-sm;
+
+      &--second {
+        display: inline-block;
+      }
+    }
+
+    &::before,
+    &::after {
+      display: block;
+      content: '';
+      width: calc(100% - 46px);
+      max-width: 120px;
+      height: 1px;
+      background: $color-text-secondary;
+      top: 50%;
+    }
+
+    &::before {
+      text-align: right;
+      margin: 0 24px 0 auto;
+    }
+
+    &::after {
+      text-align: left;
+      margin: 0 auto 0 24px;
+    }
   }
 
   &__description {
-    max-width: 60rem;
-    margin-bottom: $spacing-xl;
+    margin-top: 60px;
+    color: $color-text-secondary;
     font-size: $font-size-md;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+
+    @include respond-to('md') {
+      margin-top: 35px;
+      font-size: $font-size-base;
+    }
+
+    &--break {
+      display: block;
+
+      @include respond-to('md') {
+        display: inline;
+      }
+    }
   }
 
   &__cta {
     display: flex;
-    gap: $spacing-md;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+    align-items: center;
+    justify-content: center;
+    gap: 42px;
+    margin-top: 60px;
+
+    @include respond-to('md') {
+      margin-top: 48px;
+      gap: 22px;
+    }
   }
 
-  &__visual {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-  }
-}
+  &__scroll {
+    margin-top: 48px;
+    color: $color-quinary;
+    letter-spacing: 18%;
 
-// アニメーション要素
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.6;
+    &--line {
+      margin-top: 12px;
+      display: inline-block;
+      width: 1px;
+      height: 80px;
+      background: $color-quinary;
+      animation: scroll-line 2.6s ease-in-out infinite;
+    }
 
-  &--1 {
-    top: 20%;
-    right: 10%;
-    width: 20rem;
-    height: 20rem;
-    background: $color-secondary;
-    animation: float 8s ease-in-out infinite;
-  }
-
-  &--2 {
-    right: 20%;
-    bottom: 15%;
-    width: 12rem;
-    height: 12rem;
-    background: $color-tertiary;
-    animation: float 6s ease-in-out infinite 1s;
-  }
-
-  &--3 {
-    top: 40%;
-    right: 30%;
-    width: 8rem;
-    height: 8rem;
-    background: color.scale($color-primary, $lightness: 18.4782608696%);
-    animation: float 10s ease-in-out infinite 2s;
-  }
-}
-
-.square {
-  position: absolute;
-  right: 15%;
-  bottom: 30%;
-  width: 15rem;
-  height: 15rem;
-  background: $color-secondary;
-  opacity: 0.5;
-  transform: rotate(45deg);
-  animation: rotate 15s linear infinite;
-}
-
-.triangle {
-  position: absolute;
-  top: 25%;
-  right: 25%;
-  width: 0;
-  height: 0;
-  border-right: 8rem solid transparent;
-  border-bottom: 14rem solid $color-tertiary;
-  border-left: 8rem solid transparent;
-  opacity: 0.5;
-  animation: float 12s ease-in-out infinite 1.5s;
-}
-
-// アニメーションショーケース
-.animation-showcase {
-  padding: $spacing-3xl 0;
-  background-color: $color-light;
-}
-
-.section-title {
-  position: relative;
-  padding-bottom: $spacing-lg;
-  margin-bottom: $spacing-xl;
-  font-size: $font-size-3xl;
-  text-align: center;
-
-  &:after {
-    position: absolute;
-    bottom: $spacing-sm;
-    left: 50%;
-    width: 6rem;
-    height: 0.4rem;
-    content: "";
-    background: $color-primary;
-    border-radius: $border-radius-pill;
-    transform: translateX(-50%);
+    @keyframes scroll-line {
+      0% {
+        transform-origin: top;
+        transform: scaleY(0);
+        opacity: 0;
+      }
+      20% {
+        transform-origin: top;
+        transform: scaleY(0);
+        opacity: 1;
+      }
+      40% {
+        transform-origin: top;
+        transform: scaleY(1);
+        opacity: 1;
+      }
+      60% {
+        transform-origin: bottom;
+        transform: scaleY(1);
+        opacity: 1;
+      }
+      95% {
+        opacity: 0.5;
+      }
+      100% {
+        transform-origin: bottom;
+        transform: scaleY(0);
+        opacity: 0;
+      }
+    }
   }
 }
 
-.animation-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
-  gap: $spacing-lg;
-  margin-bottom: $spacing-xl;
-}
+.topAnimation {
+  margin-top: 140px;
 
-.animation-more {
-  margin-top: $spacing-xl;
-  text-align: center;
-}
-
-// Aboutセクション
-.about {
-  padding: 0 0 $spacing-3xl;
-  background-color: color.adjust($color-light, $lightness: -3%);
-
-  &__content {
-    max-width: 80rem;
-    margin: 0 auto;
+  @include respond-to('md') {
+    margin-top: 80px;
   }
 
-  &__text {
-    margin-bottom: $spacing-md;
+  &__list {
+    margin-top: $spacing-4xl;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px 24px;
+    counter-reset: num;
+
+    @include respond-to('md') {
+      margin-top: 48px;
+      gap: 24px 16px;
+    }
+  }
+
+  &__item {
+    counter-increment: num;
+    width: calc(100% / 2 - 12px);
+
+    @include respond-to('sm') {
+      width: 100%;
+    }
+
+    &::after {
+      display: inline-block;
+      content: '#0' counter(num);
+      position: absolute;
+      top: 16px;
+      right: 24px;
+      font-size: $font-size-md;
+      color: $color-text-secondary;
+
+      @include respond-to('sm') {
+        top: 10px;
+        right: 14px;
+        font-size: $font-size-xs;
+      }
+    }
+  }
+
+  &__cta {
+    margin-top: 100px;
+    text-align: center;
+
+    @include respond-to('md') {
+      margin-top: 60px;
+    }
+  }
+}
+
+.topAbout {
+  margin-top: 180px;
+
+  @include respond-to('md') {
+    margin-top: 100px;
+  }
+
+  &__subTitle {
+    margin-top: 80px;
+    font-size: $font-size-xl;
+    font-weight: $weight-bold;
+
+    @include respond-to('md') {
+      font-size: $font-size-lg;
+      margin-top: 48px;
+    }
+  }
+
+  &__description {
+    margin-top: 32px;
+    color: $color-text-secondary;
     font-size: $font-size-md;
-    line-height: 1.6;
-  }
-}
 
-.tech-section {
-  padding: $spacing-3xl 0 0;
-  background-color: color.adjust($color-light, $lightness: -3%);
-}
-
-.tech-stack {
-  display: flex;
-  gap: $spacing-lg;
-  justify-content: center;
-  margin-top: $spacing-xl;
-}
-
-.tech-item {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  align-items: center;
-
-  .tech-logo {
-    max-height: 60px ;
-    font-size: 3.2rem;
-
-    img {
-      max-height: 60px;
-    }
-
-    svg {
-      max-height: 60px;
+    @include respond-to('md') {
+      margin-top: 40px;
+      font-size: $font-size-sm;
     }
   }
 
-  .tech-name {
-    font-size: $font-size-sm;
-    font-weight: $weight-medium;
-  }
-}
+  &__concept {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 60px;
+    font-size: $font-size-md;
+    font-weight: $weight-bold;
+    color: $color-text-secondary;
 
-// ユーティリティクラス
-.text-gradient {
-  color: transparent;
-  background: linear-gradient(90deg, $color-primary, $color-secondary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    @include respond-to('md') {
+      margin-top: 38px;
+      font-size: $font-size-xs;
+    }
 
-.text-accent {
-  color: $color-tertiary;
-}
+    &::before {
+      margin-top: -2px;
+      display: inline-block;
+      content: '';
+      width: 6px;
+      height: 28px;
+      background-color: $color-text-secondary;
+      margin-right: 18px;
 
+      @include respond-to('md') {
+        width: 4px;
+        height: 24px;
+        margin-right: 14px;
+      }
+    }
 
-// アニメーションデモ
-.pulse-demo {
-  @include flex-center;
+    &--space {
+      margin: 0 12px;
+    }
+  }
 
-  &:after {
-    width: 6rem;
-    height: 6rem;
-    content: "";
-    background: $color-primary;
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-  }
-}
+  &__title {
+    margin-top: 100px;
+    font-size: $font-size-2xl;
+    font-weight: $weight-bold;
+    color: $color-text-secondary;
 
-.float-demo {
-  @include flex-center;
+    @include respond-to('md') {
+      margin-top: 80px;
+      font-size: $font-size-xl;
+    }
+  }
 
-  &:after {
-    width: 6rem;
-    height: 6rem;
-    content: "";
-    background: $color-tertiary;
-    border-radius: 50%;
-    animation: float 3s ease-in-out infinite;
-  }
-}
+  &__tech {
+    margin-top: 40px;
+    width: 100%;
 
-.morph-demo {
-  @include flex-center;
+    @include respond-to('md') {
+      margin-top: 24px;
+    }
 
-  &:after {
-    width: 6rem;
-    height: 6rem;
-    content: "";
-    background: $color-secondary;
-    animation: morph 5s ease-in-out infinite;
-  }
-}
+    &Item {
+      padding: 18px 32px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid $color-text-secondary;
 
-// キーフレームアニメーション
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(2rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+      @include respond-to('md') {
+        padding: 14px 10px;
+      }
+    }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-2rem);
-  }
-}
+    &Title {
+      font-size: $font-size-md;
+      font-weight: $weight-medium;
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
+      @include respond-to('md') {
+        font-size: $font-size-sm;
+      }
+    }
 
-@keyframes rotate {
-  from {
-    transform: rotate(45deg);
-  }
-  to {
-    transform: rotate(405deg);
-  }
-}
+    &Para {
+      font-size: $font-size-base;
+      color: $color-text-secondary;
 
-@keyframes morph {
-  0%,
-  100% {
-    border-radius: 50%;
-  }
-  25% {
-    border-radius: 0;
-    transform: rotate(45deg);
-  }
-  50% {
-    border-radius: 25%;
-    transform: rotate(0deg);
-  }
-  75% {
-    border-radius: 0;
-    transform: rotate(-45deg);
-  }
-}
-
-// レスポンシブ調整
-@include respond-to("md") {
-  .hero {
-    &__title {
-      font-size: 8rem;
+      @include respond-to('md') {
+        font-size: $font-size-xs;
+      }
     }
   }
 }

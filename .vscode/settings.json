@@ -2,13 +2,24 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true  // これを追加
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
   },
-  "prettier.enable": true,  // これをtrueに変更
+  "prettier.enable": true,
   "cSpell.words": [
-    "gsap"
+    "Animeumi",
+    "ANIMEZUMI",
+    "gsap",
+    "Hideaki",
+    "Hideaki Tomori",
+    "Tomori",
+    "ZUMI"
   ],
   "css.validate": false,
-  "scss.validate": false
+  "scss.validate": false,
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode",
+    "editor.formatOnSave": true
+  },
+  "emmet.triggerExpansionOnTab": true
 }

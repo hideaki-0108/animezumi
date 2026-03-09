@@ -1,5 +1,5 @@
 export async function GET() {
-  const siteUrl = "https://animezumi.com";
+  const siteUrl = 'https://animezumi.com';
   const currentDate = new Date().toISOString();
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -26,8 +26,8 @@ export async function GET() {
 
   return new Response(sitemap, {
     headers: {
-      "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600",
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 'public, max-age=3600',
     },
   });
 }

@@ -31,16 +31,16 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements */
-ul[role="list"],
-ol[role="list"] {
+ul[role='list'],
+ol[role='list'] {
   list-style: none;
 }
 
 /* Set core body defaults */
 body {
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
   line-height: 1.5;
+  text-rendering: optimizeSpeed;
 }
 
 /* A elements that don't have a class get default styles */
