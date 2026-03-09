@@ -3,36 +3,39 @@ import { BASE_PATH } from '../assets/js/lib/config';
 
 const navItems = [
   {
-    label: 'TOP',
-    href: `${BASE_PATH}`
+    label: 'ANIMATIONS',
+    href: `${BASE_PATH}animations/`,
   },
   {
-    label: 'アニメーション集',
-    href: `${BASE_PATH}animations`
+    label: 'ABOUT',
+    href: `${BASE_PATH}#about`,
   },
-]
-
+];
 ---
 
-<header class="header">
-  <div class="header__inner">
-    <h1 class="header__logo">
-      <a href="/animezumi/" aria-label="トップに戻る">
-        <span class="text-gradient">Anime</span><span class="text-accent">zumi</span>
-      </a>
-    </h1>
-    <nav class="headerNav">
-      <ul class="headerNav__list">
-        {navItems.map((item) => (
-          <li class="headerNav__item">
-            <a href={item.href} class="headerNav__link">{item.label}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+<header class='header'>
+  <div class='header__wrap'>
+    <div class='header__inner'>
+      <div class='header__logo'>
+        <a href='/animezumi/' aria-label='トップに戻る'>ANIMEZUMI</a>
+      </div>
+      <nav class='headerNav'>
+        <ul class='headerNav__list'>
+          {
+            navItems.map((item) => (
+              <li class='headerNav__item'>
+                <a href={item.href} class='headerNav__link'>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>
 
-<style lang="scss">
+<style lang='scss'>
   @use '../assets/css/components/header.scss';
 </style>

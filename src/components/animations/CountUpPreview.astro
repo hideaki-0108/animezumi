@@ -7,7 +7,7 @@
 </div>
 
 <style lang="scss">
-  @use "../../assets/css/pages/animations/_countup.scss";
+  @use '../../assets/css/pages/animations/_countup.scss';
 
   .countup-preview {
     display: flex;
@@ -19,28 +19,38 @@
 </style>
 
 <script>
-  import gsap from "gsap";
+  import gsap from 'gsap';
 
   const countFrom = 0; // 開始数値
-  const countTo = Number(document.querySelector('.countup-animation[data-count]')?.getAttribute('data-count') || 0); // 終了数値
+  const countTo = Number(
+    document
+      .querySelector('.countup-animation[data-count]')
+      ?.getAttribute('data-count') || 0
+  ); // 終了数値
   const countElement = document.querySelector('.countup-animation');
 
   // 数値をカウントアップするアニメーション
-  gsap.fromTo(countElement, {
-    innerText: countFrom,
-  }, {
-    innerText: countTo,
-    duration: 2,
-    delay: 1,
-    ease: "power3.out",
-    onUpdate: function() {
-      const progress = this.progress();
-      const currentCount = Math.floor(countFrom + (countTo - countFrom) * progress);
-      if (countElement) {
-        countElement.textContent = currentCount.toString();
-      }
+  gsap.fromTo(
+    countElement,
+    {
+      innerText: countFrom,
     },
-    repeat: -1,
-    repeatDelay: 2,
-  });
+    {
+      innerText: countTo,
+      duration: 2,
+      delay: 1,
+      ease: 'power3.out',
+      onUpdate: function () {
+        const progress = this.progress();
+        const currentCount = Math.floor(
+          countFrom + (countTo - countFrom) * progress
+        );
+        if (countElement) {
+          countElement.textContent = currentCount.toString();
+        }
+      },
+      repeat: -1,
+      repeatDelay: 2,
+    }
+  );
 </script>

@@ -1,0 +1,121 @@
+---
+import { Code } from 'astro:components';
+import { defineAnimationMeta } from '../assets/js/utils/animationMeta';
+
+export const meta = defineAnimationMeta({
+  slug: 'pulse',
+  title: 'Pulse Animation',
+  description: '鼓動のようなリズミカルなアニメーション',
+  order: 1,
+  tags: {
+    primary: ['GSAP', 'SCALE', 'ANIMATION'],
+    free: ['loop'],
+  },
+  keywords: ['pulse', '鼓動', 'scale', 'yoyo', 'gsap'],
+  engine: ['gsap'],
+  difficulty: 'basic',
+  snippet: {
+    html: `<div class="pulse-animation"></div>`,
+    css: `.pulse-animation {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  border-radius: 50%;
+  margin: 2rem auto;
+  transform-origin: center;
+}`,
+    js: `import { gsap } from 'gsap';
+
+gsap.to('.pulse-animation', {
+  scale: 1.2,
+  repeat: -1,
+  yoyo: true,
+  duration: 1,
+  ease: 'power2.inOut',
+});`,
+  },
+});
+
+const { preview = false } = Astro.props;
+
+const codeExample = `import { gsap } from 'gsap';
+const pulse = gsap.to(".pulse-animation", {
+  scale: 1.2,
+  repeat: -1,
+  yoyo: true,
+  duration: 1,
+  ease: "power2.inOut",
+});`;
+
+const htmlExample = `<div class="pulse-animation"></div>`;
+
+const cssExample = `.pulse-animation {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 50%;
+    margin: 2rem auto;
+    transform-origin: center;
+  }
+`;
+---
+
+{
+  preview ? (
+    <div class="pulse-preview">
+      <div class="pulse-animation"></div>
+    </div>
+  ) : (
+    <>
+      <p>{meta.description}</p>
+      <div class="animation__box">
+        <div class="pulse-animation"></div>
+      </div>
+
+      <section>
+        <h2>GSAP</h2>
+        <Code lang="js" code={codeExample} class="code -block" />
+      </section>
+
+      <h2>HTML / CSS</h2>
+      <Code lang="html" code={htmlExample} class="code -block" />
+      <Code lang="css" code={cssExample} class="code -block" />
+    </>
+  )
+}
+
+<style>
+  .pulse-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+  }
+
+  .pulse-animation {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 50%;
+    transform-origin: center;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const pulseElements = document.querySelectorAll('.pulse-animation');
+    pulseElements.forEach((element) => {
+      gsap.to(element, {
+        scale: 1.2,
+        repeat: -1,
+        yoyo: true,
+        duration: 1,
+        ease: 'power2.inOut',
+      });
+    });
+  });
+</script>
+

@@ -1,0 +1,40 @@
+---
+import { BASE_PATH } from '../../assets/js/lib/config';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob('../../animations/*.astro', { eager: true });
+  return Object.entries(modules).map(([path, mod]: any) => {
+    const slug = path.split('/').pop()?.replace(/\.astro$/, '');
+    return {
+      params: { slug },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+
+const modules = import.meta.glob('../../animations/*.astro');
+const entry = Object.entries(modules).find(([path]) =>
+  path.endsWith(`/${slug}.astro`)
+);
+
+if (!entry) {
+  throw new Error(`Unknown animation slug: ${slug}`);
+}
+
+const mod: any = await entry[1]();
+const meta = mod.meta;
+const Animation = mod.default;
+---
+
+<Layout title={meta.title} description={meta.description}>
+  <div class="container">
+    <h1 class="animation__title">{meta.title}</h1>
+    <Animation />
+    <div class="animation__back">
+      <a href={`${BASE_PATH}animations/`}>一覧に戻る</a>
+    </div>
+  </div>
+</Layout>
+

@@ -1,8 +1,8 @@
-@use "sass:color";
-@use "../base/" as *;
-@use "../abstracts/variables" as *;
-@use "../base/typography" as *;
-@use "../abstracts/mixins" as *;
+@use 'sass:color';
+@use '../base/' as *;
+@use '../abstracts/variables' as *;
+@use '../base/typography' as *;
+@use '../abstracts/mixins' as *;
 
 // ボタン
 .button {
@@ -44,21 +44,6 @@
       color: white;
       background: $color-primary;
       transform: translateY(-3px);
-    }
-  }
-}
-
-.animation {
-  &__back {
-  padding-left: calc(1em + 4px);
-  margin: 60px 0 0;
-  font-size: $font-size-md;
-
-  &::before {
-      display: inline-block;
-      margin-right: 4px;
-      color: $color-primary;
-      content: "<";
     }
   }
 }

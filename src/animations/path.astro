@@ -1,0 +1,108 @@
+---
+import { Code } from 'astro:components';
+import { defineAnimationMeta } from '../assets/js/utils/animationMeta';
+
+export const meta = defineAnimationMeta({
+  slug: 'path',
+  title: 'Path Animation',
+  description: 'パスをアニメーションさせる',
+  order: 8,
+  tags: {
+    primary: ['GSAP', 'ANIMATION', 'TRANSFORM'],
+    free: ['svg', 'path', 'stroke'],
+  },
+  keywords: ['path', 'svg', 'motion', 'stroke', 'gsap'],
+  engine: ['gsap', 'svg'],
+  difficulty: 'intermediate',
+});
+
+const { preview = false } = Astro.props;
+
+const codeExample = `// 例: GSAP で stroke-dashoffset を動かす
+import { gsap } from 'gsap';
+
+gsap.fromTo(
+  '.path-animation__path',
+  { strokeDashoffset: 300 },
+  { strokeDashoffset: 0, duration: 2, repeat: -1, ease: 'power1.inOut' }
+);`;
+
+const htmlExample = `<svg class="path-animation" viewBox="0 0 120 40">
+  <path class="path-animation__path" d="M10 20 C 30 0, 90 40, 110 20" />
+</svg>`;
+
+const cssExample = `.path-animation__path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 300;
+}`;
+---
+
+{
+  preview ? (
+    <div class="path-preview">
+      <svg class="path-animation" viewBox="0 0 120 40">
+        <path
+          class="path-animation__path"
+          d="M10 20 C 30 0, 90 40, 110 20"
+        />
+      </svg>
+    </div>
+  ) : (
+    <>
+      <p>{meta.description}</p>
+      <div class="animation__box">
+        <svg class="path-animation" viewBox="0 0 120 40">
+          <path
+            class="path-animation__path"
+            d="M10 20 C 30 0, 90 40, 110 20"
+          />
+        </svg>
+      </div>
+
+      <section>
+        <h2>GSAP</h2>
+        <Code lang="js" code={codeExample} class="code -block" />
+      </section>
+
+      <h2>HTML / CSS</h2>
+      <Code lang="html" code={htmlExample} class="code -block" />
+      <Code lang="css" code={cssExample} class="code -block" />
+    </>
+  )
+}
+
+<style lang="scss">
+  @use '../assets/css/pages/animations/_path.scss';
+
+  .path-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const paths = document.querySelectorAll('.path-animation__path');
+    paths.forEach((p) => {
+      const length = p.getTotalLength?.() ?? 300;
+      p.style.strokeDasharray = String(length);
+      p.style.strokeDashoffset = String(length);
+
+      gsap.to(p, {
+        strokeDashoffset: 0,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
+    });
+  });
+</script>
+

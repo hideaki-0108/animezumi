@@ -3,160 +3,172 @@ import { BASE_PATH } from '../assets/js/lib/config';
 import Layout from '../layouts/Layout.astro';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { animations } from './animations/index.astro';
-import {PulsePreview, FloatPreview, MorphPreview, OrbitPreview} from '../components/animations/_index.astro';
+import ButtonPrimary from '../components/ButtonPrimary.astro';
+import ButtonSecondary from '../components/ButtonSecondary.astro';
+import TitlePrimary from '../components/TitlePrimary.astro';
+import ButtonTertiary from '../components/ButtonTertiary.astro';
+import type { AnimationTag } from '@/assets/js/utils/animationTagMaster';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const title = 'Animezumi - アニメーションのアイデア集';
-const description = '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオAnimezumi。';
+// meta
+const title = 'ANIMEZUMI - Webサイトのアニメーション集';
+const description =
+  '様々なアニメーションテクニックを探求し、インスピレーションあふれる表現を集めたポートフォリオANIMEZUMI。';
 
-const componentMap = {
-	'PulsePreview': PulsePreview,
-	'FloatPreview': FloatPreview,
-	'MorphPreview': MorphPreview,
-	'OrbitPreview': OrbitPreview,
-};
+const animationModules = import.meta.glob('../animations/*.astro', {
+  eager: true,
+});
+const featuredAnimations = Object.values(animationModules)
+  .map((mod: any) => ({
+    meta: mod.meta,
+    Component: mod.default,
+  }))
+  .sort((a, b) => (a.meta.order ?? 999) - (b.meta.order ?? 999))
+  .slice(0, 4);
 
+// 使用技術（Technologies)セクションに表示するアイテム
+const useTech = [
+  {
+    title: 'Astro',
+    description: 'FRAMEWORK',
+  },
+  {
+    title: 'CSS Animation(Sass)',
+    description: 'CORE',
+  },
+  {
+    title: 'GSAP',
+    description: 'CORE',
+  },
+  {
+    title: 'SVG Animation',
+    description: 'CORE',
+  },
+  {
+    title: 'WebGL',
+    description: 'ADVANCED',
+  },
+  {
+    title: 'Three.js',
+    description: 'ADVANCED',
+  },
+];
 ---
 
 <Layout title={title} description={description}>
-	<section class="hero">
-		<div class="hero__content container">
-			<h1 class="hero__title">
-				<span class="text-gradient">Anime</span><span class="text-accent">zumi</span>
-			</h1>
-			<p class="hero__subtitle">クリエイティブなアニメーションの世界へようこそ</p>
-			<p class="hero__description">
-				様々なアニメーションテクニックを探求し、<br>
-				インスピレーションあふれる表現を集めたポートフォリオ
-			</p>
-			<div class="hero__cta">
-				<a href="#animations" class="button button--primary">作品を見る</a>
-				<a href="#about" class="button button--secondary">詳しく知る</a>
-			</div>
-		</div>
-		<div class="hero__visual">
-			<div class="circle circle--1"></div>
-			<div class="circle circle--2"></div>
-			<div class="circle circle--3"></div>
-			<div class="square"></div>
-			<div class="triangle"></div>
-		</div>
-	</section>
+  <div class='container'>
+    <!-- FirstView Section -->
+    <section class='top__fv topFv'>
+      <h1 class='topFv__title'>
+        <span class='topFv__title--primary'>ANIME</span>
+        <span class='topFv__title--secondary'>ZUMI</span>
+      </h1>
+      <p class='topFv__keyword'>ANIMATION IDEAS COLLECTION</p>
+      <p class='topFv__description'>
+        様々なアニメーションテクニックを探求し、<span
+          class='topFv__description--break'
+          >インスピレーションあふれる表現を集めたポートフォリオ</span
+        >
+      </p>
+      <div class='topFv__cta'>
+        <ButtonPrimary label='作品を見る' href='./animations/' />
+        <ButtonSecondary label='詳しく知る' href='./#about' />
+      </div>
+      <div class='topFv__scroll'>
+        <p class='topFv__scroll--text'>SCROLL</p>
+        <span class='topFv__scroll--line'></span>
+      </div>
+    </section>
+    <!-- /FirstView Section -->
 
-	<section id="animations" class="animation-showcase">
-		<div class="container">
-			<h2 class="section-title">アニメーション作品</h2>
-			<ul class="animation-grid">
-				{animations && animations.map((item, index) => (
-					index < 4 && (
-					<li class="animation-card">
-						<a href={`${BASE_PATH}${item.link}`}>
-							<div class="animation-card__visual">
-								{(() => {
-									const Component = componentMap[item.component as keyof typeof componentMap];
-									return Component ? <Component /> : null;
-								})()}
-							</div>
-							<h3 class="animation-card__title">{item.title}</h3>
-							<p class="animation-card__desc">{item.description}</p>
-						</a>
-					</li>
-					)
-				))}
-			</ul>
-			<div class="animation-more">
-				<a href={`${BASE_PATH}animations`} class="button button--outline">もっと見る</a>
-			</div>
-		</div>
-	</section>
+    <!-- Animations Section -->
+    <section id='animations' class='top__animation topAnimation'>
+      <TitlePrimary label='ANIMATIONS' num='01' />
+      <ul class='topAnimation__list animationCard'>
+        {
+          featuredAnimations.map((item) => (
+            <li class='topAnimation__item animationCard__item'>
+              <a
+                class='animationCard__link'
+                href={`${BASE_PATH}animations/${item.meta.slug}`}
+              >
+                <div class='animationCard__preview'>
+                  <div class='animationCard__previewInner'>
+                    <item.Component preview={true} />
+                  </div>
+                </div>
+                <div class='animationCard__description'>
+                  <h3 class='animationCard__title'>{item.meta.title}</h3>
+                  <p class='animationCard__text'>{item.meta.description}</p>
+                  <ul class='animationCard__tag'>
+                    {item.meta.tags.primary.map((tag: AnimationTag) => {
+                      return <li class='animationCard__tagItem'>{tag}</li>;
+                    })}
 
-	<section id="about" class="about">
-		<div class="container">
-			<div class="about__content">
-				<h2 class="section-title">Animezumiについて</h2>
-				<p class="about__text">
-					「ズミ」は宮古島の方言で「最高」を意味します。<br>
-					Animezumiは、クリエイティブなアニメーションを追求し、表現の可能性を広げるプロジェクトを目指しています！
-				</p>
-				<p class="about__text">
-					モーションデザイン、インタラクティブアニメーション、エフェクトなど、
-					さまざまな技術を組み合わせた作品を集めています。
-				</p>
-				<section class="tech-section">
-					<h3 class="section-title">使用技術</h3>
-					<div class="tech-stack">	
-						<figure class="tech-item">
-							<span class="tech-logo">
-								<img src="./images/tech/astro.svg" alt="Astro">
-							</span>
-						</figure>
-						<figure class="tech-item">
-							<span class="tech-logo">
-								<svg xmlns="http://www.w3.org/2000/svg" width="200" fill="none" viewBox="0 0 82 30">
-									<path fill="#0ae448" d="M23.81 14.013v.013l-1.075 4.665c-.058.264-.322.458-.626.458H20.81a.218.218 0 0 0-.208.155c-1.198 4.064-2.82 6.858-4.962 8.535-1.822 1.428-4.068 2.093-7.069 2.093-2.696 0-4.514-.867-6.056-2.578C.478 25.09-.364 21.388.146 16.926 1.065 8.549 5.41.096 13.776.096c2.545-.023 4.543.762 5.933 2.33 1.47 1.657 2.216 4.154 2.22 7.421a.55.55 0 0 1-.549.536h-6.13a.42.42 0 0 1-.407-.41c-.05-2.259-.72-3.36-2.052-3.36-2.35 0-3.736 3.19-4.471 4.959-1.027 2.47-1.55 5.152-1.447 7.824.049 1.244.249 2.994 1.43 3.718 1.047.643 2.541.217 3.446-.495.904-.711 1.632-1.942 1.938-3.065.043-.156.046-.277.005-.332-.043-.055-.162-.068-.253-.068h-1.574a.572.572 0 0 1-.438-.202.42.42 0 0 1-.087-.362l1.076-4.674c.053-.24.27-.42.537-.453v-.011h10.33c.024 0 .049 0 .072.005.268.034.457.284.452.556h.002Z"/>
-									<path fill="#0ae448" d="M41.594 8.65a.548.548 0 0 1-.548.531H35.4c-.37 0-.679-.3-.679-.665 0-1.648-.57-2.45-1.736-2.45s-1.918.717-1.94 1.968c-.025 1.395.764 2.662 3.01 4.84 2.957 2.774 4.142 5.232 4.085 8.48C38.047 26.605 34.476 30 29.042 30c-2.775 0-4.895-.743-6.305-2.207-1.431-1.486-2.087-3.668-1.95-6.485a.548.548 0 0 1 .549-.53h5.84a.55.55 0 0 1 .422.209.48.48 0 0 1 .106.384c-.065 1.016.112 1.775.512 2.195.256.272.613.41 1.058.41 1.079 0 1.711-.763 1.735-2.09.02-1.148-.343-2.155-2.321-4.19-2.555-2.496-4.846-5.075-4.775-9.13.042-2.351.976-4.502 2.631-6.056C28.294.868 30.687 0 33.465 0c2.783.02 4.892.813 6.269 2.359 1.304 1.466 1.932 3.582 1.862 6.29h-.002Z"/>
-									<path fill="#0ae448" d="m59.096 29.012.037-27.932a.525.525 0 0 0-.529-.533h-8.738c-.294 0-.423.252-.507.42L36.707 28.842v.005l-.005.006c-.14.343.126.71.497.71h6.108c.33 0 .548-.1.656-.308l1.213-2.915c.149-.388.177-.424.601-.424h5.836c.406 0 .415.008.408.405l-.131 2.71a.525.525 0 0 0 .529.532h6.17a.522.522 0 0 0 .403-.182.458.458 0 0 0 .104-.369Zm-10.81-9.326c-.057 0-.102-.001-.138-.005a.146.146 0 0 1-.13-.183c.012-.041.029-.095.053-.163l4.377-10.827c.038-.107.086-.212.136-.314.071-.145.157-.155.184-.047.023.09-.502 11.118-.502 11.118-.041.413-.06.43-.467.464l-3.509-.041h-.008l.003-.002Z"/>
-									<path fill="#0ae448" d="M71.545.547h-4.639c-.245 0-.52.13-.585.422l-6.455 28.029a.423.423 0 0 0 .088.364.572.572 0 0 0 .437.202h5.798c.311 0 .525-.153.583-.418 0 0 .703-3.168.704-3.178.05-.247-.036-.439-.258-.555-.105-.054-.209-.108-.312-.163l-1.005-.522-1-.522-.387-.201a.186.186 0 0 1-.102-.17.199.199 0 0 1 .198-.194l3.178.014c.95.005 1.901-.062 2.836-.234 6.58-1.215 10.95-6.485 11.076-13.656.107-6.12-3.309-9.221-10.15-9.221l-.005.003Zm-1.579 16.68h-.124c-.278 0-.328-.03-.337-.04-.004-.007 1.833-8.073 1.834-8.084.047-.233.045-.367-.099-.446-.184-.102-2.866-1.516-2.866-1.516a.188.188 0 0 1-.101-.172.197.197 0 0 1 .197-.192h4.241c1.32.04 2.056 1.221 2.021 3.237-.061 3.492-1.721 7.09-4.766 7.214Z"/>
-								</svg>
-							</span>
-						</figure>
-						<figure class="tech-item">
-							<span class="tech-logo">
-								<img src="./images/tech/sass.png" alt="Sass">
-							</span>
-						</figure>
-					</div>
-				</section>
-			</div>
-		</div>
-	</section>
+                    {() => {
+                      if (item.meta.tags.free) {
+                        return item.meta.tags.free.map((tag: string) => {
+                          return <li class='animationCard__tagItem'>{tag}</li>;
+                        });
+                      }
+                    }}
+                  </ul>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class='topAnimation__cta'>
+        <ButtonTertiary href='./animations/' />
+      </div>
+    </section>
+    <!-- /Animations Section -->
+
+    <!-- About Section -->
+    <section id='about' class='topAbout top__about'>
+      <TitlePrimary label='ABOUT' num='02' />
+
+      <section>
+        <h3 class='topAbout__subTitle'>
+          「ズミ」は宮古島の方言で「最高」を意味します。
+        </h3>
+        <div class='topAbout__description'>
+          <p>
+            Animezumiは、クリエイティブなアニメーションを追求し、表現の可能性を広げるプロジェクトを目指しています。
+          </p>
+          <p>
+            モーションデザイン、インタラクティブアニメーション、エフェクトなど、さまざまな技術を組み合わせた作品を集めています。
+          </p>
+        </div>
+        <div>
+          <p class='topAbout__concept'>
+            アニメーション + ズミ（最高）<span class='topAbout__concept--space'
+              >=</span
+            ><span>ANIMEZUMI</span>
+          </p>
+        </div>
+      </section>
+      <section>
+        <h3 class='topAbout__title'>Technologies</h3>
+        <ul class='topAbout__tech'>
+          {
+            useTech.map((item) => (
+              <li class='topAbout__techItem'>
+                <p class='topAbout__techTitle'>{item.title}</p>
+                <p class='topAbout__techPara'>{item.description}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </section>
+    <!-- /About Section -->
+  </div>
 </Layout>
 
-<style lang="scss">
-	@use '../assets/css/index.scss';
-	@use '../assets/css/pages/_top.scss';
-	@use '../assets/css/components/_card.scss';
+<style lang='scss'>
+  @use '../assets/css/pages/_top.scss';
+  @use '../assets/css/components/_card.scss';
 </style>
-
-<script>
-	// ページ読み込み完了時のアニメーション
-	document.addEventListener('DOMContentLoaded', () => {
-		// ビジュアル要素のアニメーション調整
-		const animElements = document.querySelectorAll('.circle, .square, .triangle');
-		animElements.forEach(el => {
-			(el as HTMLElement).style.opacity = '0';
-			setTimeout(() => {
-				(el as HTMLElement).style.transition = 'opacity 1s ease-out';
-				(el as HTMLElement).style.opacity = '0.6';
-			}, 500);
-		});
-
-		// スクロールアニメーション
-		const animateSections = () => {
-			const sections = document.querySelectorAll('section');
-			sections.forEach(section => {
-				const rect = section.getBoundingClientRect();
-				const isVisible = rect.top < window.innerHeight * 0.8;
-				
-				if (isVisible) {
-					(section as HTMLElement).style.opacity = '1';
-					(section as HTMLElement).style.transform = 'translateY(0)';
-				}
-			});
-		};
-
-		// 初期スタイル設定
-		const sections = document.querySelectorAll('section');
-		sections.forEach(section => {
-			(section as HTMLElement).style.opacity = '0';
-			(section as HTMLElement).style.transform = 'translateY(3rem)';
-			(section as HTMLElement).style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-		});
-
-		// スクロールイベント
-		window.addEventListener('scroll', animateSections);
-		animateSections(); // 初期表示時にも実行
-	});
-</script>
