@@ -36,7 +36,7 @@ const cssExample = `.stepTime {
     height: 200px;
 
     &Line {
-      border-top: 2px solid #333;
+      border-top: 2px solid #bcbcbc;
       width: calc(50% - 24px);
       height: 2px;
       position: absolute;
@@ -51,7 +51,7 @@ const cssExample = `.stepTime {
 
 const htmlExample = `<div class="stepTime__clock">
   <svg viewBox="0 0 200 200" width="200" height="200" class="stepTime__clock-svg">
-    <circle cx="100" cy="100" r="90" fill="none" stroke="#333" stroke-width="3"/>
+    <circle cx="100" cy="100" r="90" fill="none" stroke="#bcbcbc" stroke-width="3"/>
   </svg>
   <div class="stepTime__clockLine"></div>
 </div>`;
@@ -59,64 +59,65 @@ const htmlExample = `<div class="stepTime__clock">
 
 {
   preview ? (
-    <div class="stepTime-preview">
-      <div class="stepTime__clock">
+    <div class='stepTime-preview'>
+      <div class='stepTime__clock'>
         <svg
-          viewBox="0 0 160 160"
-          width="160"
-          height="160"
-          class="stepTime__clock-svg"
+          viewBox='0 0 160 160'
+          width='160'
+          height='160'
+          class='stepTime__clock-svg'
         >
           <circle
-            cx="80"
-            cy="80"
-            r="70"
-            fill="none"
-            stroke="#333"
-            stroke-width="3"
-          ></circle>
+            cx='80'
+            cy='80'
+            r='70'
+            fill='none'
+            stroke='#bcbcbc'
+            stroke-width='3'
+          />
         </svg>
-        <div class="stepTime__clockLine"></div>
+        <div class='stepTime__clockLine' />
       </div>
     </div>
   ) : (
     <>
       <p>{meta.description}</p>
 
-      <div class="animation__box">
-        <div class="stepTime__clock">
+      <div class='animation__box'>
+        <div class='stepTime__clock'>
           <svg
-            viewBox="0 0 200 200"
-            width="200"
-            height="200"
-            class="stepTime__clock-svg"
+            viewBox='0 0 200 200'
+            width='200'
+            height='200'
+            class='stepTime__clock-svg'
           >
             <circle
-              cx="100"
-              cy="100"
-              r="90"
-              fill="none"
-              stroke="#333"
-              stroke-width="3"
-            ></circle>
+              cx='100'
+              cy='100'
+              r='90'
+              fill='none'
+              stroke='#bcbcbc'
+              stroke-width='3'
+            />
           </svg>
-          <div class="stepTime__clockLine"></div>
+          <div class='stepTime__clockLine' />
         </div>
       </div>
 
       <section>
         <h2>GSAP</h2>
-        <Code lang="js" code={codeExample} class="code -block" />
+        <Code lang='js' code={codeExample} class='code -block' />
       </section>
 
       <h2>HTML / CSS</h2>
-      <Code lang="html" code={htmlExample} class="code -block" />
-      <Code lang="css" code={cssExample} class="code -block" />
+      <Code lang='html' code={htmlExample} class='code -block' />
+      <Code lang='css' code={cssExample} class='code -block' />
     </>
   )
 }
 
-<style lang="scss">
+<style lang='scss'>
+  @use '../assets/css/pages/animations/index';
   .stepTime-preview {
     display: flex;
     justify-content: center;
@@ -132,7 +133,7 @@ const htmlExample = `<div class="stepTime__clock">
       height: 160px;
 
       &Line {
-        border-top: 2px solid #333;
+        border-top: 2px solid #bcbcbc;
         width: calc(50% - 18px);
         height: 2px;
         position: absolute;
@@ -156,4 +157,3 @@ const htmlExample = `<div class="stepTime__clock">
     transformOrigin: 'left center',
   });
 </script>
-

@@ -50,29 +50,30 @@ const cssExample = `.text-animation {
 
 {
   preview ? (
-    <div class="text-preview">
-      <p class="text-animation">Hello World!</p>
+    <div class='text-preview'>
+      <p class='text-animation'>Hello World!</p>
     </div>
   ) : (
     <>
       <p>{meta.description}</p>
-      <div class="animation__box">
-        <p class="text-animation">Hello World!</p>
+      <div class='animation__box'>
+        <p class='text-animation'>Hello World!</p>
       </div>
 
       <section>
         <h2>GSAP</h2>
-        <Code lang="js" code={codeExample} class="code -block" />
+        <Code lang='js' code={codeExample} class='code -block' />
       </section>
 
       <h2>HTML / CSS</h2>
-      <Code lang="html" code={htmlExample} class="code -block" />
-      <Code lang="css" code={cssExample} class="code -block" />
+      <Code lang='html' code={htmlExample} class='code -block' />
+      <Code lang='css' code={cssExample} class='code -block' />
     </>
   )
 }
 
-<style lang="scss">
+<style lang='scss'>
+  @use '../assets/css/pages/animations/index';
   @use '../assets/css/pages/animations/_text.scss';
 
   .text-preview {
@@ -115,4 +116,3 @@ const cssExample = `.text-animation {
     );
   });
 </script>
-

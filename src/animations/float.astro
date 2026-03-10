@@ -19,7 +19,7 @@ export const meta = defineAnimationMeta({
     css: `.float-animation {
   width: 100px;
   height: 100px;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: #bcbcbc;
   border-radius: 50%;
   margin: 2rem auto;
   transform-origin: center;
@@ -52,7 +52,7 @@ const htmlExample = `<div class="float-animation"></div>`;
 const cssExample = `.float-animation {
     width: 100px;
     height: 100px;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    background: #bcbcbc;
     border-radius: 50%;
     margin: 2rem auto;
     transform-origin: center;
@@ -62,29 +62,30 @@ const cssExample = `.float-animation {
 
 {
   preview ? (
-    <div class="float-preview">
-      <div class="float-animation"></div>
+    <div class='float-preview'>
+      <div class='float-animation' />
     </div>
   ) : (
     <>
       <p>{meta.description}</p>
-      <div class="animation__box">
-        <div class="float-animation"></div>
+      <div class='animation__box'>
+        <div class='float-animation' />
       </div>
 
       <section>
         <h2>GSAP</h2>
-        <Code lang="js" code={codeExample} class="code -block" />
+        <Code lang='js' code={codeExample} class='code -block' />
       </section>
 
       <h2>HTML / CSS</h2>
-      <Code lang="html" code={htmlExample} class="code -block" />
-      <Code lang="css" code={cssExample} class="code -block" />
+      <Code lang='html' code={htmlExample} class='code -block' />
+      <Code lang='css' code={cssExample} class='code -block' />
     </>
   )
 }
 
-<style>
+<style lang='scss'>
+  @use '../assets/css/pages/animations/index';
   .float-preview {
     display: flex;
     justify-content: center;
@@ -96,7 +97,7 @@ const cssExample = `.float-animation {
   .float-animation {
     width: 60px;
     height: 60px;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    background: #bcbcbc;
     border-radius: 50%;
     transform-origin: center;
   }
@@ -122,4 +123,3 @@ const cssExample = `.float-animation {
     });
   });
 </script>
-

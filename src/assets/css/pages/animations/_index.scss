@@ -2,6 +2,7 @@
 @use '../../base/typography' as *;
 
 .animation {
+  background: #fff;
   &__title {
     margin-top: 20px;
   }
