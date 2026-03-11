@@ -221,10 +221,10 @@
 }
 
 .topAbout {
-  margin-top: 180px;
+  padding-top: 180px;
 
   @include respond-to('md') {
-    margin-top: 100px;
+    padding-top: 100px;
   }
 
   &__subTitle {

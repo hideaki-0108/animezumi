@@ -67,33 +67,27 @@ const cssExample = `.pulse-animation {
     </div>
   ) : (
     <>
-      <p>{meta.description}</p>
+      <p class='animation__description'>{meta.description}</p>
       <div class='animation__box'>
         <div class='pulse-animation' />
       </div>
 
-      <section>
+      <section class='animation__javaScript'>
         <h2>GSAP</h2>
         <Code lang='js' code={codeExample} class='code -block' />
       </section>
 
-      <h2>HTML / CSS</h2>
-      <Code lang='html' code={htmlExample} class='code -block' />
-      <Code lang='css' code={cssExample} class='code -block' />
+      <section class='animation__markup'>
+        <h2>HTML / CSS</h2>
+        <Code lang='html' code={htmlExample} class='code -block' />
+        <Code lang='css' code={cssExample} class='code -block' />
+      </section>
     </>
   )
 }
 
 <style lang='scss'>
   @use '../assets/css/pages/animations/index';
-
-  .pulse-preview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 120px;
-  }
 
   .pulse-animation {
     width: 60px;

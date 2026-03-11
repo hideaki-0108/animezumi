@@ -67,19 +67,21 @@ const cssExample = `.float-animation {
     </div>
   ) : (
     <>
-      <p>{meta.description}</p>
+      <p class='animation__description'>{meta.description}</p>
       <div class='animation__box'>
         <div class='float-animation' />
       </div>
 
-      <section>
+      <section class='animation__javaScript'>
         <h2>GSAP</h2>
         <Code lang='js' code={codeExample} class='code -block' />
       </section>
 
-      <h2>HTML / CSS</h2>
-      <Code lang='html' code={htmlExample} class='code -block' />
-      <Code lang='css' code={cssExample} class='code -block' />
+      <section class='animation__markup'>
+        <h2>HTML / CSS</h2>
+        <Code lang='html' code={htmlExample} class='code -block' />
+        <Code lang='css' code={cssExample} class='code -block' />
+      </section>
     </>
   )
 }

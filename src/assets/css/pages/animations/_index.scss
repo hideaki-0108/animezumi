@@ -2,23 +2,31 @@
 @use '../../base/typography' as *;
 
 .animation {
-  background: #fff;
   &__title {
+    // margin-top: 20px;
+  }
+
+  &__description {
+    font-size: $font-size-md;
     margin-top: 20px;
   }
 
   &__box {
     width: 100%;
     height: auto;
-    padding: 20px 40px;
+    min-height: 360px;
+    padding: 60px 40px;
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    background-color: $color-code;
-    border-radius: 4px;
+    background: #080808;
+    border-radius: 2px;
     box-shadow: $shadow-md;
   }
 
   &__back {
-    padding-left: calc(1em + 4px);
     margin: 60px 0 0;
     color: $color-text-secondary;
     font-size: $font-size-md;
@@ -28,5 +36,9 @@
       margin-right: 4px;
       content: '<';
     }
+  }
+
+  &__javaScript {
+    margin-top: 60px;
   }
 }

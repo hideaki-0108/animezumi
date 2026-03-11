@@ -19,7 +19,18 @@ const navItems = [
       <div class='header__logo'>
         <a href='/animezumi/' aria-label='トップに戻る'>ANIMEZUMI</a>
       </div>
-      <nav class='headerNav'>
+      <button
+        class='header__toggle'
+        type='button'
+        aria-label='メインメニューを開閉'
+        aria-expanded='false'
+        aria-controls='global-nav'
+      >
+        <span class='header__toggleLine'></span>
+        <span class='header__toggleLine'></span>
+        <span class='header__toggleLine'></span>
+      </button>
+      <nav class='headerNav' id='global-nav'>
         <ul class='headerNav__list'>
           {
             navItems.map((item) => (
@@ -39,3 +50,43 @@ const navItems = [
 <style lang='scss'>
   @use '../assets/css/components/header.scss';
 </style>
+
+<script>
+  if (typeof window !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.querySelector('.header__toggle');
+      const nav = document.querySelector('.headerNav');
+
+      if (!toggle || !nav) return;
+
+      const openClass = 'is-open';
+
+      const closeNav = () => {
+        nav.classList.remove(openClass);
+        toggle.setAttribute('aria-expanded', 'false');
+      };
+
+      const openNav = () => {
+        nav.classList.add(openClass);
+        toggle.setAttribute('aria-expanded', 'true');
+      };
+
+      const handleToggle = () => {
+        const isOpen = nav.classList.contains(openClass);
+        if (isOpen) {
+          closeNav();
+        } else {
+          openNav();
+        }
+      };
+
+      toggle.addEventListener('click', handleToggle);
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeNav();
+        }
+      });
+    });
+  }
+</script>
