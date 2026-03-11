@@ -1,7 +1,7 @@
 @use 'sass:color';
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
-@use '../base/typography' as type;
+@use '../base/typography' as *;
 @use '../layout/index' as layout;
 @use '../base/reset' as reset;
 
@@ -35,18 +35,78 @@
     margin: 0 auto;
 
     @include respond-to('md') {
+      z-index: 1;
       padding: 18px $spacing-lg 17px;
     }
   }
 
   &__logo {
-    font-size: type.$font-size-md;
+    font-size: $font-size-md;
     font-weight: 800;
     letter-spacing: 12%;
     transition: opacity 0.2s ease-out;
 
     &:hover {
       opacity: 0.7;
+    }
+  }
+
+  &__toggle {
+    position: relative;
+    display: none;
+    width: 32px;
+    height: 24px;
+    padding: 0;
+    margin-left: 16px;
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+
+    @include respond-to('md') {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__toggleLine {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $color-text-primary;
+    border-radius: 999px;
+    @include transition(transform, $transition-fast, $easing-standard);
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2) {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:nth-child(3) {
+      bottom: 0;
+    }
+  }
+
+  &__toggle[aria-expanded='true'] {
+    .header__toggleLine:nth-child(1) {
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .header__toggleLine:nth-child(2) {
+      opacity: 0;
+    }
+
+    .header__toggleLine:nth-child(3) {
+      bottom: auto;
+      top: 50%;
+      transform: translateY(-50%) rotate(-45deg);
     }
   }
 }
@@ -57,7 +117,7 @@
   }
 
   &__item {
-    font-size: type.$font-size-sm;
+    font-size: $font-size-sm;
 
     & + & {
       margin-left: 40px;
@@ -69,6 +129,40 @@
 
     &:hover {
       opacity: 0.7;
+    }
+  }
+
+  @include respond-to('md') {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    padding: $spacing-xl $spacing-lg 48px;
+    pointer-events: none;
+    transition: all 0.1s 0s ease-in;
+
+    background: $color-primary;
+    border-bottom: 1px solid $color-quaternary-80;
+
+    &.is-open {
+      top: 67px;
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    &__list {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-lg;
+    }
+
+    &__item {
+      font-size: $font-size-base;
+      & + & {
+        margin-left: 0;
+      }
     }
   }
 }
