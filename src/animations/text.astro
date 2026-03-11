@@ -25,62 +25,83 @@ gsap.registerPlugin(SplitText);
 
 document.addEventListener('DOMContentLoaded', () => {
   const text = document.querySelector('.text-animation');
-  const splitText = new SplitText(text, { type: 'chars', linesClass: 'text-animation__line' });
+  if (!text) return;
 
-  gsap.fromTo(splitText.chars, {
-    display: 'inline-block',
-    opacity: 0,
-    y: '8px',
-  }, {
-    opacity: 1,
-    y: 0,
-    ease: 'ease',
-    stagger: 0.05,
+  const splitText = new SplitText(text, {
+    type: 'chars',
+    linesClass: 'text-animation__line',
   });
+
+  gsap.fromTo(
+    splitText.chars,
+    {
+      display: 'inline-block',
+      opacity: 0,
+      y: '8px',
+    },
+    {
+      opacity: 1,
+      y: 0,
+      ease: 'ease',
+      stagger: 0.05,
+      repeat: -1,
+      repeatDelay: 2,
+    }
+  );
 });`;
 
 const htmlExample = `<p class="text-animation">Hello World!</p>`;
 
 const cssExample = `.text-animation {
-  font-size: 2rem;
+  margin: 2rem auto;
+  font-size: 4rem;
   font-weight: bold;
   text-align: center;
+
+  &__line {
+    opacity: 0;
+  }
 }`;
 ---
 
 {
   preview ? (
-    <div class="text-preview">
-      <p class="text-animation">Hello World!</p>
+    <div class='text-preview'>
+      <p class='text-animation'>Hello World!</p>
     </div>
   ) : (
     <>
-      <p>{meta.description}</p>
-      <div class="animation__box">
-        <p class="text-animation">Hello World!</p>
+      <p class='animation__description'>{meta.description}</p>
+      <div class='animation__box'>
+        <p class='text-animation'>Hello World!</p>
       </div>
 
-      <section>
+      <section class='animation__javaScript'>
         <h2>GSAP</h2>
-        <Code lang="js" code={codeExample} class="code -block" />
+        <Code lang='js' code={codeExample} class='code -block' />
       </section>
 
-      <h2>HTML / CSS</h2>
-      <Code lang="html" code={htmlExample} class="code -block" />
-      <Code lang="css" code={cssExample} class="code -block" />
+      <section class='animation__markup'>
+        <h2>HTML / CSS</h2>
+        <Code lang='html' code={htmlExample} class='code -block' />
+        <Code lang='css' code={cssExample} class='code -block' />
+      </section>
     </>
   )
 }
 
-<style lang="scss">
-  @use '../assets/css/pages/animations/_text.scss';
+<style lang='scss'>
+  @use '../assets/css/pages/animations/index';
 
-  .text-preview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 120px;
+  .text-animation {
+    margin: 2rem auto;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+
+    &__line {
+      opacity: 0;
+    }
   }
 </style>
 
@@ -111,8 +132,9 @@ const cssExample = `.text-animation {
         y: 0,
         ease: 'ease',
         stagger: 0.05,
+        repeat: -1,
+        repeatDelay: 2,
       }
     );
   });
 </script>
-

@@ -45,37 +45,40 @@ const cssExample = `.countup-animation {
 
 {
   preview ? (
-    <div class="countup-preview">
-      <div class="countup-animation" data-count="100">0</div>
+    <div class='countup-preview'>
+      <div class='countup-animation' data-count='100'>
+        0
+      </div>
     </div>
   ) : (
     <>
-      <p>{meta.description}</p>
-      <div class="animation__box">
-        <div class="countup-animation" data-count="100">0</div>
+      <p class='animation__description'>{meta.description}</p>
+      <div class='animation__box'>
+        <div class='countup-animation' data-count='100'>
+          0
+        </div>
       </div>
 
-      <section>
+      <section class='animation__javaScript'>
         <h2>GSAP</h2>
-        <Code lang="js" code={codeExample} class="code -block" />
+        <Code lang='js' code={codeExample} class='code -block' />
       </section>
 
-      <h2>HTML / CSS</h2>
-      <Code lang="html" code={htmlExample} class="code -block" />
-      <Code lang="css" code={cssExample} class="code -block" />
+      <section class='animation__markup'>
+        <h2>HTML / CSS</h2>
+        <Code lang='html' code={htmlExample} class='code -block' />
+        <Code lang='css' code={cssExample} class='code -block' />
+      </section>
     </>
   )
 }
 
-<style lang="scss">
-  @use '../assets/css/pages/animations/_countup.scss';
+<style lang='scss'>
+  @use '../assets/css/pages/animations/index';
 
-  .countup-preview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 120px;
+  .countup-animation {
+    font-size: 2.4rem;
+    font-weight: bold;
   }
 </style>
 
@@ -114,4 +117,3 @@ const cssExample = `.countup-animation {
     );
   });
 </script>
-
