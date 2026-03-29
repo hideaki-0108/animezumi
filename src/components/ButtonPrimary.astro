@@ -2,24 +2,24 @@
 const { label, href } = Astro.props;
 ---
 
-<a class='buttonPrimary' href=`${href}`>
-  <span class='buttonPrimary__label'>{label}</span>
-  <span class='buttonPrimary__icon'>
+<a class="buttonPrimary" href=`${href}`>
+  <span class="buttonPrimary__label">{label}</span>
+  <span class="buttonPrimary__icon">
     <svg
-      width='16'
-      height='8'
-      viewBox='0 0 16 8'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
+      width="16"
+      height="8"
+      viewBox="0 0 16 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d='M11.1689 0.27171C11.5523 -0.0816275 12.1855 -0.0916078 12.583 0.249141L15.6943 2.9158C15.8897 3.08332 16 3.31427 16 3.55555C16 3.79684 15.8897 4.02779 15.6943 4.19531L12.583 6.86197C12.1855 7.20272 11.5523 7.19274 11.1689 6.8394C10.7857 6.4861 10.797 5.92325 11.1943 5.58246L12.5225 4.44444H1C0.447715 4.44444 0 4.04647 0 3.55555C0 3.06464 0.447715 2.66667 1 2.66667H12.5225L11.1943 1.52865C10.797 1.18786 10.7857 0.625013 11.1689 0.27171Z'
-        fill='black'></path>
+        d="M11.1689 0.27171C11.5523 -0.0816275 12.1855 -0.0916078 12.583 0.249141L15.6943 2.9158C15.8897 3.08332 16 3.31427 16 3.55555C16 3.79684 15.8897 4.02779 15.6943 4.19531L12.583 6.86197C12.1855 7.20272 11.5523 7.19274 11.1689 6.8394C10.7857 6.4861 10.797 5.92325 11.1943 5.58246L12.5225 4.44444H1C0.447715 4.44444 0 4.04647 0 3.55555C0 3.06464 0.447715 2.66667 1 2.66667H12.5225L11.1943 1.52865C10.797 1.18786 10.7857 0.625013 11.1689 0.27171Z"
+        fill="black"></path>
     </svg>
   </span>
 </a>
 
-<style lang='sass'>
+<style lang="sass">
   @use '../assets/css/abstracts/_variables.scss' as *
   @use '../assets/css/abstracts/mixins' as *
   @use '../assets/css/base/typography' as *

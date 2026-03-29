@@ -17,34 +17,34 @@ const items = Object.values(modules)
 ---
 
 <Layout title={title} description={description}>
-  <section class='animation-showcase'>
-    <div class='container'>
-      <h2 class='section-title'>アニメーション作品</h2>
-      <ul class='animation__list animationCard'>
+  <section class="animation-showcase">
+    <div class="container">
+      <h2 class="section-title">アニメーション作品</h2>
+      <ul class="animation__list animationCard">
         {
           items.map((item) => (
-            <li class='animation__item animationCard__item'>
+            <li class="animation__item animationCard__item">
               <a
-                class='animationCard__link'
+                class="animationCard__link"
                 href={`${BASE_PATH}animations/${item.meta.slug}`}
               >
-                <div class='animationCard__preview'>
-                  <div class='animationCard__previewInner'>
+                <div class="animationCard__preview">
+                  <div class="animationCard__previewInner">
                     <item.Component preview={true} />
                   </div>
                 </div>
-                <div class='animationCard__description'>
-                  <h3 class='animationCard__title'>{item.meta.title}</h3>
-                  <p class='animationCard__text'>{item.meta.description}</p>
-                  <ul class='animationCard__tag'>
+                <div class="animationCard__description">
+                  <h3 class="animationCard__title">{item.meta.title}</h3>
+                  <p class="animationCard__text">{item.meta.description}</p>
+                  <ul class="animationCard__tag">
                     {item.meta.tags.primary.map((tag: AnimationTag) => {
-                      return <li class='animationCard__tagItem'>{tag}</li>;
+                      return <li class="animationCard__tagItem">{tag}</li>;
                     })}
 
                     {() => {
                       if (item.meta.tags.free) {
                         return item.meta.tags.free.map((tag: string) => {
-                          return <li class='animationCard__tagItem'>{tag}</li>;
+                          return <li class="animationCard__tagItem">{tag}</li>;
                         });
                       }
                     }}
@@ -55,14 +55,14 @@ const items = Object.values(modules)
           ))
         }
       </ul>
-      <div class='animation__back'>
+      <div class="animation__back">
         <a href={`${BASE_PATH}`}>トップに戻る</a>
       </div>
     </div>
   </section>
 </Layout>
 
-<style lang='scss'>
+<style lang="scss">
   @use '../../assets/css/abstracts/mixins' as *;
   @use '../../assets/css/pages/animations/index.scss';
   @use '../../assets/css/components/_card.scss';

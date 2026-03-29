@@ -62,31 +62,31 @@ const cssExample = `.pulse-animation {
 
 {
   preview ? (
-    <div class='pulse-preview'>
-      <div class='pulse-animation' />
+    <div class="pulse-preview">
+      <div class="pulse-animation" />
     </div>
   ) : (
     <>
-      <p class='animation__description'>{meta.description}</p>
-      <div class='animation__box'>
-        <div class='pulse-animation' />
+      <p class="animation__description">{meta.description}</p>
+      <div class="animation__box">
+        <div class="pulse-animation" />
       </div>
 
-      <section class='animation__javaScript'>
+      <section class="animation__javaScript">
         <h2>GSAP</h2>
-        <Code lang='js' code={codeExample} class='code -block' />
+        <Code lang="js" code={codeExample} class="code -block" />
       </section>
 
-      <section class='animation__markup'>
+      <section class="animation__markup">
         <h2>HTML / CSS</h2>
-        <Code lang='html' code={htmlExample} class='code -block' />
-        <Code lang='css' code={cssExample} class='code -block' />
+        <Code lang="html" code={htmlExample} class="code -block" />
+        <Code lang="css" code={cssExample} class="code -block" />
       </section>
     </>
   )
 }
 
-<style lang='scss'>
+<style lang="scss">
   @use '../assets/css/pages/animations/index';
 
   .pulse-animation {

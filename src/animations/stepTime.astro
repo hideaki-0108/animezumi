@@ -59,37 +59,37 @@ const htmlExample = `<div class="stepTime__clock">
 
 {
   preview ? (
-    <div class='stepTime-preview'>
-      <div class='stepTime__clock'>
-        <div class='stepTime__clockCircle' />
-        <div class='stepTime__clockLine' />
+    <div class="stepTime-preview">
+      <div class="stepTime__clock">
+        <div class="stepTime__clockCircle" />
+        <div class="stepTime__clockLine" />
       </div>
     </div>
   ) : (
     <>
-      <p class='animation__description'>{meta.description}</p>
-      <div class='animation__box'>
-        <div class='stepTime__clock'>
-          <div class='stepTime__clockCircle' />
-          <div class='stepTime__clockLine' />
+      <p class="animation__description">{meta.description}</p>
+      <div class="animation__box">
+        <div class="stepTime__clock">
+          <div class="stepTime__clockCircle" />
+          <div class="stepTime__clockLine" />
         </div>
       </div>
 
-      <section class='animation__javaScript'>
+      <section class="animation__javaScript">
         <h2>GSAP</h2>
-        <Code lang='js' code={codeExample} class='code -block' />
+        <Code lang="js" code={codeExample} class="code -block" />
       </section>
 
-      <section class='animation__markup'>
+      <section class="animation__markup">
         <h2>HTML / CSS</h2>
-        <Code lang='html' code={htmlExample} class='code -block' />
-        <Code lang='css' code={cssExample} class='code -block' />
+        <Code lang="html" code={htmlExample} class="code -block" />
+        <Code lang="css" code={cssExample} class="code -block" />
       </section>
     </>
   )
 }
 
-<style lang='scss'>
+<style lang="scss">
   @use '../assets/css/pages/animations/index';
 
   .stepTime {
