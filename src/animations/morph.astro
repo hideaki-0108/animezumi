@@ -71,59 +71,59 @@ const cssExample = `.morph-animation__svg {
 
 {
   preview ? (
-    <div class='morph-preview'>
-      <div class='morph-animation'>
+    <div class="morph-preview">
+      <div class="morph-animation">
         <svg
-          class='morph-animation__svg'
-          xmlns='http://www.w3.org/2000/svg'
-          width='80'
-          height='80'
-          viewBox='0 0 80 80'
+          class="morph-animation__svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="80"
+          height="80"
+          viewBox="0 0 80 80"
         >
           <path
-            id='morph-path'
-            d='M10,10 L70,10 L70,70 L10,70 Z'
-            fill='#bcbcbc'
+            id="morph-path"
+            d="M10,10 L70,10 L70,70 L10,70 Z"
+            fill="#bcbcbc"
           />
         </svg>
       </div>
     </div>
   ) : (
     <>
-      <p class='animation__description'>{meta.description}</p>
-      <div class='animation__box'>
-        <div class='morph-animation'>
+      <p class="animation__description">{meta.description}</p>
+      <div class="animation__box">
+        <div class="morph-animation">
           <svg
-            class='morph-animation__svg'
-            xmlns='http://www.w3.org/2000/svg'
-            width='140'
-            height='140'
-            viewBox='0 0 80 80'
+            class="morph-animation__svg"
+            xmlns="http://www.w3.org/2000/svg"
+            width="140"
+            height="140"
+            viewBox="0 0 80 80"
           >
             <path
-              id='morph-path'
-              d='M10,10 L70,10 L70,70 L10,70 Z'
-              fill='#bcbcbc'
+              id="morph-path"
+              d="M10,10 L70,10 L70,70 L10,70 Z"
+              fill="#bcbcbc"
             />
           </svg>
         </div>
       </div>
 
-      <section class='animation__javaScript'>
+      <section class="animation__javaScript">
         <h2>GSAP</h2>
-        <Code lang='js' code={codeExample} class='code -block' />
+        <Code lang="js" code={codeExample} class="code -block" />
       </section>
 
-      <section class='animation__markup'>
+      <section class="animation__markup">
         <h2>HTML / CSS</h2>
-        <Code lang='html' code={htmlExample} class='code -block' />
-        <Code lang='css' code={cssExample} class='code -block' />
+        <Code lang="html" code={htmlExample} class="code -block" />
+        <Code lang="css" code={cssExample} class="code -block" />
       </section>
     </>
   )
 }
 
-<style lang='scss'>
+<style lang="scss">
   @use '../assets/css/pages/animations/index';
 
   .morph-animation {

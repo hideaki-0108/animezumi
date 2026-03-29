@@ -48,65 +48,65 @@ const cssExample = `.orbit-animation {
 
 {
   preview ? (
-    <div class='orbit-preview'>
+    <div class="orbit-preview">
       <svg
-        class='orbit-animation__circle'
-        width='101'
-        height='101'
-        viewBox='0 0 101 101'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
+        class="orbit-animation__circle"
+        width="101"
+        height="101"
+        viewBox="0 0 101 101"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          id='orbit__circle'
-          d='M 10,50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0'
-          fill='none'
-          stroke='#595959'
-          stroke-width='2'
+          id="orbit__circle"
+          d="M 10,50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+          fill="none"
+          stroke="#595959"
+          stroke-width="2"
         />
       </svg>
-      <div class='orbit-animation' />
+      <div class="orbit-animation" />
     </div>
   ) : (
     <>
-      <p class='animation__description'>{meta.description}</p>
-      <div class='animation__box'>
-        <div class='orbit-preview'>
+      <p class="animation__description">{meta.description}</p>
+      <div class="animation__box">
+        <div class="orbit-preview">
           <svg
-            class='orbit-animation__circle'
-            width='201'
-            height='201'
-            viewBox='0 0 101 101'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+            class="orbit-animation__circle"
+            width="201"
+            height="201"
+            viewBox="0 0 101 101"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              id='orbit__circle'
-              d='M 10,50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0'
-              fill='none'
-              stroke='#595959'
-              stroke-width='2'
+              id="orbit__circle"
+              d="M 10,50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+              fill="none"
+              stroke="#595959"
+              stroke-width="2"
             />
           </svg>
-          <div class='orbit-animation' />
+          <div class="orbit-animation" />
         </div>
       </div>
 
-      <section class='animation__javaScript'>
+      <section class="animation__javaScript">
         <h2>GSAP</h2>
-        <Code lang='js' code={codeExample} class='code -block' />
+        <Code lang="js" code={codeExample} class="code -block" />
       </section>
 
-      <section class='animation__markup'>
+      <section class="animation__markup">
         <h2>HTML / CSS</h2>
-        <Code lang='html' code={htmlExample} class='code -block' />
-        <Code lang='css' code={cssExample} class='code -block' />
+        <Code lang="html" code={htmlExample} class="code -block" />
+        <Code lang="css" code={cssExample} class="code -block" />
       </section>
     </>
   )
 }
 
-<style lang='scss'>
+<style lang="scss">
   @use '../assets/css/pages/animations/index';
 
   .orbit-animation {

@@ -1,15 +1,11 @@
 ---
 import { BASE_PATH } from '../assets/js/lib/config';
 import Layout from '../layouts/Layout.astro';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ButtonPrimary from '../components/ButtonPrimary.astro';
 import ButtonSecondary from '../components/ButtonSecondary.astro';
 import TitlePrimary from '../components/TitlePrimary.astro';
 import ButtonTertiary from '../components/ButtonTertiary.astro';
 import type { AnimationTag } from '@/assets/js/utils/animationTagMaster';
-
-gsap.registerPlugin(ScrollTrigger);
 
 // meta
 const title = 'ANIMEZUMI - Webサイトのアニメーション集';
@@ -57,62 +53,62 @@ const useTech = [
 ---
 
 <Layout title={title} description={description}>
-  <div class='container'>
+  <div class="container">
     <!-- FirstView Section -->
-    <section class='top__fv topFv'>
-      <h1 class='topFv__title'>
-        <span class='topFv__title--primary'>ANIME</span>
-        <span class='topFv__title--secondary'>ZUMI</span>
+    <section class="top__fv topFv">
+      <h1 class="topFv__title">
+        <span class="topFv__title--primary">ANIME</span>
+        <span class="topFv__title--secondary">ZUMI</span>
       </h1>
-      <p class='topFv__keyword'>ANIMATION IDEAS COLLECTION</p>
-      <p class='topFv__description'>
+      <p class="topFv__keyword">ANIMATION IDEAS COLLECTION</p>
+      <p class="topFv__description">
         様々なアニメーションテクニックを探求し、
-        <span class='topFv__description--break'
+        <span class="topFv__description--break"
           >インスピレーションあふれる表現を集めたポートフォリオ ANIMEZUMI。</span
         ><br />
-        <span class='topFv__description--break'
+        <span class="topFv__description--break"
           >Webデザイナーやフロントエンドエンジニアの「動きのアイデア帳」を目指しています。</span
         >
       </p>
-      <div class='topFv__cta'>
-        <ButtonPrimary label='作品を見る' href='./animations/' />
-        <ButtonSecondary label='詳しく知る' href='./#about' />
+      <div class="topFv__cta">
+        <ButtonPrimary label="作品を見る" href="./animations/" />
+        <ButtonSecondary label="詳しく知る" href="./#about" />
       </div>
-      <div class='topFv__scroll'>
-        <p class='topFv__scroll--text'>SCROLL</p>
-        <span class='topFv__scroll--line'></span>
+      <div class="topFv__scroll">
+        <p class="topFv__scroll--text">SCROLL</p>
+        <span class="topFv__scroll--line"></span>
       </div>
     </section>
     <!-- /FirstView Section -->
 
     <!-- Animations Section -->
-    <section id='animations' class='top__animation topAnimation'>
-      <TitlePrimary label='ANIMATIONS' num='01' />
-      <ul class='topAnimation__list animationCard'>
+    <section id="animations" class="top__animation topAnimation">
+      <TitlePrimary label="ANIMATIONS" num="01" />
+      <ul class="topAnimation__list animationCard">
         {
           featuredAnimations.map((item) => (
-            <li class='topAnimation__item animationCard__item'>
+            <li class="topAnimation__item animationCard__item">
               <a
-                class='animationCard__link'
+                class="animationCard__link"
                 href={`${BASE_PATH}animations/${item.meta.slug}`}
               >
-                <div class='animationCard__preview'>
-                  <div class='animationCard__previewInner'>
+                <div class="animationCard__preview">
+                  <div class="animationCard__previewInner">
                     <item.Component preview={true} />
                   </div>
                 </div>
-                <div class='animationCard__description'>
-                  <h3 class='animationCard__title'>{item.meta.title}</h3>
-                  <p class='animationCard__text'>{item.meta.description}</p>
-                  <ul class='animationCard__tag'>
+                <div class="animationCard__description">
+                  <h3 class="animationCard__title">{item.meta.title}</h3>
+                  <p class="animationCard__text">{item.meta.description}</p>
+                  <ul class="animationCard__tag">
                     {item.meta.tags.primary.map((tag: AnimationTag) => {
-                      return <li class='animationCard__tagItem'>{tag}</li>;
+                      return <li class="animationCard__tagItem">{tag}</li>;
                     })}
 
                     {() => {
                       if (item.meta.tags.free) {
                         return item.meta.tags.free.map((tag: string) => {
-                          return <li class='animationCard__tagItem'>{tag}</li>;
+                          return <li class="animationCard__tagItem">{tag}</li>;
                         });
                       }
                     }}
@@ -123,21 +119,21 @@ const useTech = [
           ))
         }
       </ul>
-      <div class='topAnimation__cta'>
-        <ButtonTertiary href='./animations/' />
+      <div class="topAnimation__cta">
+        <ButtonTertiary href="./animations/" />
       </div>
     </section>
     <!-- /Animations Section -->
 
     <!-- About Section -->
-    <section id='about' class='topAbout top__about'>
-      <TitlePrimary label='ABOUT' num='02' />
+    <section id="about" class="topAbout top__about">
+      <TitlePrimary label="ABOUT" num="02" />
 
       <section>
-        <h3 class='topAbout__subTitle'>
+        <h3 class="topAbout__subTitle">
           「ズミ」は宮古島の方言で「最高」を意味します。
         </h3>
-        <div class='topAbout__description'>
+        <div class="topAbout__description">
           <p>
             Animezumiは、クリエイティブなアニメーションを追求し、表現の可能性を広げるプロジェクトを目指しています。
           </p>
@@ -146,21 +142,21 @@ const useTech = [
           </p>
         </div>
         <div>
-          <p class='topAbout__concept'>
-            アニメーション + ズミ（最高）<span class='topAbout__concept--space'
+          <p class="topAbout__concept">
+            アニメーション + ズミ（最高）<span class="topAbout__concept--space"
               >=</span
             ><span>ANIMEZUMI</span>
           </p>
         </div>
       </section>
       <section>
-        <h3 class='topAbout__title'>Technologies</h3>
-        <ul class='topAbout__tech'>
+        <h3 class="topAbout__title">Technologies</h3>
+        <ul class="topAbout__tech">
           {
             useTech.map((item) => (
-              <li class='topAbout__techItem'>
-                <p class='topAbout__techTitle'>{item.title}</p>
-                <p class='topAbout__techPara'>{item.description}</p>
+              <li class="topAbout__techItem">
+                <p class="topAbout__techTitle">{item.title}</p>
+                <p class="topAbout__techPara">{item.description}</p>
               </li>
             ))
           }
@@ -171,7 +167,7 @@ const useTech = [
   </div>
 </Layout>
 
-<style lang='scss'>
+<style lang="scss">
   @use '../assets/css/pages/_top.scss';
   @use '../assets/css/components/_card.scss';
 </style>

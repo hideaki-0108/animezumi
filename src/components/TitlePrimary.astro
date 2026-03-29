@@ -2,18 +2,18 @@
 const { label, num } = Astro.props;
 ---
 
-<div class='titlePrimary'>
+<div class="titlePrimary">
   {
     () => {
       if (num !== null) {
-        return <span class='titlePrimary__num'>{num}</span>;
+        return <span class="titlePrimary__num">{num}</span>;
       }
     }
   }
-  <h2 class='titlePrimary__label'>{label}</h2>
+  <h2 class="titlePrimary__label">{label}</h2>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   @use '../assets/css/abstracts/_variables.scss' as *;
   @use '../assets/css/abstracts/mixins' as *;
   @use '../assets/css/base/typography' as *;

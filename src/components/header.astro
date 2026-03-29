@@ -13,29 +13,29 @@ const navItems = [
 ];
 ---
 
-<header class='header'>
-  <div class='header__wrap'>
-    <div class='header__inner'>
-      <div class='header__logo'>
-        <a href='/animezumi/' aria-label='トップに戻る'>ANIMEZUMI</a>
+<header class="header">
+  <div class="header__wrap">
+    <div class="header__inner">
+      <div class="header__logo">
+        <a href="/animezumi/" aria-label="トップに戻る">ANIMEZUMI</a>
       </div>
       <button
-        class='header__toggle'
-        type='button'
-        aria-label='メインメニューを開閉'
-        aria-expanded='false'
-        aria-controls='global-nav'
+        class="header__toggle"
+        type="button"
+        aria-label="メインメニューを開閉"
+        aria-expanded="false"
+        aria-controls="global-nav"
       >
-        <span class='header__toggleLine'></span>
-        <span class='header__toggleLine'></span>
-        <span class='header__toggleLine'></span>
+        <span class="header__toggleLine"></span>
+        <span class="header__toggleLine"></span>
+        <span class="header__toggleLine"></span>
       </button>
-      <nav class='headerNav' id='global-nav'>
-        <ul class='headerNav__list'>
+      <nav class="headerNav" id="global-nav">
+        <ul class="headerNav__list">
           {
             navItems.map((item) => (
-              <li class='headerNav__item'>
-                <a href={item.href} class='headerNav__link'>
+              <li class="headerNav__item">
+                <a href={item.href} class="headerNav__link">
                   {item.label}
                 </a>
               </li>
@@ -47,7 +47,7 @@ const navItems = [
   </div>
 </header>
 
-<style lang='scss'>
+<style lang="scss">
   @use '../assets/css/components/header.scss';
 </style>
 
