@@ -16,7 +16,7 @@
 
   &__title {
     margin-bottom: 0;
-    font-family: 'Inter', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 18rem;
     letter-spacing: 12%;
     line-height: 100%;
@@ -120,7 +120,7 @@
 
   &__scroll {
     margin-top: 48px;
-    color: $color-quinary;
+    color: #fff;
     letter-spacing: 18%;
 
     &--line {
